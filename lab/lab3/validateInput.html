@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>validate form</title>
+</head>
+<style>
+    body {
+    max-width: max-content;
+    margin: auto;   
+  }
+  input{
+    width: 8cm;
+    border: 4px  blue;
+    border-radius: 4px;
+    height: 1cm;
+    background-color: #f1f1f1;
+    text-indent: 15px;
+    margin-top: 8px;
+  }
+  h2{
+      margin-left: 21%;
+  }
+  button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+    margin-top: 0.5cm;
+    margin-left: 40%
+  }
+  
+</style>
+<script>
+    function validate() {
+        var emailID = document.myForm.EMail.value;
+        var phonenumber = document.myForm.phone.value;
+        var phoneno = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
+  
+        atpos = emailID.indexOf("@");
+        dotpos = emailID.lastIndexOf(".");
+        
+        if (atpos < 1 || ( dotpos - atpos < 2 )) {
+           alert("Please enter correct email ID")
+           document.myForm.EMail.focus() ;
+           return false;
+        }
+        if(!phonenumber.match(phoneno)) {
+            alert("Please enter correct phone number")
+            return false;
+        }
+        return( true );
+    }
+        
+</script>
+<body>
+    <h2>Create an account</h2>
+    <form name = "myForm" onsubmit= "validate()" method="post">
+    Username:<br> <input type="text" name="name" placeholder="Enter your name" required><br>
+    Email: <br><input type="text"  name="EMail"  placeholder="Enter email" required><br>
+    Telephone: <br><input type="text" name="phone" placeholder="Enter phone number" required><br>
+    
+  <button type="submit" >Đăng ký</button>
+  <br>
+</form>
+</body>
+</html>
