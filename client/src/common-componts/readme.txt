@@ -1,0 +1,1 @@
+This folder contains components that used in other components (can consider it is atom components)

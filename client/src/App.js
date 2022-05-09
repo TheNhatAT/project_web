@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import {Route, Routes} from "react-router-dom";
+import Nav from "./pages/example/components/Nav";
+import Home from "./pages/example/components/Home";
+import PrivateRoute from "./react-routes/privateRoute";
+import Dashboard from "./pages/example/components/Dashboard";
+import Settings from "./pages/example/components/Settings";
+import Login from "./pages/example/components/Login";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function Pricing() {
+    return null;
 }
 
-export default App;
+export default function App() {
+    return (
+        <div>
+            <Nav />
+
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/pricing" element={<Pricing />} />
+                <Route
+                    path="/dashboard"
+                    element={
+                        <PrivateRoute>
+                            <Dashboard />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/settings"
+                    element={
+                        <PrivateRoute>
+                            <Settings />
+                        </PrivateRoute>
+                    }
+                />
+                <Route path="/login" element={<Login />} />
+            </Routes>
+        </div>
+    );
+}
