@@ -1,9 +1,8 @@
 const router = require("./router")
 const http = require('http');
-const url = require('url')
 const querystring = require('querystring');
-const fs = require("fs");
-const mime = require('mime');
+require('dotenv').config()
+
 
 // switch function for HTTP method
 /**
