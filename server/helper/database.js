@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('mysql2');
 require('dotenv').config()
 let db_config = {
     host     : process.env.DB_HOST || 'localhost',
@@ -6,7 +6,7 @@ let db_config = {
     password : process.env.DB_PASS || 'root',
     database : process.env.DB_NAME || 'project_web'
 };
-let connection;
+let connection; 
 
 function handleDisconnect() {
     console.log(db_config)
