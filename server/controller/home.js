@@ -1,3 +1,4 @@
+
 exports.getAllBoarding_rooms = (req, res) =>{
     const addr = req.query;
     console.log(addr);
