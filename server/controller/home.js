@@ -1,11 +1,21 @@
+const mysql = require("mysql");
+//start();
 
+const pool = mysql.createPool({
+    connectionLimit:10,
+    host: "localhost",
+    user:"root",
+    password:"",
+    database: "project_web"
+
+})
 exports.getAllBoarding_rooms = (req, res) =>{
     const addr = req.query;
     console.log(addr);
     pool.getConnection((err, connection)=>{
         if(err) throw err
         console.log(`connected as ${connection.threadId}`)
-        connection.query(`SELECT * from boarding_rooms ORDER BY created_at DESC LIMIT 10`, (err, rows)=>{
+        connection.query(`SELECT * from boarding_rooms ORDER BY created_at DESC LIMIT 2`, (err, rows)=>{
             connection.release()
         if(!err){
             res.send(rows)
@@ -162,8 +172,8 @@ exports.pageFragment = (req, res) =>{
     pool.getConnection((err, connection)=>{
         if(err) throw err
         console.log(`connected as ${connection.threadId}`)
-        let page = (result['page'] - 1)*10;
-        connection.query(`SELECT * from boarding_rooms LIMIT ${page}, 10`, (err, rows)=>{
+        let page = (result['page'] - 1)*2;
+        connection.query(`SELECT * from boarding_rooms LIMIT ${page}, 2`, (err, rows)=>{
             connection.release()
         if(!err){
             res.send(rows)
