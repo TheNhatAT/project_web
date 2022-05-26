@@ -70,12 +70,111 @@ exports.filter = (req, res) =>{
     pool.getConnection((err, connection)=>{
         if(err) throw err
         console.log(`connected as ${connection.threadId}`)
+        if(!('minimal_room_price' in result)){
+            if('address' in result && 'minimal_area' in result && 'category' in result){
+                connection.query(`SELECT * from boarding_rooms 
+                                    where address like '${result['address']}%' 
+                                        and area >= ${result['minimal_area']} 
+                                        and area <= ${result['maximal_area']} 
+                                        and category = ${result['category']} `,(err, rows)=>{
+
+                connection.release()
+                if(!err){
+                    res.send(rows)
+                }    
+                else{
+                    console.log(err)
+                }
+                })
+            }
+            else if('address' in result && 'minimal_area' in result && !('category' in result) ){
+                connection.query(`SELECT * from boarding_rooms 
+                                    where address like '${result['address']}%' 
+                                        and area >= ${result['minimal_area']} 
+                                        and area <= ${result['maximal_area']} `, (err, rows)=>{
+
+                connection.release()
+                if(!err){
+                    res.send(rows)
+                }    
+                else{
+                    console.log(err)
+                }
+                })
+            }
+            else if('address' in result && !('minimal_area' in result) && !('category' in result) ) {
+                connection.query(`SELECT * from boarding_rooms where address like '${result['address']}%'`, (err, rows)=>{
+                
+                    connection.release()
+                if(!err){
+                    res.send(rows)
+                }    
+                else{
+                    console.log(err)
+                }
+                })
+            }
+            else if(!('address' in result) && 'minimal_area' in result && 'category' in result ) {
+            connection.query(`SELECT * from boarding_rooms 
+                                where area >= ${result['minimal_area']} 
+                                    and area <= ${result['maximal_area']} 
+                                    and category = ${result['category']}`, (err, rows)=>{
+
+                connection.release()
+                if(!err){
+                    res.send(rows)
+                }    
+                else{
+                    console.log(err)
+                }
+                })
+            }
+            else if(!('address' in result) && !('minimal_area' in result) && 'category' in result ) {
+                connection.query(`SELECT * from boarding_rooms where category = ${result['category']}`, (err, rows)=>{
+
+                connection.release()
+                if(!err){
+                    res.send(rows)
+                }    
+                else{
+                    console.log(err)
+                }
+                })
+            }
+            else if(!('address' in result) && 'area' in result && !('category' in result) ) {
+                connection.query(`SELECT * from boarding_rooms where area >= ${result['minimal_area']} and area <= ${result['maximal_area']}`, (err, rows)=>{
+                    
+                connection.release()
+                if(!err){
+                    res.send(rows)
+                }    
+                else{
+                    console.log(err)
+                }
+                })
+            }
+            else if('address' in result && !('area' in result) && 'category' in result ) {
+                connection.query(`SELECT * from boarding_rooms where address like '${result['address']}%' and category = ${result['category']}`, (err, rows)=>{
+                    
+                connection.release()
+                if(!err){
+                    res.send(rows)
+                }    
+                else{
+                    console.log(err)
+                }
+                })
+            }
+        }
+    else{
         if('address' in result && 'minimal_area' in result && 'category' in result){
             connection.query(`SELECT * from boarding_rooms 
                                 where address like '${result['address']}%' 
                                     and area >= ${result['minimal_area']} 
                                     and area <= ${result['maximal_area']} 
-                                    and category = ${result['category']} `,(err, rows)=>{
+                                    and category = ${result['category']}
+                                    and room_price => ${result['minimal_room_price']} 
+                                    and room_price <= ${result['maximal_room_price']}`,(err, rows)=>{
 
             connection.release()
             if(!err){
@@ -90,7 +189,9 @@ exports.filter = (req, res) =>{
             connection.query(`SELECT * from boarding_rooms 
                                 where address like '${result['address']}%' 
                                     and area >= ${result['minimal_area']} 
-                                    and area <= ${result['maximal_area']} `, (err, rows)=>{
+                                    and area <= ${result['maximal_area']} 
+                                    and room_price => ${result['minimal_room_price']} 
+                                    and room_price <= ${result['maximal_room_price']}`, (err, rows)=>{
 
             connection.release()
             if(!err){
@@ -102,7 +203,9 @@ exports.filter = (req, res) =>{
             })
         }
         else if('address' in result && !('minimal_area' in result) && !('category' in result) ) {
-            connection.query(`SELECT * from boarding_rooms where address like '${result['address']}%'`, (err, rows)=>{
+            connection.query(`SELECT * from boarding_rooms where address like '${result['address']}%'
+                                                                and room_price => ${result['minimal_room_price']} 
+                                                                and room_price <= ${result['maximal_room_price']}`, (err, rows)=>{
             
                 connection.release()
             if(!err){
@@ -117,7 +220,9 @@ exports.filter = (req, res) =>{
         connection.query(`SELECT * from boarding_rooms 
                             where area >= ${result['minimal_area']} 
                                 and area <= ${result['maximal_area']} 
-                                and category = ${result['category']}`, (err, rows)=>{
+                                and category = ${result['category']}
+                                and room_price => ${result['minimal_room_price']} 
+                                and room_price <= ${result['maximal_room_price']}`, (err, rows)=>{
 
             connection.release()
             if(!err){
@@ -129,7 +234,9 @@ exports.filter = (req, res) =>{
             })
         }
         else if(!('address' in result) && !('minimal_area' in result) && 'category' in result ) {
-            connection.query(`SELECT * from boarding_rooms where category = ${result['category']}`, (err, rows)=>{
+            connection.query(`SELECT * from boarding_rooms where category = ${result['category']}
+                                                            and room_price => ${result['minimal_room_price']} 
+                                                            and room_price <= ${result['maximal_room_price']}`, (err, rows)=>{
 
             connection.release()
             if(!err){
@@ -141,7 +248,10 @@ exports.filter = (req, res) =>{
             })
         }
         else if(!('address' in result) && 'area' in result && !('category' in result) ) {
-            connection.query(`SELECT * from boarding_rooms where area >= ${result['minimal_area']} and area <= ${result['maximal_area']}`, (err, rows)=>{
+            connection.query(`SELECT * from boarding_rooms where area >= ${result['minimal_area']}
+                                                            and area <= ${result['maximal_area']}
+                                                            and room_price => ${result['minimal_room_price']} 
+                                                            and room_price <= ${result['maximal_room_price']}`, (err, rows)=>{
                 
             connection.release()
             if(!err){
@@ -153,7 +263,10 @@ exports.filter = (req, res) =>{
             })
         }
         else if('address' in result && !('area' in result) && 'category' in result ) {
-            connection.query(`SELECT * from boarding_rooms where address like '${result['address']}%' and category = ${result['category']}`, (err, rows)=>{
+            connection.query(`SELECT * from boarding_rooms where address like '${result['address']}%' 
+                                                                and category = ${result['category']}
+                                                                and room_price => ${result['minimal_room_price']} 
+                                                                and room_price <= ${result['maximal_room_price']}`, (err, rows)=>{
                 
             connection.release()
             if(!err){
@@ -164,6 +277,7 @@ exports.filter = (req, res) =>{
             }
             })
         }
+    }
     })
 }
 exports.pageFragment = (req, res) =>{
