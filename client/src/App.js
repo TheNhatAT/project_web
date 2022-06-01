@@ -6,6 +6,7 @@ import PrivateRoute from "./react-routes/privateRoute";
 import Dashboard from "./pages/example/components/Dashboard";
 import Settings from "./pages/example/components/Settings";
 import Login from "./pages/example/components/Login";
+import {AuthRoute} from "./react-routes/authRoute";
 
 function Pricing() {
     return null;
@@ -17,8 +18,16 @@ export default function App() {
             <Nav />
 
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/pricing" element={<Pricing />} />
+                <Route path="/" element={
+                    <AuthRoute>
+                        <Home />
+                    </AuthRoute>
+                } />
+                <Route path="/pricing" element={
+                    <AuthRoute>
+                        <Pricing />
+                    </AuthRoute>
+                } />
                 <Route
                     path="/dashboard"
                     element={
@@ -35,7 +44,11 @@ export default function App() {
                         </PrivateRoute>
                     }
                 />
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={
+                    <AuthRoute>
+                        <Login />
+                    </AuthRoute>
+                } />
             </Routes>
         </div>
     );

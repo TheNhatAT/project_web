@@ -4,13 +4,12 @@ import * as React from "react";
 
 export default function Login () {
     const navigate = useNavigate();
-    const {login}=AuthConsumer()
-    // const { login } = useAuth();
+    const {login} = AuthConsumer()
 
     const handleLogin = () => {
         login().then(() => {
             navigate("/dashboard");
-        })
+        });
     };
 
     return (

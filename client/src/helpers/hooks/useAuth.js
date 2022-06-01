@@ -8,12 +8,16 @@ export default function useAuth() {
     function login() {
         return new Promise((res) => {
             setAuthed(true);
+            localStorage.setItem('auth', 'true');
+            console.log('localStorage auth = ', localStorage.getItem('auth'))
             res();
         });
     }
     function logout() {
         return new Promise((res) => {
             setAuthed(false);
+            localStorage.setItem('auth', 'false');
+            console.log('localStorage auth = ', localStorage.getItem('auth'))
             res();
         });
     }
@@ -26,7 +30,7 @@ export default function useAuth() {
 
 export function AuthProvider({ children }) {
     const auth = useAuth();
-
+    console.log('auth in provider: ', auth.authed);
     return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
 
