@@ -16,7 +16,7 @@ export default function Header () {
                   </nav>
                   <a
                       className="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center lg:items-center lg:justify-center mb-4 md:mb-0">
-                      <img src="https://pazly.dev/logo.png" style="height: 40px; margin-top: 10px; margin-bottom: 10px;"
+                      <img src="https://pazly.dev/logo.png" style={{height: "40px", marginTop: "10px", marginBottom: "10px"}}
                             alt="logo"/>
                           <span className="ml-3 text-xl">pazly.dev</span>
                   </a>
