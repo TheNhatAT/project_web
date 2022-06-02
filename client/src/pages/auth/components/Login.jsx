@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 export default function Login() {
 
     return (
@@ -94,11 +96,10 @@ export default function Login() {
                     >
           <span className="ml-2"
           >Bạn chưa có tài khoản?
-            <a
-                href="#"
+            <Link to="/register"
                 className="text-xs ml-2 text-blue-500 font-semibold"
-            >Đăng ký ngay</a
-            ></span
+            >Đăng ký ngay</Link>
+          </span
           >
                     </a>
                 </div>
