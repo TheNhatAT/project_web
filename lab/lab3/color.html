@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color</title>
+    <script>
+        function mouseOver() {
+          document.getElementById("para").style.color = "red";
+        }
+
+        function mouseOut() {
+          document.getElementById("para").style.color = "black";
+        }
+
+        function mouseOverGreen() {
+          document.getElementById("paraG").style.color = "green";
+        }
+        
+        function mouseOutGreen() {
+          document.getElementById("paraG").style.color = "black";
+        }
+
+        function mouseOverBlue() {
+          document.getElementById("paraB").style.color = "blue";
+        }
+        
+        function mouseOutBlue() {
+          document.getElementById("paraB").style.color = "black";
+        }
+        </script>
+    <style>
+        #para{
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        #paraG{
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        #paraB{
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        h4{
+            margin-top: 5%;
+            margin-left: 40%;
+        }
+    </style>
+</head>
+<body>
+    <h4>The key to efficient and flexible edge computing</h4>
+    <p id="para" onmouseover="mouseOver()" onmouseout="mouseOut()">Researchers have designed a tunable physical reservoir 
+        device based on the dielectric relaxation at an electrode-ionic liquid interface. Physical reservoir
+        computing (PRC), which relies on the transient response of physical systems, is an attractive machine learning
+        framework that can perform high-speed processing of time-series signals at low power.</p>
+    <h4>Hybrid quantum bit based on topological insulators</h4>
+    <p id="paraG" onmouseover="mouseOverGreen()" onmouseout="mouseOutGreen()">With their superior properties, topological qubits could help 
+        achieve a breakthrough in the development of a quantum computer designed for universal applications. So far, no one has yet
+        succeeded in unambiguously demonstrating a quantum bit, or qubit for short, of this kind in a lab. Scientists have now 
+        succeeded in integrating a topological insulator into a conventional superconducting qubit.</p>
+    <h4>An easier way to teach robots new skills</h4>
+    <p id="paraB" onmouseover="mouseOverBlue()" onmouseout="mouseOutBlue()">Researchers have developed a technique that enables a robot to learn a new pick-and-place task with only a handful of human 
+        demonstrations. This could allow a human to reprogram a robot to grasp never-before-seen objects, presented in random poses, 
+        in about 15 minutes.</p>
+</body>
+</html>
