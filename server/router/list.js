@@ -1,8 +1,14 @@
 const exampleCtrl = require("../controller/example");
+const UserController = require("../controller/UserController");
 
 class List {
     '/example' (res) {
         exampleCtrl.example(res);
+    }
+
+    // Routes of User
+    '/users/register' (res, pathname, query, body) {
+        UserController.register(res, pathname, query, body);
     }
 }
 
