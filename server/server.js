@@ -1,6 +1,5 @@
 const router = require("./router")
 const http = require('http');
-const querystring = require('querystring');
 require('dotenv').config()
 
 
@@ -32,17 +31,17 @@ const handleMethod = (req, data, callback) => {
     const query = new URLSearchParams(url.search);
 
     data = Buffer.concat(data).toString();
-    const params = querystring.parse(data);
+    const body = JSON.parse(data);
 
     switch (req.method) {
         case "GET":
             callback({pathname, query});
             break;
         case "POST":
-            callback({params});
+            callback({pathname, body});
             break;
         case "PUT":
-           callback({pathname, params});
+           callback({pathname, body});
            break;
         case "DELETE":
             callback({pathname})

@@ -1,10 +1,8 @@
-const fs = require('fs');
-const url = require('url');
 const routerList = require("./list");
 const {staticServer} = require("../helper/staticServerHandler");
 
 const router = (req, res, obj) => {
-    const {pathname, query, params} = obj;
+    const {pathname, query, body} = obj;
 
     if (pathname.startsWith('/assets')) {
         return staticServer(res, pathname);
@@ -14,7 +12,7 @@ const router = (req, res, obj) => {
     console.log('DEBUG: routerItem = ', routerItem);
     console.log('DEBUG: pathname = ', pathname);
     if (routerItem) {
-        return routerList.list[routerItem](res, pathname, params, req.method);
+        return routerList.list[routerItem](res, pathname, query, body, req.method);
     }
 
     // if error
