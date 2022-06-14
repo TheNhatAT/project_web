@@ -83,13 +83,16 @@ BoardingRoomSeed = function(name, room_price) {
 
 
 }
-BoardingRoomSeed('Phòng đẹp 0', 1000000);
+/*BoardingRoomSeed('Phòng đẹp 0', 1000000);
 BoardingRoomSeed('Phòng đẹp 1', 1200000);
 BoardingRoomSeed('Phòng đẹp 2', 1400000);
 BoardingRoomSeed('Phòng đẹp 3', 1600000);
-BoardingRoomSeed('Phòng đẹp 4', 1800000);
-
-PathSeed = function(path) {
+BoardingRoomSeed('Phòng đẹp 4', 1800000);*/
+BoardingRoomSeed("Cho thuê phòng trọ", 1200000, null, null, null, null, 12, "Nhà trọ đẹp giá rẻ", "Phòng trọ","Hà Nội Trương Định")
+BoardingRoomSeed("Cho thuê chung cu mini", 4200000, null, null, null, null, 12, "Chung cư gần trung tâm", "Chung cư","Hà Nội Cầu giấy")
+BoardingRoomSeed("Tìm người ở ghép", 1000000, null, null, null, null, 12, "Phòng thoáng mát, gần cấc trường đại học", "Phòng trọ","Hà Nội Hai Bà Trưng")
+BoardingRoomSeed("Tìm người ở ghép", 1200000, null, null, null, null, 12, "Tìm bạn ở ghép", "Phòng trọ","Hà Nội Bạch Mai")
+/*PathSeed = function(path) {
     db.query(`INSERT INTO photos SET ?`, {
         path : path,
         boarding_room_id : null,
@@ -159,7 +162,7 @@ RevenuesSeed('type3', 3, 2022, 2, 3);
 RevenuesSeed('type4', 4, 2022, 2, 4);
 RevenuesSeed('type5', 5, 2022, 2, 5);
 
-
+*/
 
 
 
