@@ -88,10 +88,13 @@ BoardingRoomSeed('Phòng đẹp 1', 1200000);
 BoardingRoomSeed('Phòng đẹp 2', 1400000);
 BoardingRoomSeed('Phòng đẹp 3', 1600000);
 BoardingRoomSeed('Phòng đẹp 4', 1800000);*/
-BoardingRoomSeed("Cho thuê phòng trọ", 1200000, null, null, null, null, 12, "Nhà trọ đẹp giá rẻ", "Phòng trọ","Hà Nội Trương Định")
-BoardingRoomSeed("Cho thuê chung cu mini", 4200000, null, null, null, null, 12, "Chung cư gần trung tâm", "Chung cư","Hà Nội Cầu giấy")
-BoardingRoomSeed("Tìm người ở ghép", 1000000, null, null, null, null, 12, "Phòng thoáng mát, gần cấc trường đại học", "Phòng trọ","Hà Nội Hai Bà Trưng")
-BoardingRoomSeed("Tìm người ở ghép", 1200000, null, null, null, null, 12, "Tìm bạn ở ghép", "Phòng trọ","Hà Nội Bạch Mai")
+BoardingRoomSeed("Cho thuê phòng trọ", 1200000, null, null, null, null, 16, "Nhà trọ đẹp giá rẻ", "Phòng trọ","Hà Nội Trương Định")
+BoardingRoomSeed("Cho thuê chung cu mini", 4200000, null, null, null,"chung cư", 14, "Chung cư gần trung tâm", "Chung cư","Hải Phòng Lê Chân")
+BoardingRoomSeed("Tìm người ở ghép", 1000000, null, null, null, null, 13, "Cần tìm một bạn chăm chỉ thật thà", "Phòng trọ","Hà Nội Hai Bà Trưng")
+BoardingRoomSeed("Tìm người ở ghép", 1200000, null, null, null, "phòng trọ", 12, "Cần tìm một bạn vui vẻ hòa đồng", "Phòng trọ","Hải Phòng Dư Hàng Kênh")
+BoardingRoomSeed("Tìm người ở ghép", 1800000, null, null, null, "phòng trọ", 18, "Phòng trọ gần các tường đại học", "Phòng trọ thoáng mát","Hà Nội Bạch Mai")
+BoardingRoomSeed("Cho thuê nhà trọ ", 3200000, null, null, null, null, 20, "Phòng trọ", "Phòng trọ đầy đủ tiện nghi","Hà Nội Trương Định")
+BoardingRoomSeed("Cho thuê nhà trọ gần Bách Khoa", 2000000, null, null, null, null, 15, "", "Phòng trọ","Hà Nội Minh Khai")
 /*PathSeed = function(path) {
     db.query(`INSERT INTO photos SET ?`, {
         path : path,
