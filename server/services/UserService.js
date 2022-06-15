@@ -29,13 +29,14 @@ exports.createOne = async (pathname, query, body) => {
 exports.getAllBoardingRoom = async (pathname, query, body) =>{
     
     let conn = await connect();
-    let rows = await conn.execute(`SELECT * from boarding_rooms ORDER BY created_at DESC LIMIT 2`)
+    let rows = await conn.execute(`SELECT * from boarding_rooms ORDER BY created_at DESC LIMIT 10`)
     console.log(rows)
     if(!rows){
          throw Error('Can not get all boarding room')
     }
     return {'data':rows}    
 }
+
 exports.findARoomate = async (pathname, query, body) =>{
     let conn = await connect();
     let rows = await conn.execute(`SELECT * from boarding_rooms where name like '%ở ghép%'`)
@@ -105,6 +106,14 @@ exports.filter = async (pathname, query, body) => {
         }
         else if('address' in query && !('minimal_area' in query) && 'category' in query ) {
             rows = await conn.execute(`SELECT * from boarding_rooms where address like '${query['address']}%' and category like '${query['category']}'`)
+            if(!rows){
+                throw Error('Error')
+            }
+        }
+        else if(!('address' in query) && !('minimal_area' in query) && !('category' in query) ) {
+            rows = await conn.execute(`SELECT * from boarding_rooms 
+                                        where room_price >= ${query['minimal_room_price']} 
+                                            and room_price <= ${query['maximal_room_price']}`)
             if(!rows){
                 throw Error('Error')
             }

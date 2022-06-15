@@ -72,9 +72,7 @@ exports.findARoomate = async (res, pathname, query, body) => {
 }
 exports.findByAddr = async (res, pathname, query, body) => {
     try {
-        
         const rows = await UserService.findByAddr(pathname, query, body);
-
         res.writeHead(400, {
             'Content-Type':'application/json'
         }).end(JSON.stringify({
@@ -94,10 +92,8 @@ exports.findByAddr = async (res, pathname, query, body) => {
     }
 }
 exports.filter = async (res, pathname, query, body) => {
-    try {
-        
+    try {   
         const rows = await UserService.filter(pathname, query, body);
-
         res.writeHead(400, {
             'Content-Type':'application/json'
         }).end(JSON.stringify({
