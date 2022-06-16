@@ -1,8 +1,8 @@
 const { connect } = require('../helper/database');
 const bcrypt = require("bcrypt");
 
+let conn = connect();
 exports.createOne = async (pathname, query, body) => {
-    let conn = await connect();
     const {name, email, password, address, role, phone_number} = body;
 
     console.log('body: ', body)
@@ -21,6 +21,28 @@ exports.createOne = async (pathname, query, body) => {
     [user] = await conn.execute('SELECT * FROM `users` WHERE `id` = ?',
         [user.insertId]);
     return user;
+}
+
+exports.getOneByEmail = async (email) => {
+    let [check_users, fields]  = await conn.execute('SELECT * FROM `users` WHERE `email` = ?',
+        [email])
+    if (check_users.length === 0) {
+        throw new Error(`User with ${email} is not exist!`);
+    }
+    return check_users[0];
+}
+
+exports.updateOne = async (id, data) => {
+    const {name, email, address, role, phone_number, auth_token, avatar, status} = data;
+
+    let [users, fields]  = await conn.execute('SELECT * FROM `users` WHERE `id` = ?',
+        [id]);
+    if (users.length === 0) {
+        throw new Error(`User with ${id} is not exist!`);
+    }
+    let [updatedUser] = await conn.execute('UPDATE `users` SET name = ?, email = ?, address = ?, role = ?,' +
+        'phone_number = ?, auth_token = ?, avatar = ?, status = ?', [name, email, address, role, phone_number, auth_token, avatar, status]);
+    return updatedUser;
 }
 exports.getAllBoardingRoom = async (pathname, query, body) =>{
     
