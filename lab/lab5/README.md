@@ -14,7 +14,3 @@ Trong đó [path_project] là đường dẫn tới thư mục đặt project `t
 # Note : 
 - Với 2 project `todo-list` và `e-commerce` nhiều bạn sẽ gặp vấn đề về máy chủ apache2 không thể đọc file `.htacess` nên không thể chuyển hướng tên miền về file `index.php` thì có thể xem lại file config của apache2 và để `AllowOverride All` thay cho `AllowOverride Node`. Nếu chưa được thì hãy thử khởi động lại mod_rewrite.
 - Nêu có bất cứ thư mục nào bị từ chối truy cập, hãy phân lại quyền truy cập thư mục của thư mục đó cho user
-
-Ấn vào ảnh dưới để xem demo : <br />
-
-[![Watch the video](https://i.pinimg.com/564x/f2/b2/15/f2b2150c459544a6589c36ae7fcef9c6.jpg)](https://youtu.be/hI-_C--20iM)
