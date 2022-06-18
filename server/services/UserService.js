@@ -40,8 +40,8 @@ exports.updateOne = async (id, data) => {
     if (users.length === 0) {
         throw new Error(`User with ${id} is not exist!`);
     }
-    let [updatedUser] = await conn.execute('UPDATE `users` SET name = ?, email = ?, address = ?, role = ?,' +
-        'phone_number = ?, auth_token = ?, avatar = ?, status = ?', [name, email, address, role, phone_number, auth_token, avatar, status]);
+    let [updatedUser] = await conn.execute('UPDATE `users` SET name = ?, email = ?, address = ?, role = ?, phone_number = ?, auth_token = ?, avatar = ?, status = ?'
+        , [name, email, address, role, phone_number, auth_token, avatar, status]);
     return updatedUser;
 }
 exports.getAllBoardingRoom = async (pathname, query, body) =>{

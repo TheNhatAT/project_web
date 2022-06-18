@@ -1,7 +1,37 @@
 import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import useAuth from "../../../helpers/hooks/useAuth";
+import axios from "axios";
+
+async function loginUser(credentials) {
+    console.log('credentials: ',  JSON.stringify(credentials));
+    return await axios.post('http://localhost:8000/users/login', {
+        email: credentials.username,
+        password: credentials.password
+    });
+}
 
 export default function Login() {
+    const [auth, setAuth] = useState({});
+    const [user, setUser] = useState({
+        username: '',
+        password: ''
+    });
 
+    const {login} = useAuth();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let auth;
+        try {
+            auth = await loginUser(user);
+        } catch (error) {
+            console.log('error: ', error);
+        }
+        console.log('auth: ',auth);
+        setAuth(auth);
+        await login(auth);
+    }
     return (
         <>
             <div
@@ -18,7 +48,7 @@ export default function Login() {
                     </div>
 
                     <div className="mt-10">
-                        <form action="#">
+                        <form onSubmit={handleSubmit}>
                             <div className="flex flex-col mb-5">
                                 <label
                                     htmlFor="email"
@@ -37,6 +67,7 @@ export default function Login() {
                                         name="email"
                                         className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                                         placeholder="Enter your email"
+                                        onChange={e => setUser({...user, username: e.target.value})}
                                     />
                                 </div>
                             </div>
@@ -59,6 +90,7 @@ export default function Login() {
                                         name="password"
                                         className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                                         placeholder="Enter your password"
+                                        onChange={e => setUser({...user, password: e.target.value})}
                                     />
                                 </div>
                             </div>

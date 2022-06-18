@@ -35,11 +35,12 @@ exports.login = async (res, pathname, query, body) => {
         let isUser = bcrypt.compareSync(password, user.password);
         if (isUser) {
             // expire in 1h
-            user.auth_token = jwt.sign({data: user}, process.env.PRIVATE_KEY, {expiresIn: '1h'});
+            user.auth_token = jwt.sign({data: user.id}, process.env.PRIVATE_KEY, {expiresIn: '1h'});
             await UserService.updateOne(user.id, user);
         }
-        res.writeHead(400, {
-            'Content-Type':'application/json'
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
             message: 'Login successfully',
@@ -48,7 +49,8 @@ exports.login = async (res, pathname, query, body) => {
     } catch (error) {
         console.log(error)
         res.writeHead(400, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
             message: 'Login failed',

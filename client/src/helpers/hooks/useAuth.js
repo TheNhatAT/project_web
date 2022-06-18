@@ -5,7 +5,9 @@ export const authContext = React.createContext();
 
 export default function useAuth() {
     const [authed, setAuthed] = useState(false);
-    function login() {
+    function login(user) {
+        // handle login
+        console.log('user: ', user);
         return new Promise((res) => {
             setAuthed(true);
             localStorage.setItem('auth', 'true');
@@ -13,7 +15,9 @@ export default function useAuth() {
             res();
         });
     }
-    function logout() {
+    function logout(user) {
+        //handle login
+        console.log('user: ', user);
         return new Promise((res) => {
             setAuthed(false);
             localStorage.setItem('auth', 'false');
