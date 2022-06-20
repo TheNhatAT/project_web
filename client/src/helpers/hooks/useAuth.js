@@ -1,5 +1,6 @@
 import * as React from "react";
 import {useState} from "react";
+import jwt_decode from "jwt-decode";
 
 export const authContext = React.createContext();
 
@@ -7,11 +8,13 @@ export default function useAuth() {
     const [authed, setAuthed] = useState(false);
     function login(user) {
         // handle login
-        console.log('user: ', user);
         return new Promise((res) => {
             setAuthed(true);
+            const id = jwt_decode(user.auth_token).data;
+
+            localStorage.setItem('userId', id);
             localStorage.setItem('auth', 'true');
-            console.log('localStorage auth = ', localStorage.getItem('auth'))
+            localStorage.setItem('auth_token', user.auth_token);
             res();
         });
     }
@@ -20,8 +23,7 @@ export default function useAuth() {
         console.log('user: ', user);
         return new Promise((res) => {
             setAuthed(false);
-            localStorage.setItem('auth', 'false');
-            console.log('localStorage auth = ', localStorage.getItem('auth'))
+            localStorage.clear();
             res();
         });
     }

@@ -3,14 +3,15 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
-exports.register = async (res, pathname, query, body) => {
+exports.registry = async (res, pathname, query, body) => {
     try {
         if (!body.role)
             body.role = 1; // người cho thuê
         const user = await UserService.createOne(pathname, query, body);
 
-        res.writeHead(400, {
-            'Content-Type':'application/json'
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
             message: 'Register successfully',
@@ -19,7 +20,8 @@ exports.register = async (res, pathname, query, body) => {
     } catch (error) {
         console.log(error)
         res.writeHead(400, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
             message: 'Register failed',
@@ -44,7 +46,7 @@ exports.login = async (res, pathname, query, body) => {
         }).end(JSON.stringify({
             success: true,
             message: 'Login successfully',
-            content: user
+            content: {auth_token: user.auth_token}
         }));
     } catch (error) {
         console.log(error)

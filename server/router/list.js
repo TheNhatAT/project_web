@@ -7,8 +7,8 @@ class List {
     }
 
     // Routes of User
-    '/users/register' (res, pathname, query, body) {
-        UserController.register(res, pathname, query, body);
+    '/users/registry' (res, pathname, query, body) {
+        UserController.registry(res, pathname, query, body);
     }
 
     '/users/login' (res, pathname, query, body) {
