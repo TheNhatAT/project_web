@@ -4,6 +4,7 @@ import {AuthRoute} from "./react-routes/authRoute";
 import Layout from "./layout/Layout";
 import Login from "./pages/auth/components/Login";
 import Register from "./pages/auth/components/Register";
+import Manual from "./pages/auth/components/Manual";
 
 export default function App() {
     return (
@@ -20,6 +21,13 @@ export default function App() {
                     <AuthRoute>
                         <Layout>
                             <Register/>
+                        </Layout>
+                    </AuthRoute>
+                } />
+                <Route path="/manual" element={
+                    <AuthRoute>
+                        <Layout>
+                            <Manual/>
                         </Layout>
                     </AuthRoute>
                 } />
