@@ -10,9 +10,11 @@ export default function useAuth() {
         // handle login
         return new Promise((res) => {
             setAuthed(true);
-            const id = jwt_decode(user.auth_token).data;
+            const id = jwt_decode(user.auth_token).data.id;
+            const role = jwt_decode(user.auth_token).data.role;
 
             localStorage.setItem('userId', id);
+            localStorage.setItem('userRole', role);
             localStorage.setItem('auth', 'true');
             localStorage.setItem('auth_token', user.auth_token);
             res();

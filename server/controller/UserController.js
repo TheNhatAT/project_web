@@ -36,7 +36,7 @@ exports.login = async (res, pathname, query, body) => {
         let isUser = bcrypt.compareSync(password, user.password);
         if (isUser) {
             // expire in 1h
-            user.auth_token = jwt.sign({data: user.id}, process.env.PRIVATE_KEY, {expiresIn: '1h'});
+            user.auth_token = jwt.sign({data: {id: user.id, role: user.role}}, process.env.PRIVATE_KEY, {expiresIn: '1h'});
             await UserService.updateOne(user.id, user);
         }
         res.writeHead(200, {

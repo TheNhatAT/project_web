@@ -1,5 +1,18 @@
-export default function Header () {
+import {Link, useNavigate} from "react-router-dom";
+import {useState} from "react";
+import axios from "axios";
 
+export default function Header () {
+    const navigate = useNavigate();
+
+    const handleLogin = () => {
+        navigate("/login");
+    }
+
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/home");
+    }
     return (
         <>
           <header>
@@ -18,13 +31,11 @@ export default function Header () {
                       </svg>
                   </div>
 
-                  <div className="inline-flex  ml-5 lg:ml-0">
-                      <a href="https://www.buymeacoffee.com/pazlydev"
-                         className="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg">
+                  <div className="inline-fex  ml-5 lg:ml-0" >
+                      <a onClick={handleLogin} className="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg">
                           Login
                       </a>
-                      <a href="https://www.buymeacoffee.com/pazlydev"
-                         className="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg">
+                      <a onClick={handleLogout} className="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg">
                           Logout
                       </a>
                   </div>

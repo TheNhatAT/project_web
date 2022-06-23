@@ -24,9 +24,9 @@ export default function App() {
                         </Layout>
                     </AuthRoute>
                 } />
-                <Route path="/manual" element={
+                <Route path="/guide" element={
                     <AuthRoute>
-                        <Layout>
+                        <Layout nav={true}>
                             <Manual/>
                         </Layout>
                     </AuthRoute>
