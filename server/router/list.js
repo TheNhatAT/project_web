@@ -1,5 +1,7 @@
 const exampleCtrl = require("../controller/example");
 const UserController = require("../controller/UserController");
+const BoardingRoomController = require("../controller/BoardingRoomController");
+const path = require("path");
 
 class List {
     '/example' (res) {
@@ -28,6 +30,11 @@ class List {
     }
     '/users/home/page'(res, pathname, query, body) {
         UserController.pageFragment(res, pathname, query, body);
+    }
+
+    // Router of BoardingRoom
+    '/boardind-rooms/id'(res, pathname, query, body) {
+        BoardingRoomController.getBoardingRoomById(res, pathname, query, body);
     }
 }
 

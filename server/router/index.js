@@ -9,8 +9,6 @@ const router = (req, res, obj) => {
     }
 
     const routerItem = routerList.isRouter(pathname);
-    console.log('DEBUG: routerItem = ', routerItem);
-    console.log('DEBUG: pathname = ', pathname);
     if (routerItem) {
         return routerList.list[routerItem](res, pathname, query, body, req.method);
     }
