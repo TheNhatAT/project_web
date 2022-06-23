@@ -1,7 +1,44 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import useAuth from "../../../helpers/hooks/useAuth";
+import axios from "axios";
+
+async function loginUser(credentials) {
+    console.log('credentials: ', JSON.stringify(credentials));
+    return await axios.post('http://localhost:8000/users/login', {
+        email: credentials.username,
+        password: credentials.password
+    });
+}
 
 export default function Login() {
+    const [auth, setAuth] = useState(undefined);
+    const [user, setUser] = useState({
+        username: '',
+        password: ''
+    });
+    const [error, setError] = useState(undefined);
 
+    const {login} = useAuth();
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let auth;
+        try {
+            auth = (await loginUser(user)).data;
+            console.log('auth: ', auth);
+            setAuth(auth);
+            await login(auth.content);
+            setError(undefined);
+        } catch (error) {
+            setError(error);
+            setAuth(undefined);
+        }
+        if (auth) {
+            navigate("/dashboard");
+        }
+    }
     return (
         <>
             <div
@@ -16,9 +53,12 @@ export default function Login() {
                     <div className="mt-4 self-center text-2xl sm:text-sm text-gray-800">
                         Bạn cần đăng nhập để cho thuê phòng
                     </div>
-
-                    <div className="mt-10">
-                        <form action="#">
+                    {error &&
+                    (<div className="text-red-500 mt-4 self-center text-2xl sm:text-sm ">
+                        Tài khoản hoặc mật khẩu không đúng
+                    </div>)}
+                    <div className="mt-0">
+                        <form onSubmit={handleSubmit}>
                             <div className="flex flex-col mb-5">
                                 <label
                                     htmlFor="email"
@@ -37,6 +77,7 @@ export default function Login() {
                                         name="email"
                                         className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                                         placeholder="Enter your email"
+                                        onChange={e => setUser({...user, username: e.target.value})}
                                     />
                                 </div>
                             </div>
@@ -47,7 +88,8 @@ export default function Login() {
                                 >Mật khẩu:</label
                                 >
                                 <div className="relative">
-                                    <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                                    <div
+                                        className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
                   <span>
                     <i className="fas fa-lock text-blue-500"/>
                   </span>
@@ -59,6 +101,7 @@ export default function Login() {
                                         name="password"
                                         className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                                         placeholder="Enter your password"
+                                        onChange={e => setUser({...user, password: e.target.value})}
                                     />
                                 </div>
                             </div>
@@ -97,7 +140,7 @@ export default function Login() {
           <span className="ml-2"
           >Bạn chưa có tài khoản?
             <Link to="/register"
-                className="text-xs ml-2 text-blue-500 font-semibold"
+                  className="text-xs ml-2 text-blue-500 font-semibold"
             >Đăng ký ngay</Link>
           </span
           >

@@ -7,7 +7,7 @@ let db_config = {
     database : process.env.DB_NAME || 'project_web',
     connectionLimit: 10
 };
-exports.connect = async function connect() {
+exports.connect = function connect() {
 
     let globalPool;
     // If the pool was already created, return it instead of creating a new one.
@@ -16,7 +16,7 @@ exports.connect = async function connect() {
     }
 
     // If we have gotten this far, the pool doesn't exist, so lets create one.
-    globalPool = await createPool(db_config);
+    globalPool = createPool(db_config);
     console.log('connect db successfully');
     return globalPool;
 }
