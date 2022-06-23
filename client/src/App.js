@@ -5,6 +5,7 @@ import Layout from "./layout/Layout";
 import Login from "./pages/auth/components/Login";
 import Register from "./pages/auth/components/Register";
 import Manual from "./pages/auth/components/Manual";
+import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
 
 export default function App() {
     return (
@@ -31,6 +32,14 @@ export default function App() {
                         </Layout>
                     </AuthRoute>
                 } />
+                <Route path="/boarding-room/detail" element={
+                    <AuthRoute>
+                        <Layout nav={true}>
+                            <BoardingRoomDetail/>
+                        </Layout>
+                    </AuthRoute>
+                } />
+
             </Routes>
         </div>
     );
