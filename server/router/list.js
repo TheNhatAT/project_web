@@ -12,10 +12,17 @@ class List {
     '/users/registry' (res, pathname, query, body) {
         UserController.registry(res, pathname, query, body);
     }
-
     '/users/login' (res, pathname, query, body) {
         UserController.login(res, pathname, query, body);
     }
+
+    '/users/id' (res, pathname, query, body) {
+        if (body === undefined)
+            UserController.getUserById(res, pathname, query, body);
+        else
+            UserController.updateUserById(res, pathname, query, body);
+    }
+
     '/users/home'(res, pathname, query, body) {
         UserController.getAllBoardingRoom(res, pathname, query, body);
     }

@@ -29,7 +29,6 @@ exports.registry = async (res, pathname, query, body) => {
         }));
     }
 }
-
 exports.login = async (res, pathname, query, body) => {
     try {
         const {email, password} = body;
@@ -61,6 +60,61 @@ exports.login = async (res, pathname, query, body) => {
     }
 }
 
+exports.getUserById = async (res, pathname, query, body) => {
+    console.log("pathname: ", pathname);
+    const id = Number(pathname[pathname.length - 1]);
+    try {
+        const user = await UserService.getOneById(id);
+
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: true,
+            message: `Get user by id = ${id} successfully`,
+            content: user
+        }));
+    } catch (error) {
+        console.log(error)
+        res.writeHead(400, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: false,
+            message: 'Get user failed',
+            content: error.toString()
+        }));
+    }
+}
+
+exports.updateUserById = async (res, pathname,query, body) => {
+    console.log("pathname: ", pathname);
+    console.log("body: ", body);
+    const id = Number(pathname[pathname.length - 1]);
+
+    try {
+        const user = await UserService.updateOne(id, body);
+
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: true,
+            message: 'Register successfully',
+            content: user
+        }));
+    } catch (error) {
+        console.log(error)
+        res.writeHead(400, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: false,
+            message: 'Register failed',
+            content: error.toString()
+        }));
+    }
+}
 exports.getAllBoardingRoom = async (res, pathname, query, body) => {
     try {
         
@@ -84,6 +138,7 @@ exports.getAllBoardingRoom = async (res, pathname, query, body) => {
         }));
     }
 }
+
 exports.findARoomate = async (res, pathname, query, body) => {
     try {
         
@@ -107,6 +162,7 @@ exports.findARoomate = async (res, pathname, query, body) => {
         }));
     }
 }
+
 exports.findByAddr = async (res, pathname, query, body) => {
     try {
         const rows = await UserService.findByAddr(pathname, query, body);
@@ -128,6 +184,7 @@ exports.findByAddr = async (res, pathname, query, body) => {
         }));
     }
 }
+
 exports.filter = async (res, pathname, query, body) => {
     try {   
         const rows = await UserService.filter(pathname, query, body);
@@ -149,6 +206,7 @@ exports.filter = async (res, pathname, query, body) => {
         }));
     }
 }
+
 exports.pageFragment = async (res, pathname, query, body) => {
     async (res, pathname, query, body) => {
         try {  

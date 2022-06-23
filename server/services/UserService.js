@@ -27,14 +27,30 @@ exports.getOneByEmail = async (email) => {
     let [check_users, fields]  = await conn.execute('SELECT * FROM `users` WHERE `email` = ?',
         [email])
     if (check_users.length === 0) {
-        throw new Error(`User with ${email} is not exist!`);
+        throw new Error(`User with ${email} doesn't exist!`);
     }
     return check_users[0];
 }
 
-exports.updateOne = async (id, data) => {
-    const {name, email, address, role, phone_number, auth_token, avatar, status} = data;
+exports.getOneById = async (id) => {
+    let [users, fields]  = await conn.execute('SELECT * FROM `users` WHERE `id` = ?',
+        [id])
+    if (users.length === 0) {
+        throw new Error(`User with id = ${id} doesn't exist!`);
+    }
+    return users[0];
+}
 
+exports.updateOne = async (id, data) => {
+    let {name, email, address, role, phone_number, auth_token, avatar, status} = data;
+    name =( name !== undefined ? name: null);
+    email = (email !== undefined ? email: null);
+    address = (address !== undefined ? address: null);
+    role = (role !== undefined ? role: null);
+    phone_number = (phone_number !== undefined ? phone_number: null);
+    avatar = (avatar !== undefined ? avatar: null);
+    status = (status !== undefined ? status: null);
+    console.log(name, email, address, role, phone_number, auth_token, avatar, status)
     let [users, fields]  = await conn.execute('SELECT * FROM `users` WHERE `id` = ?',
         [id]);
     if (users.length === 0) {

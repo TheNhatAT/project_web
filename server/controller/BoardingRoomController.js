@@ -11,7 +11,7 @@ exports.getBoardingRoomById = async (res, pathname, query, body) => {
             'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
-            message: 'Register successfully',
+            message: `Get boarding room by id = ${id} successfully`,
             content: boarding_room
         }));
     } catch (error) {
@@ -21,7 +21,7 @@ exports.getBoardingRoomById = async (res, pathname, query, body) => {
             'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
-            message: 'Register failed',
+            message: 'Get boarding room failed',
             content: error.toString()
         }));
     }
