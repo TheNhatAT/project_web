@@ -26,16 +26,16 @@ class List {
     '/users/home'(res, pathname, query, body) {
         UserController.getAllBoardingRoom(res, pathname, query, body);
     }
-    '/users/home/roommate'(res, pathname, query, body) {
+    '/roommate'(res, pathname, query, body) {
         UserController.findARoomate(res, pathname, query, body);
     }
-    '/users/home/address'(res, pathname, query, body) {
+    '/address'(res, pathname, query, body) {
         UserController.findByAddr(res, pathname, query, body);
     }
-    '/users/home/filter'(res, pathname, query, body) {
+    '/filter'(res, pathname, query, body) {
         UserController.filter(res, pathname, query, body);
     }
-    '/users/home/page'(res, pathname, query, body) {
+    '/page'(res, pathname, query, body) {
         UserController.pageFragment(res, pathname, query, body);
     }
 
