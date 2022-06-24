@@ -62,30 +62,29 @@ exports.updateOne = async (id, data) => {
 }
 exports.getAllBoardingRoom = async (pathname, query, body) =>{
     
-    let conn = await connect();
     let rows = await conn.execute(`SELECT * from boarding_rooms ORDER BY created_at DESC LIMIT 10`)
-    console.log(rows)
+    console.log(rows[0])
     if(!rows){
          throw Error('Can not get all boarding room')
     }
-    return {'data':rows}    
+    return {'data':rows[0]}    
 }
 
 exports.findARoomate = async (pathname, query, body) =>{
-    let conn = await connect();
-    let rows = await conn.execute(`SELECT * from boarding_rooms where name like '%ở ghép%'`)
+    let rows = await conn.execute(`SELECT * from boarding_rooms where name like "%ở ghép%"`)
     if(!rows){
         throw Error('Can not find a roomate');
     }
-    return {'data': rows}
+    return {'data':rows[0]}
 }
 exports.findByAddr = async (pathname, query, body) => {
-    let conn = await connect();
-    let rows = await conn.execute(`SELECT * from boarding_rooms where address like '${query['address']}%' `)
+    console.log(query['address'])
+    let rows = await conn.execute(`SELECT * from boarding_rooms where address like '%${query['address']}%' `)
     if(!rows){
         throw Error('Can not find by address');
     }
-    return {'data':rows}
+
+    return {'data':rows[0]}
 }
 exports.filter = async (pathname, query, body) => {
     let conn = await connect();let rows;
@@ -236,7 +235,7 @@ else{
         }
     }
 }
-    return {'data': rows}
+    return {'data': rows[0]}
 }
 exports.pageFragment = async (pathname, query, body) =>{
     let conn = await connect()
@@ -245,6 +244,6 @@ exports.pageFragment = async (pathname, query, body) =>{
     if(!rows){
         throw Error('Error')
     }
-    return {'data': rows}
+    return {'data': rows[0]}
     
 }

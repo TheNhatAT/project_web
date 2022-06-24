@@ -143,7 +143,7 @@ exports.findARoomate = async (res, pathname, query, body) => {
     try {
         
         const rows = await UserService.findARoomate(pathname, query, body);
-
+        
         res.writeHead(400, {
             'Content-Type':'application/json'
         }).end(JSON.stringify({
