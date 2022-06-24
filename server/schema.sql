@@ -3,7 +3,7 @@ CREATE TABLE `users` (
     `email` VARCHAR(100) NOT NULL,
     `password` VARCHAR(100) NOT NULL,
     `name` NVARCHAR(200) NOT NULL,
-    `auth_token` VARCHAR(1000),
+    `auth_token` VARCHAR(10000),
     `address` VARCHAR(200),
     `phone_number` VARCHAR(20),
     `role` INT NOT NULL,
@@ -66,11 +66,20 @@ CREATE TABLE `revenues` (
 
 ALTER TABLE boarding_rooms
 ADD COLUMN photo_id INT;
+
 ALTER TABLE boarding_rooms
 ADD COLUMN revenue_id INT;
+
+ALTER TABLE boarding_rooms
+ADD COLUMN user_id INT;
+
 ALTER TABLE boarding_rooms
 ADD CONSTRAINT FOREIGN KEY (photo_id) REFERENCES photos(id);
+
 ALTER TABLE boarding_rooms
 ADD CONSTRAINT FOREIGN KEY (revenue_id) REFERENCES revenues(id);
+
+ALTER TABLE boarding_rooms
+ADD CONSTRAINT FOREIGN KEY (user_id) REFERENCES users(id);
 
 alter table users alter column status set default 1;

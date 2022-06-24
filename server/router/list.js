@@ -1,5 +1,7 @@
 const exampleCtrl = require("../controller/example");
 const UserController = require("../controller/UserController");
+const BoardingRoomController = require("../controller/BoardingRoomController");
+const path = require("path");
 
 class List {
     '/example' (res) {
@@ -7,9 +9,20 @@ class List {
     }
 
     // Routes of User
-    '/users/register' (res, pathname, query, body) {
-        UserController.register(res, pathname, query, body);
+    '/users/registry' (res, pathname, query, body) {
+        UserController.registry(res, pathname, query, body);
     }
+    '/users/login' (res, pathname, query, body) {
+        UserController.login(res, pathname, query, body);
+    }
+
+    '/users/id' (res, pathname, query, body) {
+        if (body === undefined)
+            UserController.getUserById(res, pathname, query, body);
+        else
+            UserController.updateUserById(res, pathname, query, body);
+    }
+
     '/users/home'(res, pathname, query, body) {
         UserController.getAllBoardingRoom(res, pathname, query, body);
     }
@@ -24,6 +37,11 @@ class List {
     }
     '/users/home/page'(res, pathname, query, body) {
         UserController.pageFragment(res, pathname, query, body);
+    }
+
+    // Router of BoardingRoom
+    '/boardind-rooms/id'(res, pathname, query, body) {
+        BoardingRoomController.getBoardingRoomById(res, pathname, query, body);
     }
 }
 

@@ -25,26 +25,43 @@ require('dotenv').config()
  │                                              href                                              │
  └────────────────────────────────────────────────────────────────────────────────────────────────┘
  * */
-const handleMethod = (req, data, callback) => {
+const handleMethod = (req, res, data, callback) => {
     const url = new URL(`http://localhost:8000${req.url}`);
     const pathname = url.pathname;
     const query = new URLSearchParams(url.search);
-
-    data = Buffer.concat(data).toString();
-    const body = JSON.parse(data);
+    let body;
 
     switch (req.method) {
         case "GET":
             callback({pathname, query});
             break;
         case "POST":
+            data = Buffer.concat(data).toString();
+            console.log('req.method: ', req.method)
+            console.log('date server: ', data)
+            body = JSON.parse(data);
             callback({pathname, body});
             break;
         case "PUT":
+            data = Buffer.concat(data).toString();
+            console.log('req.method: ', req.method)
+            console.log('date server: ', data)
+            body = JSON.parse(data);
            callback({pathname, body});
            break;
         case "DELETE":
             callback({pathname})
+            break;
+        case "OPTIONS":
+            const headers = {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'OPTIONS, POST, GET, PUT, DELETE',
+                'Access-Control-Max-Age': 2592000, // 30 days
+                'Access-Control-Allow-Headers': "*"
+                /** add other headers as per requirement */
+            };
+            res.writeHead(204, headers);
+            res.end();
             break;
         default:
             console.log(`DEBUG: Error when handle url = ${req.url}`);
@@ -52,20 +69,20 @@ const handleMethod = (req, data, callback) => {
     }
 }
 
-const handler = (req, callback) => {
+const handler = (req, res, callback) => {
     let data = [];
     req.on("error", (err) => {
         return console.log(`DEBUG: Error handler with err = ${err}`);
     }).on("data", (chunk) => {
         data.push(chunk);
     }).on('end', () => {
-        handleMethod(req, data, callback)
+        handleMethod(req, res, data, callback)
     })
 }
 
 const start = () => {
     const server = http.createServer((req, res) => {
-        handler(req, (obj) => {
+        handler(req, res, (obj) => {
             console.log('DEBUG: obj = ', obj)
             router(req, res, obj);
         });
