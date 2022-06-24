@@ -5,7 +5,8 @@ import Layout from "./layout/Layout";
 import Login from "./pages/auth/components/Login";
 import Register from "./pages/auth/components/Register";
 import Manual from "./pages/auth/components/Manual";
-
+import PostBoardingRoom from "./pages/auth/components/landlord/PostBoardingRoom";
+import UpdateBoardingRoom from "./pages/auth/components/landlord/UpdateBoardingRoom";
 export default function App() {
     return (
         <div>
@@ -31,6 +32,15 @@ export default function App() {
                         </Layout>
                     </AuthRoute>
                 } />
+                <Route path="/post" element={
+                    <AuthRoute>
+                        <Layout>
+                            <PostBoardingRoom/>
+                        </Layout>
+                    </AuthRoute>
+                } />
+
+                
             </Routes>
         </div>
     );
