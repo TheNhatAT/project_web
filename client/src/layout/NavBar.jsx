@@ -7,13 +7,13 @@ export default function NavBar() {
         role: localStorage.getItem('userRole')
     });
 
-    // useEffect(() => {
-    //         window.addEventListener("storage", () => {
-    //             setUser({
-    //                 id: localStorage.getItem('userId'),
-    //                 role: localStorage.getItem('userRole')});
-    //         });
-    // }, []);
+    useEffect(() => {
+            window.addEventListener("storage", () => {
+                setUser({
+                    id: localStorage.getItem('userId'),
+                    role: localStorage.getItem('userRole')});
+            });
+    }, []);
 
     return (
         <>
@@ -52,11 +52,11 @@ export default function NavBar() {
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
                                     focus:text-white focus:bg-gray-700 "> Hướng dẫn </Link>)}
 
-                                {(user.id != null && user.role == 1) && (<Link a="/"  href="#" className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
+                                {(user.id != null && user.role == 1) && (<Link to="/"  href="#" className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white
                                     focus:bg-gray-700 "> Doanh thu </Link>)}
-                                {(user.id != null && user.role == 2) && (<Link a="/"  className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
+                                {(user.id != null && user.role == 2) && (<Link to="/"  className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
                                     focus:text-white focus:bg-gray-700 "> Thống kê </Link>)}

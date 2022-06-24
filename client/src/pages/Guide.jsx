@@ -13,7 +13,7 @@ export default function Guide() {
                     <p className="px-10">
                         Chào bạn, sau đây là hướng dẫn sử dụng cho thành viên website của chúng tôi: <br></br>
                         Nếu bạn chưa có tài khoản, hãy <Link className="text-green-600" to="/register">Đăng ký</Link> tại đây trước khi bắt đầu đăng tin mới. <br></br>
-                        Nếu đã có tài khoản, sau khi <Link className="text-green-600" to="/login">Đăng nhập</Link> vào website, bạn bấm nút <a className="text-green-600" to="/dangtin">Đăng tin</a> để bắt đầu. <br></br>
+                        Nếu đã có tài khoản, sau khi <Link className="text-green-600" to="/login">Đăng nhập</Link> vào website, bạn bấm nút <Link className="text-green-600" to="/">Đăng tin</Link> để bắt đầu. <br></br>
                         Khi bạn đăng tin, các bạn đọc kỹ mô tả từng bước, nhập đầy đủ và chính xác nội dung cho tin đăng, đặc biệt là mục Giá và Diện tích. 
                         Những tin có nội dung hình ảnh rõ ràng, đầy đủ sẽ có tỉ lệ xem cao hơn 50%. <br></br>
                     </p>

@@ -6,6 +6,7 @@ import Login from "./pages/auth/components/Login";
 import Register from "./pages/auth/components/Register";
 import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
+import {PrivateRoute} from "./react-routes/privateRoute";
 
 export default function App() {
     return (
@@ -26,18 +27,18 @@ export default function App() {
                     </AuthRoute>
                 } />
                 <Route path="/guide" element={
-                    <AuthRoute>
+                    <PrivateRoute>
                         <Layout nav={true}>
                             <Guide/>
                         </Layout>
-                    </AuthRoute>
+                    </PrivateRoute>
                 } />
                 <Route path="/boarding-room/detail/:id" element={
-                    <AuthRoute>
+                    <PrivateRoute>
                         <Layout nav={true}>
                             <BoardingRoomDetail/>
                         </Layout>
-                    </AuthRoute>
+                    </PrivateRoute>
                 } />
 
             </Routes>
