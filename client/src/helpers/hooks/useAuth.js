@@ -5,11 +5,11 @@ import jwt_decode from "jwt-decode";
 export const authContext = React.createContext();
 
 export default function useAuth() {
-    const [authed, setAuthed] = useState(false);
+    // const [authed, setAuthed] = useState(false);
     function login(user) {
         // handle login
         return new Promise((res) => {
-            setAuthed(true);
+            // setAuthed(true);
             const id = jwt_decode(user.auth_token).data.id;
             const role = jwt_decode(user.auth_token).data.role;
 
@@ -24,13 +24,13 @@ export default function useAuth() {
         //handle login
         console.log('user: ', user);
         return new Promise((res) => {
-            setAuthed(false);
+            // setAuthed(false);
             localStorage.clear();
             res();
         });
     }
     return {
-        authed,
+        // authed,
         logout,
         login
     };

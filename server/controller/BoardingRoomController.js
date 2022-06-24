@@ -4,7 +4,7 @@ exports.getBoardingRoomById = async (res, pathname, query, body) => {
     console.log("pathname: ", pathname);
     const id = Number(pathname[pathname.length - 1]);
     try {
-        const boarding_room = await BoardingRoomService.getBoardingRoomById(id);
+        const data = await BoardingRoomService.getBoardingRoomById(id);
 
         res.writeHead(200, {
             'Content-Type':'application/json',
@@ -12,7 +12,7 @@ exports.getBoardingRoomById = async (res, pathname, query, body) => {
         }).end(JSON.stringify({
             success: true,
             message: `Get boarding room by id = ${id} successfully`,
-            content: boarding_room
+            content: data
         }));
     } catch (error) {
         console.log(error)

@@ -6,9 +6,8 @@ export const AuthRoute = ({ children }) => {
     let redirectPagePath = location.pathname + location.search;
     redirectPagePath = redirectPagePath.replace('/login', '');
 
-    if(redirectPagePath === '' || redirectPagePath === '/' || redirectPagePath === '/pricing') redirectPagePath = '/dashboard';
+    if(redirectPagePath === '/' || redirectPagePath === '/login' || redirectPagePath === '/logout') redirectPagePath = '/dashboard';
 
     const authed = localStorage.getItem('auth');
-
     return (authed === null || authed === 'false') ? <div>{children}</div> : <Navigate to={redirectPagePath} replace/>
 }

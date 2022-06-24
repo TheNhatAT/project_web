@@ -4,7 +4,7 @@ import {AuthRoute} from "./react-routes/authRoute";
 import Layout from "./layout/Layout";
 import Login from "./pages/auth/components/Login";
 import Register from "./pages/auth/components/Register";
-import Manual from "./pages/auth/components/Manual";
+import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
 
 export default function App() {
@@ -28,11 +28,11 @@ export default function App() {
                 <Route path="/guide" element={
                     <AuthRoute>
                         <Layout nav={true}>
-                            <Manual/>
+                            <Guide/>
                         </Layout>
                     </AuthRoute>
                 } />
-                <Route path="/boarding-room/detail" element={
+                <Route path="/boarding-room/detail/:id" element={
                     <AuthRoute>
                         <Layout nav={true}>
                             <BoardingRoomDetail/>

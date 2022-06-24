@@ -1,7 +1,14 @@
 import 'tw-elements';
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {useLocation} from "react-router-dom";
 
 export default function BoardingRoomDetail() {
+    const location = useLocation();
+
+    const redirectPagePath = location.pathname + location.search;
+    const id = redirectPagePath[redirectPagePath.length - 1];
+    console.log('path: ', redirectPagePath);
     const [boardingRoom, setBoardingRoom] = useState({
         id: 1,
         name: 'Nhà trọ Bình An',
@@ -12,20 +19,37 @@ export default function BoardingRoomDetail() {
         other_price: 100000,
         area: 15,//m2
         description: `CÁCH Đại Học Bách - Kinh - Xây CHỈ TỪ 1-2KM
-️                    Phòng Full nội thất như hình
+️           Phòng Full nội thất như hình
 ️                    TÒA NHÀ ĐẢM BẢO AN NINH_SẠCH SẼ_BẢO VỆ 24/7
 ️                    THUẬN TIỆN DI CHUYỂN SANG CÁC QUẬN LÂN CẬN`,
         category: '',
         address: 'Số 134 ngõ 210, Định Công Thượng, Hoàng Mai, Hà Nội'
     });
 
+    const [user, setUser] = useState({
+        id: 1,
+        name: "Nguyen Van XXX",
+        phone_number: '0368734234'
+    });
+
+    useEffect( () => {
+        async function fetchData() {
+            return await axios.get(`http://localhost:8000/boardind-rooms/id/${id}`);
+        }
+        fetchData().then((res) => {
+            console.log('data: ', res.data.content);
+            setBoardingRoom(res.data.content.boarding_room);
+            setUser(res.data.content.owner);
+        });
+    }, [id]);
+
     return (
         <>
             <div className="m-10">
-                <div>Quận Hoàng Mai, Hà Nội</div>
+                <div className="ml-4 font-medium text-xl">{boardingRoom.address}</div>
                 <div className="flex">
-                    <div id="carouselExampleCaptions" className="basis-2/3 carousel slide relative mr-4" data-bs-ride="carousel">
-                        <div className="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
+                    <div id="carouselExampleCaptions" className="basis-2/3 carousel slide relative m-4" data-bs-ride="carousel">
+                        <div className="rounded-md carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
                             <button
                                 type="button"
                                 data-bs-target="#carouselExampleCaptions"
@@ -33,19 +57,19 @@ export default function BoardingRoomDetail() {
                                 className="active"
                                 aria-current="true"
                                 aria-label="Slide 1"
-                            ></button>
+                                />
                             <button
                                 type="button"
                                 data-bs-target="#carouselExampleCaptions"
                                 data-bs-slide-to="1"
                                 aria-label="Slide 2"
-                            ></button>
+                                />
                             <button
                                 type="button"
                                 data-bs-target="#carouselExampleCaptions"
                                 data-bs-slide-to="2"
                                 aria-label="Slide 3"
-                            ></button>
+                                />
                         </div>
                         <div className="carousel-inner relative w-full overflow-hidden">
                             <div className="carousel-item active relative float-left w-full">
@@ -103,41 +127,45 @@ export default function BoardingRoomDetail() {
                             <span className="visually-hidden">Next</span>
                         </button>
                     </div>
-                    <div className="basis-1/3 text-center mt-4">
+                    <div className="basis-1/3 rounded-md bg-gray-300 text-center m-4">
                         <img
                             src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-                            className="rounded-full w-32 mb-4 mx-auto"
+                            className="rounded-full w-48 mb-4 mt-10 mx-auto"
                             alt="Avatar"
                         />
-                        <h5 className="text-xl font-medium leading-tight mb-2">Nguyen Van XXX</h5>
-                        <p className="text-gray-500">0368735544</p>
+                        <h5 className="text-3xl font-medium leading-tight m-4">{user.name}</h5>
+                        <p className="font-medium text-2xl m-4">{user.phone_number}</p>
                     </div>
                 </div>
 
-                <div>
-                    {boardingRoom.name}
-                </div>
+                <div className="m-4">
+                    <div className="text-4xl font-medium leading-tight my-2">
+                        {boardingRoom.name}
+                    </div>
 
-                <div>
-                    {boardingRoom.address}
-                </div>
+                    <div className="text-xl font-normal leading-tight my-2">
+                        <div >
+                            {boardingRoom.address}
+                        </div>
 
-                <div>
-                    {`Giá phòng: ${boardingRoom.room_price} VND`}
-                </div>
+                        <div>
+                            {`Giá phòng: ${boardingRoom.room_price} VND`}
+                        </div>
 
-                <div>
-                    {`Diện tích: ${boardingRoom.area} M2`}
-                </div>
-                <div>
-                    <p>{`Giá điện: ${boardingRoom.room_price} VND/số`}</p>
-                    <p>{`Giá nước: ${boardingRoom.room_price} VND/tháng`}</p>
-                    <p>{`Phí gửi xe: ${boardingRoom.room_price} VND/tháng/xe`}</p>
-                    <p>{`Phí dịch vụ khác: ${boardingRoom.room_price} VND/tháng`}</p>
-                </div>
-                <div>
-                    <p>Mô tả chung:</p>
-                    <p className="whitespace-pre-line">{boardingRoom.description}</p>
+                        <div>
+                            {`Diện tích: ${boardingRoom.area} M2`}
+                        </div>
+                        <div>
+                            <p>{`Giá điện: ${boardingRoom.room_price} VND/số`}</p>
+                            <p>{`Giá nước: ${boardingRoom.room_price} VND/tháng`}</p>
+                            <p>{`Phí gửi xe: ${boardingRoom.room_price} VND/tháng/xe`}</p>
+                            <p>{`Phí dịch vụ khác: ${boardingRoom.room_price} VND/tháng`}</p>
+                        </div>
+                        <div className="mt-4">
+                            <p className="text-2xl">Mô tả chung:</p>
+                            <p className="whitespace-pre-line">{boardingRoom.description}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
