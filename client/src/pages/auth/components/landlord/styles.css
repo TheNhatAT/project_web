@@ -1,0 +1,50 @@
+.button{
+    margin-left: 40%;
+    margin-top: 10px;
+    background-color: rgb(34, 114, 226);
+    color: white;
+    font-weight: 400;
+    height: 35px;
+    width: 100px;
+    border-radius: 6px;
+    
+}
+.chuyen-muc{
+    margin-top: -50px;
+    margin-left: 50%;
+    color:black;
+}
+.gia-thue{
+    margin-top: -50px;
+    margin-left: 50%;
+    color:black;
+}
+.sdt{
+    margin-top: -50px;
+    margin-left: 50%;
+    color:black;
+}
+textarea{
+    width: 50%;
+    border-color: #dddddd;
+}
+.district {
+    margin-top: -50px;
+    margin-left: 50%;
+    color: black;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }

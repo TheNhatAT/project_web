@@ -62,189 +62,189 @@ exports.updateOne = async (id, data) => {
 }
 exports.getAllBoardingRoom = async (pathname, query, body) =>{
     
-    let conn = await connect();
     let rows = await conn.execute(`SELECT * from boarding_rooms ORDER BY created_at DESC LIMIT 10`)
-    console.log(rows)
+    console.log(rows[0])
     if(!rows){
          throw Error('Can not get all boarding room')
     }
-    return {'data':rows}    
+    return {'data':rows[0]}    
 }
 
 exports.findARoomate = async (pathname, query, body) =>{
-    let conn = await connect();
-    let rows = await conn.execute(`SELECT * from boarding_rooms where name like '%ở ghép%'`)
+    let rows = await conn.execute(`SELECT * from boarding_rooms where name like "%ở ghép%"`)
     if(!rows){
         throw Error('Can not find a roomate');
     }
-    return {'data': rows}
+    return {'data':rows[0]}
 }
 exports.findByAddr = async (pathname, query, body) => {
-    let conn = await connect();
-    let rows = await conn.execute(`SELECT * from boarding_rooms where address like '${query['address']}%' `)
+    console.log(query.get('addres'))
+    let rows = await conn.execute(`SELECT * from boarding_rooms where address like '%${query.get('address')}%' `)
     if(!rows){
         throw Error('Can not find by address');
     }
-    return {'data':rows}
+
+    return {'data':rows[0]}
 }
 exports.filter = async (pathname, query, body) => {
-    let conn = await connect();let rows;
-    if(!('minimal_room_price' in query)){
-        if('address' in query && 'minimal_area' in query && 'category' in query){
+    let rows;
+    if(!(query.get('minimal_room_price') != null)){
+        console.log(query.get('minimal_room_price'))
+        if(query.get('address') != null && query.get('minimal_area') != null && query.get('category') != null){
             rows = await conn.execute(`SELECT * from boarding_rooms 
-                                        where address like '${query['address']}%' 
-                                            and area >= ${query['minimal_area']} 
-                                            and area <= ${query['maximal_area']} 
-                                            and category like '${query['category']}' `)
+                                        where address like '${query.get('address')}%' 
+                                            and area >= ${query.get('minimal_area')} 
+                                            and area <= ${query.get('maximal_area')} 
+                                            and category like '${query.get('category')}' `)
             if(!rows){
                 throw Error('Error')
             }
         }
-        else if('address' in query && 'minimal_area' in query && !('category' in query) ){
+        else if(query.get('address') != null && query.get('minimal_area') != null && !(query.get('category') != null) ){
             rows = await conn.execute(`SELECT * from boarding_rooms 
-                                        where address like '${query['address']}%' 
-                                            and area >= ${query['minimal_area']} 
-                                            and area <= ${query['maximal_area']} `)
+                                        where address like '${query.get('address')}%' 
+                                            and area >= ${query.get('minimal_area')} 
+                                            and area <= ${query.get('maximal_area')} `)
             if(!rows){
                 throw Error('Error')
             }
 
         }
-        else if('address' in query && !('minimal_area' in query) && !('category' in query) ) {
-            rows = await conn.execute(`SELECT * from boarding_rooms where address like '${query['address']}%'`)
+        else if(query.get('address') != null && !(query.get('minimal_area') != null) && !(query.get('category') != null) ) {
+            rows = await conn.execute(`SELECT * from boarding_rooms where address like '${query.get('address')}%'`)
             if(!rows){
                 throw Error('Error')
             }
 
         }
-        else if(!('address' in query) && 'minimal_area' in query && 'category' in query ) {
+        else if(!(query.get('address') != null) && query.get('minimal_area') != null && query.get('category') != null ) {
         rows = await conn.execute(`SELECT * from boarding_rooms 
-                                    where area >= ${query['minimal_area']} 
-                                        and area <= ${query['maximal_area']} 
-                                        and category like '${query['category']}'`)
+                                    where area >= ${query.get('minimal_area')} 
+                                        and area <= ${query.get('maximal_area')} 
+                                        and category like '${query.get('category')}'`)
         if(!rows){
             throw Error('Error')
         }
         }
-        else if(!('address' in query) && !('minimal_area' in query) && 'category' in query ) {
-            rows = await conn.execute(`SELECT * from boarding_rooms where category like '${query['category']}'`)
+        else if(!(query.get('address') != null) && !(query.get('minimal_area') != null) && query.get('category') != null ) {
+            rows = await conn.execute(`SELECT * from boarding_rooms where category like '${query.get('category')}'`)
             if(!rows){
                 throw Error('Error')
             }
         }
-        else if(!('address' in query) && 'minimal_area' in query && !('category' in query) ) {
-            rows = await conn.execute(`SELECT * from boarding_rooms where area >= ${query['minimal_area']} and area <= ${query['maximal_area']}`)
+        else if(!(query.get('address') != null) && query.get('minimal_area') != null && !(query.get('category') != null) ) {
+            rows = await conn.execute(`SELECT * from boarding_rooms where area >= ${query.get('minimal_area')} and area <= ${query.get('maximal_area')}`)
             if(!rows){
                 throw Error('Error')
             }
         }
-        else if('address' in query && !('minimal_area' in query) && 'category' in query ) {
-            rows = await conn.execute(`SELECT * from boarding_rooms where address like '${query['address']}%' and category like '${query['category']}'`)
+        else if(query.get('address') != null && !(query.get('minimal_area') != null) && query.get('category') != null ) {
+            rows = await conn.execute(`SELECT * from boarding_rooms where address like '${query.get('address')}%' and category like '${query.get('category')}'`)
             if(!rows){
                 throw Error('Error')
             }
         }
-        else if(!('address' in query) && !('minimal_area' in query) && !('category' in query) ) {
+        else if(!(query.get('address') != null) && !(query.get('minimal_area') != null) && !(query.get('category') != null) ) {
             rows = await conn.execute(`SELECT * from boarding_rooms 
-                                        where room_price >= ${query['minimal_room_price']} 
-                                            and room_price <= ${query['maximal_room_price']}`)
+                                        where room_price >= ${query.get('minimal_room_price')} 
+                                            and room_price <= ${query.get('maximal_room_price')}`)
             if(!rows){
                 throw Error('Error')
             }
         }
     }
 else{
-    if('address' in query && 'minimal_area' in query && 'category' in query){
+    if(query.get('address') != null && query.get('minimal_area') != null && query.get('category') != null){
         rows = await conn.execute(`SELECT * from boarding_rooms 
-                                     where address like '${query['address']}%' 
-                                        and area >= ${query['minimal_area']} 
-                                        and area <= ${query['maximal_area']} 
-                                        and category like '${query['category']}'
-                                        and room_price >= ${query['minimal_room_price']} 
-                                        and room_price <= ${query['maximal_room_price']}`)
+                                     where address like '${query.get('address')}%' 
+                                        and area >= ${query.get('minimal_area')} 
+                                        and area <= ${query.get('maximal_area')} 
+                                        and category like '${query.get('category')}'
+                                        and room_price >= ${query.get('minimal_room_price')} 
+                                        and room_price <= ${query.get('maximal_room_price')}`)
         if(!rows){
             throw Error('Error')
         }
     }
-    else if(!('address' in query) && !('minimal_area' in query) && !('category' in query) ) {
+    else if(!(query.get('address') != null) && !(query.get('minimal_area') != null) && !(query.get('category') != null) ) {
         rows = await conn.execute(`SELECT * from boarding_rooms
-                                     where room_price >= ${query['minimal_room_price']} 
-                                        and room_price <= ${query['maximal_room_price']}`)
+                                     where room_price >= ${query.get('minimal_room_price')} 
+                                        and room_price <= ${query.get('maximal_room_price')}`)
         if(!rows){
             throw Error('Error')
         }
     }
-    else if('address' in query && 'minimal_area' in query && !('category' in query) ){
+    else if(query.get('address') != null && query.get('minimal_area') != null && !(query.get('category') != null) ){
         rows = await conn.execute(`SELECT * from boarding_rooms 
-                                     where address like '${query['address']}%' 
-                                        and area >= ${query['minimal_area']} 
-                                        and area <= ${query['maximal_area']} 
-                                        and room_price >= ${query['minimal_room_price']} 
-                                        and room_price <= ${query['maximal_room_price']}`)
+                                     where address like '${query.get('address')}%' 
+                                        and area >= ${query.get('minimal_area')} 
+                                        and area <= ${query.get('maximal_area')} 
+                                        and room_price >= ${query.get('minimal_room_price')} 
+                                        and room_price <= ${query.get('maximal_room_price')}`)
         if(!rows){
             throw Error('Error')
         }
     }
-    else if('address' in query && !('minimal_area' in query) && !('category' in query) ) {
+    else if(query.get('address') != null && !(query.get('minimal_area') != null) && !(query.get('category') != null) ) {
         rows = await conn.execute(`SELECT * from boarding_rooms 
-                                    where address like '${query['address']}%'
-                                        and room_price >= ${query['minimal_room_price']} 
-                                        and room_price <= ${query['maximal_room_price']}`)
+                                    where address like '${query.get('address')}%'
+                                        and room_price >= ${query.get('minimal_room_price')} 
+                                        and room_price <= ${query.get('maximal_room_price')}`)
         if(!rows){
             throw Error('Error')
         }
                                                         }
-    else if(!('address' in query) && 'minimal_area' in query && 'category' in query ) {
+    else if(!(query.get('address') != null) && query.get('minimal_area') != null && query.get('category') != null ) {
     rows = await conn.execute(`SELECT * from boarding_rooms 
-                                where area >= ${query['minimal_area']} 
-                                    and area <= ${query['maximal_area']} 
-                                    and category like '${query['category']}'
-                                    and room_price >= ${query['minimal_room_price']} 
-                                    and room_price <= ${query['maximal_room_price']}`)
+                                where area >= ${query.get('minimal_area')} 
+                                    and area <= ${query.get('maximal_area')} 
+                                    and category like '${query.get('category')}'
+                                    and room_price >= ${query.get('minimal_room_price')} 
+                                    and room_price <= ${query.get('maximal_room_price')}`)
     if(!rows){
         throw Error('Error')
     }
     }
-    else if(!('address' in query) && !('minimal_area' in query) && 'category' in query ) {
+    else if(!(query.get('address') != null) && !(query.get('minimal_area') != null) && query.get('category') != null ) {
         rows = await conn.execute(`SELECT * from boarding_rooms 
-                                    where category like '${query['category']}'
-                                        and room_price >= ${query['minimal_room_price']} 
-                                        and room_price <= ${query['maximal_room_price']}`)
+                                    where category like '${query.get('category')}'
+                                        and room_price >= ${query.get('minimal_room_price')} 
+                                        and room_price <= ${query.get('maximal_room_price')}`)
         if(!rows){
             throw Error('Error')
         }
                                         
     }
-    else if(!('address' in query) && 'minimal_area' in query && !('category' in query) ) {
+    else if(!(query.get('address') != null) && query.get('minimal_area') != null && !(query.get('category') != null) ) {
         rows = await conn.execute(`SELECT * from boarding_rooms 
-                                    where area >= ${query['minimal_area']}
-                                        and area <= ${query['maximal_area']}
-                                        and room_price >= ${query['minimal_room_price']} 
-                                        and room_price <= ${query['maximal_room_price']}`)
+                                    where area >= ${query.get('minimal_area')}
+                                        and area <= ${query.get('maximal_area')}
+                                        and room_price >= ${query.get('minimal_room_price')} 
+                                        and room_price <= ${query.get('maximal_room_price')}`)
         if(!rows){
             throw Error('Error')
         }
     }
-    else if('address' in query && !('minimal_area' in query) && 'category' in query ) {
+    else if(query.get('address') != null && !(query.get('minimal_area') != null) && query.get('category') != null ) {
         rows = await conn.execute(`SELECT * from boarding_rooms 
-                                    where address like '${query['address']}%' 
-                                        and category like '${query['category']}'
-                                        and room_price >= ${query['minimal_room_price']} 
-                                        and room_price <= ${query['maximal_room_price']}`)
+                                    where address like '${query.get('address')}%' 
+                                        and category like '${query.get('category')}'
+                                        and room_price >= ${query.get('minimal_room_price')} 
+                                        and room_price <= ${query.get('maximal_room_price')}`)
         if(!rows){
             throw Error('Error')
         }
     }
 }
-    return {'data': rows}
+    return {'data': rows[0]}
 }
 exports.pageFragment = async (pathname, query, body) =>{
-    let conn = await connect()
-    let page = (query['page'] - 1)*10;
+    let page = (query.get('page') - 1)*10;
+    console.log(page)
     let rows = await conn.execute(`SELECT * from boarding_rooms LIMIT ${page}, 10`)
     if(!rows){
         throw Error('Error')
     }
-    return {'data': rows}
+    return {'data': rows[0]}
     
 }
