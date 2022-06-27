@@ -9,6 +9,7 @@ import UpdateBoardingRoom from "./pages/auth/components/landlord/UpdateBoardingR
 import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
 import {PrivateRoute} from "./react-routes/privateRoute";
+import Infor from "./pages/user/infor";
 
 export default function App() {
     return (
@@ -28,6 +29,14 @@ export default function App() {
                         </Layout>
                     </AuthRoute>
                 } />
+                <Route path="/infor" element={
+                    // <PrivateRoute>
+                        <Layout nav={true}>
+                            <Infor/>
+                        </Layout>
+                    // </PrivateRoute>
+                } />
+
                 <Route path="/guide" element={
                     <PrivateRoute>
                         <Layout nav={true}>
