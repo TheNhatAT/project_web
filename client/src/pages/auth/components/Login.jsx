@@ -1,5 +1,5 @@
-import {Link, useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import useAuth from "../../../helpers/hooks/useAuth";
 import axios from "axios";
 
@@ -19,7 +19,7 @@ export default function Login() {
     });
     const [error, setError] = useState(undefined);
 
-    const {login} = useAuth();
+    const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -54,9 +54,9 @@ export default function Login() {
                         Bạn cần đăng nhập để cho thuê phòng
                     </div>
                     {error &&
-                    (<div className="text-red-500 mt-4 self-center text-2xl sm:text-sm ">
-                        Tài khoản hoặc mật khẩu không đúng
-                    </div>)}
+                        (<div className="text-red-500 mt-4 self-center text-2xl sm:text-sm ">
+                            Tài khoản hoặc mật khẩu không đúng
+                        </div>)}
                     <div className="mt-0">
                         <form onSubmit={handleSubmit}>
                             <div className="flex flex-col mb-5">
@@ -68,7 +68,7 @@ export default function Login() {
                                 <div className="relative">
                                     <div
                                         className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                                        <i className="fas fa-at text-blue-500"/>
+                                        <i className="fas fa-at text-blue-500" />
                                     </div>
 
                                     <input
@@ -77,7 +77,7 @@ export default function Login() {
                                         name="email"
                                         className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                                         placeholder="Enter your email"
-                                        onChange={e => setUser({...user, username: e.target.value})}
+                                        onChange={e => setUser({ ...user, username: e.target.value })}
                                     />
                                 </div>
                             </div>
@@ -90,9 +90,9 @@ export default function Login() {
                                 <div className="relative">
                                     <div
                                         className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-                  <span>
-                    <i className="fas fa-lock text-blue-500"/>
-                  </span>
+                                        <span>
+                                            <i className="fas fa-lock text-blue-500" />
+                                        </span>
                                     </div>
 
                                     <input
@@ -101,7 +101,7 @@ export default function Login() {
                                         name="password"
                                         className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-2xl border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                                         placeholder="Enter your password"
-                                        onChange={e => setUser({...user, password: e.target.value})}
+                                        onChange={e => setUser({ ...user, password: e.target.value })}
                                     />
                                 </div>
                             </div>
@@ -112,20 +112,20 @@ export default function Login() {
                                     className="flex mt-2 items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-500 hover:bg-blue-600 rounded-2xl py-2 w-full transition duration-150 ease-in">
                                     <span className="mr-2 uppercase">Đăng nhập</span>
                                     <span>
-                  <svg
-                      className="h-6 w-6"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                  >
-                    <path
-                        d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </span>
+                                        <svg
+                                            className="h-6 w-6"
+                                            fill="none"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                        >
+                                            <path
+                                                d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                            />
+                                        </svg>
+                                    </span>
                                 </button>
                             </div>
                         </form>
@@ -137,13 +137,13 @@ export default function Login() {
                         target="_blank"
                         className="inline-flex items-center text-gray-700 font-medium text-xs text-center"
                     >
-          <span className="ml-2"
-          >Bạn chưa có tài khoản?
-            <Link to="/register"
-                  className="text-xs ml-2 text-blue-500 font-semibold"
-            >Đăng ký ngay</Link>
-          </span
-          >
+                        <span className="ml-2"
+                        >Bạn chưa có tài khoản?
+                            <Link to="/register"
+                                className="text-xs ml-2 text-blue-500 font-semibold"
+                            >Đăng ký ngay</Link>
+                        </span
+                        >
                     </a>
                 </div>
             </div>

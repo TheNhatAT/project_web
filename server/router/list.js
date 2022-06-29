@@ -4,19 +4,19 @@ const BoardingRoomController = require("../controller/BoardingRoomController");
 const path = require("path");
 
 class List {
-    '/example' (res) {
+    '/example'(res) {
         exampleCtrl.example(res);
     }
 
     // Routes of User
-    '/users/registry' (res, pathname, query, body) {
+    '/users/registry'(res, pathname, query, body) {
         UserController.registry(res, pathname, query, body);
     }
-    '/users/login' (res, pathname, query, body) {
+    '/users/login'(res, pathname, query, body) {
         UserController.login(res, pathname, query, body);
     }
 
-    '/users/id' (res, pathname, query, body) {
+    '/users/id'(res, pathname, query, body) {
         if (body === undefined)
             UserController.getUserById(res, pathname, query, body);
         else
@@ -42,7 +42,7 @@ class List {
         BoardingRoomController.addBoardingRoom(res, pathname, query, body)
     }
     // Router of BoardingRoom
-    '/boardind-rooms/id'(res, pathname, query, body) {
+    '/boarding-rooms/id'(res, pathname, query, body) {
         BoardingRoomController.getBoardingRoomById(res, pathname, query, body);
     }
 }
@@ -50,8 +50,8 @@ class List {
 const routerAttrList = Object.getOwnPropertyNames(List.prototype);
 
 function isRouter(pathname) {
-    return routerAttrList.find((item, index)=>{
-        if(pathname === item || pathname.startsWith(item) && (item !== '/')) {
+    return routerAttrList.find((item, index) => {
+        if (pathname === item || pathname.startsWith(item) && (item !== '/')) {
             return item;
         }
     });
