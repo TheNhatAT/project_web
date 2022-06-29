@@ -238,10 +238,19 @@ else{
 }
     return {'data': rows[0]}
 }
+
 exports.pageFragment = async (pathname, query, body) =>{
     let page = (query.get('page') - 1)*10;
-    console.log(page)
-    let rows = await conn.execute(`SELECT * from boarding_rooms LIMIT ${page}, 10`)
+    console.log(query.get('page'))
+    let rows
+
+    if(page==1) {
+        rows = await conn.execute(`SELECT * from boarding_rooms LIMIT 10`)
+    }
+    else{
+        rows = await conn.execute(`SELECT * from boarding_rooms LIMIT ${page}, 10`)
+    }
+
     if(!rows){
         throw Error('Error')
     }

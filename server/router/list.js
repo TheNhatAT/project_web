@@ -23,7 +23,7 @@ class List {
             UserController.updateUserById(res, pathname, query, body);
     }
 
-    '/users/home'(res, pathname, query, body) {
+    '/home'(res, pathname, query, body) {
         UserController.getAllBoardingRoom(res, pathname, query, body);
     }
     '/roommate'(res, pathname, query, body) {
@@ -38,7 +38,9 @@ class List {
     '/page'(res, pathname, query, body) {
         UserController.pageFragment(res, pathname, query, body);
     }
-
+    '/boarding-room'(res, pathname, query, body) {
+        BoardingRoomController.addBoardingRoom(res, pathname, query, body)
+    }
     // Router of BoardingRoom
     '/boardind-rooms/id'(res, pathname, query, body) {
         BoardingRoomController.getBoardingRoomById(res, pathname, query, body);

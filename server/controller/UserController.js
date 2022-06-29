@@ -120,7 +120,7 @@ exports.getAllBoardingRoom = async (res, pathname, query, body) => {
         
         const allBoardingRoom = await UserService.getAllBoardingRoom(pathname, query, body);
 
-        res.writeHead(400, {
+        res.writeHead(200, {
             'Content-Type':'application/json'
         }).end(JSON.stringify({
             success: true,
@@ -144,7 +144,7 @@ exports.findARoomate = async (res, pathname, query, body) => {
         
         const rows = await UserService.findARoomate(pathname, query, body);
         
-        res.writeHead(400, {
+        res.writeHead(200, {
             'Content-Type':'application/json'
         }).end(JSON.stringify({
             success: true,
@@ -166,7 +166,7 @@ exports.findARoomate = async (res, pathname, query, body) => {
 exports.findByAddr = async (res, pathname, query, body) => {
     try {
         const rows = await UserService.findByAddr(pathname, query, body);
-        res.writeHead(400, {
+        res.writeHead(200, {
             'Content-Type':'application/json'
         }).end(JSON.stringify({
             success: true,
@@ -188,7 +188,7 @@ exports.findByAddr = async (res, pathname, query, body) => {
 exports.filter = async (res, pathname, query, body) => {
     try {   
         const rows = await UserService.filter(pathname, query, body);
-        res.writeHead(400, {
+        res.writeHead(200, {
             'Content-Type':'application/json'
         }).end(JSON.stringify({
             success: true,
@@ -211,7 +211,7 @@ exports.pageFragment = async (res, pathname, query, body) => {
     async (res, pathname, query, body) => {
         try {  
             const rows = await UserService.pageFragment(pathname, query, body);
-            res.writeHead(400, {
+            res.writeHead(200, {
                 'Content-Type':'application/json'
             }).end(JSON.stringify({
                 success: true,

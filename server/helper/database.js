@@ -3,7 +3,7 @@ require('dotenv').config()
 let db_config = {
     host     : process.env.DB_HOST || 'localhost',
     user     : process.env.DB_USER || 'root',
-    password : process.env.DB_PASS || 'root',
+    password : process.env.DB_PASS || '',
     database : process.env.DB_NAME || 'project_web',
     connectionLimit: 10
 };

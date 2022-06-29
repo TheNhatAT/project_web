@@ -6,6 +6,7 @@ import Login from "./pages/auth/components/Login";
 import Register from "./pages/auth/components/Register";
 import PostBoardingRoom from "./pages/auth/components/landlord/PostBoardingRoom";
 import UpdateBoardingRoom from "./pages/auth/components/landlord/UpdateBoardingRoom";
+import PostFindARoomate from "./pages/auth/components/landlord/PostFindRoomate";
 import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
 import {PrivateRoute} from "./react-routes/privateRoute";
@@ -35,15 +36,28 @@ export default function App() {
                         </Layout>
                     </PrivateRoute>
                 } />
-                <Route path="/post" element={
-                    <AuthRoute>
+                <Route path="/boarding-room" element={
+                    <PrivateRoute>
                         <Layout>
                             <PostBoardingRoom/>
                         </Layout>
-                    </AuthRoute>
+                    </PrivateRoute>
                 } />
 
-                
+                <Route path="/boarding-room/update/:id" element={
+                    <PrivateRoute>
+                        <Layout>
+                            <UpdateBoardingRoom/>
+                        </Layout>
+                    </PrivateRoute>
+                } />
+                <Route path="/find-a-roomate" element={
+                    <AuthRoute>
+                        <Layout>
+                            <PostFindARoomate/>
+                        </Layout>
+                    </AuthRoute>
+                } />
                 <Route path="/boarding-room/detail/:id" element={
                     <PrivateRoute>
                         <Layout nav={true}>

@@ -40,6 +40,7 @@ const handleMethod = (req, res, data, callback) => {
             console.log('req.method: ', req.method)
             console.log('date server: ', data)
             body = JSON.parse(data);
+            console.log(body)
             callback({pathname, body});
             break;
         case "PUT":
