@@ -4,10 +4,14 @@ import { AuthRoute } from "./react-routes/authRoute";
 import Layout from "./layout/Layout";
 import Login from "./pages/auth/components/Login";
 import Register from "./pages/auth/components/Register";
+import PostBoardingRoom from "./pages/auth/components/landlord/PostBoardingRoom";
+import UpdateBoardingRoom from "./pages/auth/components/landlord/UpdateBoardingRoom";
 import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
 import { PrivateRoute } from "./react-routes/privateRoute";
+import Infor from "./pages/user/infor";
 import Home from "./pages/example/components/Home";
+
 export default function App() {
     return (
         <div>
@@ -26,6 +30,14 @@ export default function App() {
                         </Layout>
                     </AuthRoute>
                 } />
+                <Route path="/infor" element={
+                    // <PrivateRoute>
+                    <Layout nav={true}>
+                        <Infor />
+                    </Layout>
+                    // </PrivateRoute>
+                } />
+
                 <Route path="/guide" element={
                     <PrivateRoute>
                         <Layout nav={true}>
@@ -33,6 +45,15 @@ export default function App() {
                         </Layout>
                     </PrivateRoute>
                 } />
+                <Route path="/post" element={
+                    <AuthRoute>
+                        <Layout>
+                            <PostBoardingRoom />
+                        </Layout>
+                    </AuthRoute>
+                } />
+
+
                 <Route path="/boarding-room/detail/:id" element={
                     <PrivateRoute>
                         <Layout nav={true}>
