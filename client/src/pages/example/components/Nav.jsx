@@ -1,10 +1,10 @@
 import * as React from "react";
-import {Link} from "react-router-dom";
-import {useNavigate} from "react-router";
-import {AuthConsumer} from "../../../helpers/hooks/useAuth";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { AuthConsumer } from "../../../helpers/hooks/useAuth";
 
-export default function Nav () {
-    const {logout}=AuthConsumer()
+export default function Nav() {
+    const { logout } = AuthConsumer()
     const authed = localStorage.getItem('auth');
     const navigate = useNavigate();
 

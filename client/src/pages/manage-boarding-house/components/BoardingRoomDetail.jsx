@@ -1,7 +1,7 @@
 import 'tw-elements';
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function BoardingRoomDetail() {
     const location = useLocation();
@@ -32,7 +32,7 @@ export default function BoardingRoomDetail() {
         phone_number: '0368734234'
     });
 
-    useEffect( () => {
+    useEffect(() => {
         async function fetchData() {
             return await axios.get(`http://localhost:8000/boardind-rooms/id/${id}`);
         }
@@ -57,19 +57,19 @@ export default function BoardingRoomDetail() {
                                 className="active"
                                 aria-current="true"
                                 aria-label="Slide 1"
-                                />
+                            />
                             <button
                                 type="button"
                                 data-bs-target="#carouselExampleCaptions"
                                 data-bs-slide-to="1"
                                 aria-label="Slide 2"
-                                />
+                            />
                             <button
                                 type="button"
                                 data-bs-target="#carouselExampleCaptions"
                                 data-bs-slide-to="2"
                                 aria-label="Slide 3"
-                                />
+                            />
                         </div>
                         <div className="carousel-inner relative w-full overflow-hidden">
                             <div className="carousel-item active relative float-left w-full">
@@ -112,8 +112,8 @@ export default function BoardingRoomDetail() {
                             data-bs-target="#carouselExampleCaptions"
                             data-bs-slide="prev"
                         >
-                        <span className="carousel-control-prev-icon inline-block bg-no-repeat"
-                              aria-hidden="true"></span>
+                            <span className="carousel-control-prev-icon inline-block bg-no-repeat"
+                                aria-hidden="true"></span>
                             <span className="visually-hidden">Previous</span>
                         </button>
                         <button
@@ -122,8 +122,8 @@ export default function BoardingRoomDetail() {
                             data-bs-target="#carouselExampleCaptions"
                             data-bs-slide="next"
                         >
-                        <span className="carousel-control-next-icon inline-block bg-no-repeat"
-                              aria-hidden="true"></span>
+                            <span className="carousel-control-next-icon inline-block bg-no-repeat"
+                                aria-hidden="true"></span>
                             <span className="visually-hidden">Next</span>
                         </button>
                     </div>

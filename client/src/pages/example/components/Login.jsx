@@ -1,14 +1,14 @@
-import {useNavigate} from "react-router-dom";
-import {AuthConsumer} from "../../../helpers/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { AuthConsumer } from "../../../helpers/hooks/useAuth";
 import * as React from "react";
 
-export default function Login () {
+export default function Login() {
     const navigate = useNavigate();
-    const {login} = AuthConsumer()
+    const { login } = AuthConsumer()
 
     const handleLogin = () => {
         login().then(() => {
-            navigate("/dashboard");
+            navigate("/guide");
         });
     };
 

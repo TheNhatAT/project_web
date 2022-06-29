@@ -1,18 +1,18 @@
-const {connect} = require("../helper/database");
+const { connect } = require("../helper/database");
 
 let conn = connect();
 
 // example to insert 1 row into users
 // you must insert multiple rows for each table and note the constraints of these tables to
 // insert correctly :v
-UsersSeed = async function(email, password, name) {
-    let data = await conn.execute(`INSERT INTO users (email, password, name, role) VALUES (?, ?, ?, ?)`,[email, password, name, 1]);
+UsersSeed = async function (email, password, name) {
+    let data = await conn.execute(`INSERT INTO users (email, password, name, role) VALUES (?, ?, ?, ?)`, [email, password, name, 1]);
     return data;
 }
 
 
 
-UsersSeed('nhat@gmail.com','123456','nhat').then(() => {
+UsersSeed('nhat@gmail.com', '123456', 'nhat').then(() => {
     console.log('seed ok')
 });
 // UsersSeed('nhat1@gmail.com','123456','nhat1');
@@ -44,43 +44,27 @@ UsersSeed('nhat@gmail.com','123456','nhat').then(() => {
 //
 // }
 //
-// BoardingRoomSeed = function(name, room_price) {
-//     db.query(`INSERT INTO boarding_rooms SET ?`, {
-//         name : name,
-//         room_price : room_price,
-//         electricity_price : null,
-//         water_price : null,
-//         parking_price : null,
-//         other_price : null,
-//         area : null,
-//         description: null,
-//         category : null,
-//         address : null,
-//         created_at : null,
-//         updated_at : null,
-//         photo_id : null,
-//         revenue_id : null,
-//     }, function(error,result) {
-//         if (error) {
-//             console.log(`Error ${error}`)
-//         } else
-//             console.log(`INSERT success!`)
-//     });
-//
-//
+BoardingRoomSeed = async function (name, room_price, area, description, category, address) {
+    let data = await conn.execute(`INSERT INTO boarding_rooms (name, room_price, area, description, category, address) VALUES (?, ?, ?, ?,?,?)`, [name, room_price, area, description, category, address]);
+    return data;
+};
+
+
+
+
 // }
-// /*BoardingRoomSeed('Phòng đẹp 0', 1000000);
-// BoardingRoomSeed('Phòng đẹp 1', 1200000);
-// BoardingRoomSeed('Phòng đẹp 2', 1400000);
-// BoardingRoomSeed('Phòng đẹp 3', 1600000);
-// BoardingRoomSeed('Phòng đẹp 4', 1800000);*/
-// BoardingRoomSeed("Cho thuê phòng trọ", 1200000, null, null, null, null, 16, "Nhà trọ đẹp giá rẻ", "Phòng trọ","Hà Nội Trương Định")
-// BoardingRoomSeed("Cho thuê chung cu mini", 4200000, null, null, null,"chung cư", 14, "Chung cư gần trung tâm", "Chung cư","Hải Phòng Lê Chân")
-// BoardingRoomSeed("Tìm người ở ghép", 1000000, null, null, null, null, 13, "Cần tìm một bạn chăm chỉ thật thà", "Phòng trọ","Hà Nội Hai Bà Trưng")
-// BoardingRoomSeed("Tìm người ở ghép", 1200000, null, null, null, "phòng trọ", 12, "Cần tìm một bạn vui vẻ hòa đồng", "Phòng trọ","Hải Phòng Dư Hàng Kênh")
-// BoardingRoomSeed("Tìm người ở ghép", 1800000, null, null, null, "phòng trọ", 18, "Phòng trọ gần các tường đại học", "Phòng trọ thoáng mát","Hà Nội Bạch Mai")
-// BoardingRoomSeed("Cho thuê nhà trọ ", 3200000, null, null, null, null, 20, "Phòng trọ", "Phòng trọ đầy đủ tiện nghi","Hà Nội Trương Định")
-// BoardingRoomSeed("Cho thuê nhà trọ gần Bách Khoa", 2000000, null, null, null, null, 15, "", "Phòng trọ","Hà Nội Minh Khai")
+// // /*BoardingRoomSeed('Phòng đẹp 0', 1000000);
+// // BoardingRoomSeed('Phòng đẹp 1', 1200000);
+// // BoardingRoomSeed('Phòng đẹp 2', 1400000);
+// // BoardingRoomSeed('Phòng đẹp 3', 1600000);
+// // BoardingRoomSeed('Phòng đẹp 4', 1800000);*/
+BoardingRoomSeed("Cho thuê phòng trọ", 1200000, 16, "Nhà trọ đẹp giá rẻ", "Phòng trọ", "Hà Nội Trương Định");
+BoardingRoomSeed("Cho thuê chung cu mini", 4200000, 14, "Chung cư gần trung tâm", "Chung cư", "Hải Phòng Lê Chân");
+BoardingRoomSeed("Tìm người ở ghép", 1000000, 13, "Cần tìm một bạn chăm chỉ thật thà", "Phòng trọ", "Hà Nội Hai Bà Trưng");
+BoardingRoomSeed("Tìm người ở ghép", 1200000, 12, "Cần tìm một bạn vui vẻ hòa đồng", "Phòng trọ", "Hải Phòng Dư Hàng Kênh");
+// BoardingRoomSeed("Tìm người ở ghép", 1800000, null, null, null, null, 18, "Phòng trọ gần các tường đại học", "Phòng trọ thoáng mát", "Hà Nội Bạch Mai");
+// BoardingRoomSeed("Cho thuê nhà trọ ", 3200000, null, null, null, null, 20, "Phòng trọ", "Phòng trọ đầy đủ tiện nghi", "Hà Nội Trương Định");
+// BoardingRoomSeed("Cho thuê nhà trọ gần Bách Khoa", 2000000, null, null, null, null, 15, "", "Phòng trọ", "Hà Nội Minh Khai");
 // /*PathSeed = function(path) {
 //     db.query(`INSERT INTO photos SET ?`, {
 //         path : path,

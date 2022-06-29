@@ -1,5 +1,15 @@
-export default function Home () {
+import * as React from "react";
+import FilterForm from "./FilterForm";
+import HomeTag from "./HomeTag";
+import RoomTag from "./RoomTag";
+
+
+export default function Home() {
     return (
-        <h1>Home (Public)</h1>
+        <>
+            <FilterForm />
+            <HomeTag />
+            <RoomTag />
+        </>
     )
 }
