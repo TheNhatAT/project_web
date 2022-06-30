@@ -40,11 +40,11 @@ export default function App() {
                 } />
 
                 <Route path="/guide" element={
-                    <PrivateRoute>
+                    <AuthRoute>
                         <Layout nav={true}>
                             <Guide />
                         </Layout>
-                    </PrivateRoute>
+                    </AuthRoute>
                 } />
                 <Route path="/boarding-room" element={
                     <PrivateRoute>
@@ -76,11 +76,11 @@ export default function App() {
                     </PrivateRoute>
                 } />
                 <Route path="/dashboard" element={
-                    <PrivateRoute>
+                    <AuthRoute>
                         <Layout nav={true}>
                             <Home />
                         </Layout>
-                    </PrivateRoute>
+                    </AuthRoute>
                 } />
             </Routes>
         </div>
