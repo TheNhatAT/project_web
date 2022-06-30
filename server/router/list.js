@@ -17,10 +17,11 @@ class List {
     }
 
     '/users/id' (res, pathname, query, body) {
-        if (body === undefined)
-            UserController.getUserById(res, pathname, query, body);
-        else
-            UserController.updateUserById(res, pathname, query, body);
+        UserController.getUserById(res, pathname, query, body);
+    }
+
+    '/users/add' (res, pathname, query, body) {
+        UserController.updateUserById(res, pathname, query, body);
     }
 
     '/home'(res, pathname, query, body) {

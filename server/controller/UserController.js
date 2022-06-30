@@ -90,7 +90,7 @@ exports.getUserById = async (res, pathname, query, body) => {
 exports.updateUserById = async (res, pathname,query, body) => {
     console.log("pathname: ", pathname);
     console.log("body: ", body);
-    const id = Number(pathname[pathname.length - 1]);
+    const id = body.id;
 
     try {
         const user = await UserService.updateOne(id, body);

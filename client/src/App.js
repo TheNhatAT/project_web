@@ -10,9 +10,8 @@ import PostFindARoomate from "./pages/auth/components/landlord/PostFindRoomate";
 import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
 import { PrivateRoute } from "./react-routes/privateRoute";
-import Infor from "./pages/user/infor";
+import Infor from "./pages/user/Infor";
 import Home from "./pages/user/Home";
-import Price from "./pages/example/components/Price";
 
 export default function App() {
     return (
@@ -32,7 +31,7 @@ export default function App() {
                         </Layout>
                     </AuthRoute>
                 } />
-                <Route path="/infor" element={
+                <Route path="/user/information/:id" element={
                     <PrivateRoute>
                         <Layout nav={true}>
                             <Infor />

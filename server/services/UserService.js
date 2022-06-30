@@ -43,19 +43,23 @@ exports.getOneById = async (id) => {
 
 exports.updateOne = async (id, data) => {
     let {name, email, address, role, phone_number, auth_token, avatar, status} = data;
-    name =( name !== undefined ? name: null);
-    email = (email !== undefined ? email: null);
-    address = (address !== undefined ? address: null);
-    role = (role !== undefined ? role: null);
-    phone_number = (phone_number !== undefined ? phone_number: null);
-    avatar = (avatar !== undefined ? avatar: null);
-    status = (status !== undefined ? status: null);
-    console.log(name, email, address, role, phone_number, auth_token, avatar, status)
+
     let [users, fields]  = await conn.execute('SELECT * FROM `users` WHERE `id` = ?',
         [id]);
+
     if (users.length === 0) {
         throw new Error(`User with ${id} is not exist!`);
     }
+    name =( name !== undefined ? name: users[0].name);
+    email = (email !== undefined ? email: users[0].email);
+    address = (address !== undefined ? address: users[0].address);
+    role = (role !== undefined ? role: users[0].role);
+    phone_number = (phone_number !== undefined ? phone_number: users[0].phone_number);
+    auth_token = (auth_token !== undefined ? auth_token: users[0].auth_token);
+    avatar = (avatar !== undefined ? avatar: users[0].avatar);
+    status = (status !== undefined ? status: users[0].status);
+    console.log(name, email, address, role, phone_number, auth_token, avatar, status)
+
     let [updatedUser] = await conn.execute('UPDATE `users` SET name = ?, email = ?, address = ?, role = ?, phone_number = ?, auth_token = ?, avatar = ?, status = ?'
         , [name, email, address, role, phone_number, auth_token, avatar, status]);
     return updatedUser;
