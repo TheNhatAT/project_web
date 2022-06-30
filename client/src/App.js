@@ -54,7 +54,6 @@ export default function App() {
                     </PrivateRoute>
                 } />
 
-<<<<<<< HEAD
                 <Route path="/boarding-room/update/:id" element={
                     <PrivateRoute>
                         <Layout>
@@ -69,9 +68,6 @@ export default function App() {
                         </Layout>
                     </AuthRoute>
                 } />
-=======
-
->>>>>>> 1f9cc08b66da0b8591957011f6b6fcba80dbd8d2
                 <Route path="/boarding-room/detail/:id" element={
                     <PrivateRoute>
                         <Layout nav={true}>
@@ -86,8 +82,6 @@ export default function App() {
                     </Layout>
 
                 } />
-
-
             </Routes>
         </div>
     );
