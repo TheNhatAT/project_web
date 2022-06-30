@@ -4,7 +4,7 @@ import axios from "axios";
 export default function Infor() {
     
     const[userInfor, setUserInfor] = useState({
-        id: Number(localStorage.getItem('userId ')),
+        id: Number(localStorage.getItem('userId')),
         email: '',
         password: '',
         name: '',

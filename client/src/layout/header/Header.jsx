@@ -11,7 +11,12 @@ export default function Header () {
 
     const handleLogout = () => {
         localStorage.clear();
-        navigate("/home");
+        navigate("/dashboard");
+    }
+
+    const handleRegister = () => {
+        localStorage.clear();
+        navigate("/register");
     }
     return (
         <>
@@ -32,12 +37,18 @@ export default function Header () {
                   </div>
 
                   <div className="inline-fex  ml-5 lg:ml-0" >
-                      <a onClick={handleLogin} className="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg">
+                      {localStorage.getItem('userId') == undefined ? (<a onClick={handleLogin}
+                          className="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg">
                           Login
-                      </a>
-                      <a onClick={handleLogout} className="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg">
+                      </a>) : (<div/>)}
+                      {localStorage.getItem('userId') == undefined ? (<a onClick={handleRegister}
+                          className="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg">
+                          Register
+                      </a>) : (<div/>)}
+                      {localStorage.getItem('userId') != undefined ? (<a onClick={handleLogout}
+                                                                         className="bg-indigo-700 hover:bg-indigo-500 text-white ml-4 py-2 px-3 rounded-lg">
                           Logout
-                      </a>
+                      </a>) : (<div/>)}
                   </div>
               </div>
           </header>

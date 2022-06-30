@@ -76,11 +76,9 @@ export default function App() {
                     </PrivateRoute>
                 } />
                 <Route path="/dashboard" element={
-                    <AuthRoute>
                         <Layout nav={true}>
                             <Home />
                         </Layout>
-                    </AuthRoute>
                 } />
             </Routes>
         </div>
