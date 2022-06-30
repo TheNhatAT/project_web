@@ -41,6 +41,7 @@ export default function Register () {
         //     navigate("/login");
         // }
     }
+    console.log("adad")
     
     return (
         <>

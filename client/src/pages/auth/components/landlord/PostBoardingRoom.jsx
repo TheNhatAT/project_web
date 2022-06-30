@@ -21,7 +21,7 @@ const PostBoardingRoom = () => {
     axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
       setCity(response.data);
     });
-  }, [city]);
+  }, []);
 
   async function addBoardingRoom(boardingRoom) {
     console.log("user: ", JSON.stringify(boardingRoom));
