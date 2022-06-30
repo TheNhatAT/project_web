@@ -18,18 +18,14 @@ export default function App() {
         <div>
             <Routes>
                 <Route path="/login" element={
-                    <AuthRoute>
                         <Layout>
                             <Login />
                         </Layout>
-                    </AuthRoute>
                 } />
                 <Route path="/register" element={
-                    <AuthRoute>
                         <Layout>
                             <Register />
                         </Layout>
-                    </AuthRoute>
                 } />
                 <Route path="/user/information/:id" element={
                     <PrivateRoute>
@@ -40,13 +36,11 @@ export default function App() {
                 } />
 
                 <Route path="/guide" element={
-                    <AuthRoute>
                         <Layout nav={true}>
                             <Guide />
                         </Layout>
-                    </AuthRoute>
                 } />
-                <Route path="/boarding-room" element={
+                <Route path="/boarding-room/add" element={
                     <PrivateRoute>
                         <Layout nav={true}>
                             <PostBoardingRoom />
@@ -61,12 +55,10 @@ export default function App() {
                         </Layout>
                     </PrivateRoute>
                 } />
-                <Route path="/find-a-roomate" element={
-                    <PrivateRoute>
+                <Route path="/find-a-roomate/add" element={
                         <Layout nav={true}>
                             <PostFindARoomate/>
                         </Layout>
-                    </PrivateRoute>
                 } />
                 <Route path="/boarding-room/detail/:id" element={
                     <PrivateRoute>
