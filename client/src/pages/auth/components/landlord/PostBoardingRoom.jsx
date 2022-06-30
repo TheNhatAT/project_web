@@ -25,7 +25,7 @@ const PostBoardingRoom = () => {
 
   async function addBoardingRoom(boardingRoom) {
     console.log("user: ", JSON.stringify(boardingRoom));
-    return await axios.post("http://localhost:8000/boarding-room", {
+    return await axios.post("http://localhost:8000/boarding-rooms/add", {
       name: boardingRoom.name,
       room_price: boardingRoom.room_price,
       area: boardingRoom.area,

@@ -121,7 +121,8 @@ exports.getAllBoardingRoom = async (res, pathname, query, body) => {
         const allBoardingRoom = await UserService.getAllBoardingRoom(pathname, query, body);
 
         res.writeHead(200, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
             message: 'successfully',
@@ -130,7 +131,8 @@ exports.getAllBoardingRoom = async (res, pathname, query, body) => {
     } catch (error) {
         console.log(error)
         res.writeHead(400, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
             message: 'Get all boarding room fail',
@@ -145,7 +147,8 @@ exports.findARoomate = async (res, pathname, query, body) => {
         const rows = await UserService.findARoomate(pathname, query, body);
         
         res.writeHead(200, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
             message: 'Register successfully',
@@ -154,7 +157,8 @@ exports.findARoomate = async (res, pathname, query, body) => {
     } catch (error) {
         console.log(error)
         res.writeHead(400, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
             message: 'Not successful',
@@ -167,7 +171,8 @@ exports.findByAddr = async (res, pathname, query, body) => {
     try {
         const rows = await UserService.findByAddr(pathname, query, body);
         res.writeHead(200, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
             message: 'successful',
@@ -176,7 +181,8 @@ exports.findByAddr = async (res, pathname, query, body) => {
     } catch (error) {
         console.log(error)
         res.writeHead(400, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
             message: 'Not successful',
@@ -189,7 +195,8 @@ exports.filter = async (res, pathname, query, body) => {
     try {   
         const rows = await UserService.filter(pathname, query, body);
         res.writeHead(200, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
             message: 'successful',
@@ -198,7 +205,8 @@ exports.filter = async (res, pathname, query, body) => {
     } catch (error) {
         console.log(error)
         res.writeHead(400, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
             message: 'Not successful',
@@ -208,11 +216,11 @@ exports.filter = async (res, pathname, query, body) => {
 }
 
 exports.pageFragment = async (res, pathname, query, body) => {
-    async (res, pathname, query, body) => {
         try {  
             const rows = await UserService.pageFragment(pathname, query, body);
             res.writeHead(200, {
-                'Content-Type':'application/json'
+                'Content-Type':'application/json',
+                'Access-Control-Allow-Origin': '*',
             }).end(JSON.stringify({
                 success: true,
                 message: 'successful',
@@ -221,12 +229,12 @@ exports.pageFragment = async (res, pathname, query, body) => {
         } catch (error) {
             console.log(error)
             res.writeHead(400, {
-                'Content-Type':'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             }).end(JSON.stringify({
                 success: false,
                 message: 'Not successful',
                 content: error.toString()
             }));
         }
-    }
 }

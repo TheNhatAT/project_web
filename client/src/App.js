@@ -11,7 +11,8 @@ import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
 import { PrivateRoute } from "./react-routes/privateRoute";
 import Infor from "./pages/user/infor";
-import Home from "./pages/example/components/Home";
+import Home from "./pages/user/Home";
+import Price from "./pages/example/components/Price";
 
 export default function App() {
     return (
@@ -32,11 +33,11 @@ export default function App() {
                     </AuthRoute>
                 } />
                 <Route path="/infor" element={
-                    // <PrivateRoute>
-                    <Layout nav={true}>
-                        <Infor />
-                    </Layout>
-                    // </PrivateRoute>
+                    <PrivateRoute>
+                        <Layout nav={true}>
+                            <Infor />
+                        </Layout>
+                    </PrivateRoute>
                 } />
 
                 <Route path="/guide" element={
@@ -48,7 +49,7 @@ export default function App() {
                 } />
                 <Route path="/boarding-room" element={
                     <PrivateRoute>
-                        <Layout>
+                        <Layout nav={true}>
                             <PostBoardingRoom />
                         </Layout>
                     </PrivateRoute>
@@ -56,17 +57,17 @@ export default function App() {
 
                 <Route path="/boarding-room/update/:id" element={
                     <PrivateRoute>
-                        <Layout>
+                        <Layout nav={true}>
                             <UpdateBoardingRoom/>
                         </Layout>
                     </PrivateRoute>
                 } />
                 <Route path="/find-a-roomate" element={
-                    <AuthRoute>
-                        <Layout>
+                    <PrivateRoute>
+                        <Layout nav={true}>
                             <PostFindARoomate/>
                         </Layout>
-                    </AuthRoute>
+                    </PrivateRoute>
                 } />
                 <Route path="/boarding-room/detail/:id" element={
                     <PrivateRoute>
@@ -75,12 +76,12 @@ export default function App() {
                         </Layout>
                     </PrivateRoute>
                 } />
-                <Route path="/home" element={
-
-                    <Layout nav={true}>
-                        <Home />
-                    </Layout>
-
+                <Route path="/dashboard" element={
+                    <PrivateRoute>
+                        <Layout nav={true}>
+                            <Home />
+                        </Layout>
+                    </PrivateRoute>
                 } />
             </Routes>
         </div>

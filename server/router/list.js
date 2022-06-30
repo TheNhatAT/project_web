@@ -9,14 +9,14 @@ class List {
     }
 
     // Routes of User
-    '/users/registry'(res, pathname, query, body) {
+    '/users/registry' (res, pathname, query, body) {
         UserController.registry(res, pathname, query, body);
     }
-    '/users/login'(res, pathname, query, body) {
+    '/users/login' (res, pathname, query, body) {
         UserController.login(res, pathname, query, body);
     }
 
-    '/users/id'(res, pathname, query, body) {
+    '/users/id' (res, pathname, query, body) {
         if (body === undefined)
             UserController.getUserById(res, pathname, query, body);
         else
@@ -35,10 +35,12 @@ class List {
     '/filter'(res, pathname, query, body) {
         UserController.filter(res, pathname, query, body);
     }
+
     '/page'(res, pathname, query, body) {
         UserController.pageFragment(res, pathname, query, body);
     }
-    '/boarding-room'(res, pathname, query, body) {
+
+    '/boarding-rooms/add' (res, pathname, query, body) {
         BoardingRoomController.addBoardingRoom(res, pathname, query, body)
     }
     // Router of BoardingRoom

@@ -41,8 +41,6 @@ export default function RoomTag() {
     }, []);
     return (
         <>
-
-            <div></div>
             <div>
                 <h2>Nhà trọ mới nhất</h2>
             </div>
@@ -53,7 +51,7 @@ export default function RoomTag() {
                     <div className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">{data1.name}</div>
                     <h1 className="description">{data1.description}</h1>
                     <h1 className="address">{data1.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền : {data1.room_price}
                     </button>
                 </div>
@@ -62,7 +60,7 @@ export default function RoomTag() {
                     <div className="item-2">{data2.name}</div>
                     <h1 className="description">{data2.description}</h1>
                     <h1 className="address">{data2.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền : {data1.room_price}
                     </button>
                 </div>
@@ -71,7 +69,7 @@ export default function RoomTag() {
                     <div className="item-2">{data3.name}</div>
                     <h1 className="description">{data3.description}</h1>
                     <h1 className="address">{data3.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền : {data1.room_price}
                     </button>
                 </div>
@@ -81,7 +79,7 @@ export default function RoomTag() {
                     <h1 className="description">{data1.description}</h1>
                     <h1 className="address">{data1.address}</h1>
 
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền :  {data1.room_price}
                     </button>
                 </div>
@@ -90,7 +88,7 @@ export default function RoomTag() {
                     <div className="name">{data1.name}</div>
                     <h1 className="description">{data1.description}</h1>
                     <h1 className="address">{data1.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền :  {data1.room_price}
                     </button>
                 </div>
@@ -99,7 +97,7 @@ export default function RoomTag() {
                     <div className="item-2">{data2.name}</div>
                     <h1 className="description">{data2.description}</h1>
                     <h1 className="address">{data2.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền :  {data1.room_price}
                     </button>
                 </div>
@@ -108,7 +106,7 @@ export default function RoomTag() {
                     <div className="item-2">{data2.name}</div>
                     <h1 className="description">{data2.description}</h1>
                     <h1 className="address">{data2.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền :  {data1.room_price}
                     </button>
                 </div>
@@ -117,7 +115,7 @@ export default function RoomTag() {
                     <div className="item-2">{data2.name}</div>
                     <h1 className="description">{data2.description}</h1>
                     <h1 className="address">{data2.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền : {data1.room_price}
                     </button>
                 </div>
@@ -126,7 +124,7 @@ export default function RoomTag() {
                     <div className="item-2">{data2.name}</div>
                     <h1 className="description">{data2.description}</h1>
                     <h1 className="address">{data2.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền :  {data1.room_price}
                     </button>
                 </div>
@@ -135,7 +133,7 @@ export default function RoomTag() {
                     <div className="item-2">{data3.name}</div>
                     <h1 className="description">{data3.description}</h1>
                     <h1 className="address">{data3.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền :  {data1.room_price}
                     </button>
                 </div>
@@ -144,7 +142,7 @@ export default function RoomTag() {
                     <div className="item-2">{data3.name}</div>
                     <h1 className="description">{data3.description}</h1>
                     <h1 className="address">{data3.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền :  {data1.room_price}
                     </button>
                 </div>
@@ -153,7 +151,7 @@ export default function RoomTag() {
                     <div className="item-2">{data3.name}</div>
                     <h1 className="description">{data3.description}</h1>
                     <h1 className="address">{data3.address}</h1>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Giá tiền :  {data1.room_price}
                     </button>
                 </div>
