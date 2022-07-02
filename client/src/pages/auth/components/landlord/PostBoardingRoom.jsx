@@ -73,7 +73,6 @@ const PostBoardingRoom = () => {
       console.log("error: ", error);
     }
   };
- 
 
   return (
     <>
@@ -82,16 +81,14 @@ const PostBoardingRoom = () => {
         className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20"
       >
         <div className="bg-blue-600 w-full h-8">Địa chỉ nhà trọ cho thuê</div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-2">
           <span>
             Tỉnh/Thành phố{" "}
-            {cityname.length == 0 && (
-              <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            <div className="require">* Thông tin này là bắt buộc</div>
           </span>
           <select
             name="city"
-            className="form-control p-2"
+            className="input-form mt-4"
             onChange={(e) => handlecity(e)}
           >
             <option value="">--Chọn tỉnh/tp--</option>
@@ -105,14 +102,12 @@ const PostBoardingRoom = () => {
         <div className="district">
           <span>
             Quận/Huyện{" "}
-            {districtname.length == 0 && (
-              <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            <div className="require">* Thông tin này là bắt buộc</div>
           </span>
           <div>
             <select
-              name="city"
-              className="form-control p-2"
+              name="district"
+              className="input-form mt-4"
               onChange={(e) => handledistrict(e)}
             >
               <option value="">--Chọn quận/huyện--</option>
@@ -124,17 +119,14 @@ const PostBoardingRoom = () => {
             </select>
           </div>
         </div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-3">
           <span>
-            Phường/Xã{" "}
-            {subdistrictname.length == 0 && (
-              <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            Phường/Xã <div className="require">* Thông tin này là bắt buộc</div>
           </span>
           <div>
             <select
               name="city"
-              className="form-control p-2"
+              className="input-form mt-4"
               onChange={(e) => handlesubdistrict(e)}
             >
               <option value="">--Chọn phường/xã--</option>
@@ -146,11 +138,11 @@ const PostBoardingRoom = () => {
             </select>
           </div>
         </div>
-        <div className=" text-black ml-5">
+        <div className=" text-black ml-5 mt-3">
           <span>Địa chỉ cụ thể </span>
           <br />
           <textarea
-            className="shadow rounded w-3/4 py-2 px-3 text-gray-700 focus:shadow-outline"
+            className="shadow rounded w-3/4 py-2 px-3 text-gray-700 mt-3 focus:shadow-outline"
             placeholder="Điền địa chỉ phòng trọ"
           ></textarea>
         </div>
@@ -158,12 +150,10 @@ const PostBoardingRoom = () => {
 
       <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
         <div className="bg-blue-600 w-full h-8">Thông tin cho thuê</div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-2">
           <span>
             Tiêu đề tin{" "}
-            {boardingRoom.name.length == 0 && (
-              <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            <div className="require">* Thông tin này là bắt buộc</div>
           </span>
           <br />
           <input
@@ -171,19 +161,17 @@ const PostBoardingRoom = () => {
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, name: e.target.value })
             }
-            className="input-form"
+            className="input-form -mt-1"
           />
         </div>
         <div className="chuyen-muc">
           <span>
             Chuyên mục{" "}
-            {boardingRoom.category.length == 0 && (
               <div className="require">* Thông tin này là bắt buộc</div>
-            )}
           </span>
           <br />
           <select
-            className="input-form"
+            className="input-form -mt-2"
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, category: e.target.value })
             }
@@ -194,12 +182,10 @@ const PostBoardingRoom = () => {
             <option value="Nhà nguyên căn">Nhà nguyên căn</option>
           </select>
         </div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-4">
           <span>
             Diện tích{" "}
-            {boardingRoom.area.length == 0 && (
-              <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            <div className="require">* Thông tin này là bắt buộc</div>
           </span>{" "}
           <br />
           <input
@@ -213,9 +199,9 @@ const PostBoardingRoom = () => {
         <div className="gia-thue">
           <span>
             Giá cho thuê{" "}
-            {boardingRoom.room_price.length == 0 && (
+            
               <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            
           </span>
           <br />
           <input
@@ -223,38 +209,35 @@ const PostBoardingRoom = () => {
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, room_price: e.target.value })
             }
-            className="input-form-right"
+            className="input-form-right -mt-2"
           />
         </div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-5">
           <span>Nội dung</span>
           <br />
           <textarea
+          className="mt-4"
             name="description"
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, description: e.target.value })
             }
           ></textarea>
         </div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-3">
           <span>
             Tên liên hệ{" "}
-            {missingInforNoti && (
               <div className="require">* Thông tin này là bắt buộc</div>
-            )}
           </span>
           <br />
-          <input className="input-form" />
+          <input className="input-form -mt-1" />
         </div>
         <div className="sdt mb-5">
           <span>
             Số điện thoại{" "}
-            {missingInforNoti && (
               <div className="require">* Thông tin này là bắt buộc</div>
-            )}
           </span>
           <br />
-          <input className="input-form-right" />
+          <input className="input-form-right -mt-2" />
         </div>
       </div>
 
