@@ -12,6 +12,8 @@ const PostBoardingRoom = () => {
     address: "",
   });
   const [city, setCity] = useState([]);
+  const [district, setDistrict] = useState([]);
+  const [subdistrict, setSubdistrict] = useState([]);
   const [cityname, setCityname] = useState("");
   const [districtname, setDistrictname] = useState("");
   const [subdistrictname, setSubdistrictname] = useState("");
@@ -35,13 +37,16 @@ const PostBoardingRoom = () => {
     });
   }
   const handlecity = (event) => {
-    const getcityname = event.target.value;
-    setCityname(getcityname);
+    setCityname(event.target.value);
+    setDistrict(city.filter((x) => x.name == event.target.value)[0].districts);
   };
 
   const handledistrict = (event) => {
     const getdistrictname = event.target.value;
     setDistrictname(getdistrictname);
+    setSubdistrict(
+      district.filter((x) => x.name == event.target.value)[0].wards
+    );
   };
 
   const handlesubdistrict = (event) => {
@@ -68,12 +73,7 @@ const PostBoardingRoom = () => {
       console.log("error: ", error);
     }
   };
-  /*useEffect( () => {
-        axios.get(`https://provinces.open-api.vn/api/p/${}?depth=3`).then((response) =>{
-            console.log(cityid)
-            setDistrict(response.data.districts)
-        })
-    },[]);*/
+ 
 
   return (
     <>
@@ -89,13 +89,18 @@ const PostBoardingRoom = () => {
               <div className="require">* Thông tin này là bắt buộc</div>
             )}
           </span>
-          <div>
-            <input
-              className="input-form"
-              onChange={(e) => handlecity(e)}
-              name="city"
-            ></input>
-          </div>
+          <select
+            name="city"
+            className="form-control p-2"
+            onChange={(e) => handlecity(e)}
+          >
+            <option value="">--Chọn tỉnh/tp--</option>
+            {city.map((getcity, code) => (
+              <option key={code} value={getcity.name}>
+                {getcity.name}{" "}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="district">
           <span>
@@ -105,11 +110,18 @@ const PostBoardingRoom = () => {
             )}
           </span>
           <div>
-            <input
-              className="input-form"
+            <select
+              name="city"
+              className="form-control p-2"
               onChange={(e) => handledistrict(e)}
-              name="district"
-            />
+            >
+              <option value="">--Chọn quận/huyện--</option>
+              {district.map((dist, code) => (
+                <option key={code} value={dist.name}>
+                  {dist.name}{" "}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="text-black ml-5">
@@ -120,11 +132,18 @@ const PostBoardingRoom = () => {
             )}
           </span>
           <div>
-            <input
-              className="input-form"
+            <select
+              name="city"
+              className="form-control p-2"
               onChange={(e) => handlesubdistrict(e)}
-              name="subdistrict"
-            ></input>
+            >
+              <option value="">--Chọn phường/xã--</option>
+              {subdistrict.map((dist, code) => (
+                <option key={code} value={dist.name}>
+                  {dist.name}{" "}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
         <div className=" text-black ml-5">
