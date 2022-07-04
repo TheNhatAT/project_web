@@ -14,6 +14,7 @@ const PostBoardingRoom = () => {
   const [city, setCity] = useState([]);
   const [district, setDistrict] = useState([]);
   const [subdistrict, setSubdistrict] = useState([]);
+  const [image, setImage] = useState("https://icon-library.com/images/img-icon/img-icon-11.jpg")
   const [cityname, setCityname] = useState("");
   const [districtname, setDistrictname] = useState("");
   const [subdistrictname, setSubdistrictname] = useState("");
@@ -22,8 +23,17 @@ const PostBoardingRoom = () => {
   useEffect(() => {
     axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
       setCity(response.data);
+      
     });
   }, []);
+  useEffect(() => {
+    axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
+      
+      
+    });
+  }, []);
+
+  
 
   async function addBoardingRoom(boardingRoom) {
     console.log("user: ", JSON.stringify(boardingRoom));
@@ -34,6 +44,7 @@ const PostBoardingRoom = () => {
       description: boardingRoom.description,
       category: boardingRoom.category,
       address: cityname + ", " + districtname + ", " + subdistrictname,
+      user_id: localStorage.getItem("user_id")
     });
   }
   const handlecity = (event) => {
@@ -245,9 +256,9 @@ const PostBoardingRoom = () => {
         <div className="bg-blue-600 w-full h-8">Hình ảnh</div>
         <img
           className="w-20 h-20 mt-2 mb-5 ml-2"
-          src="https://icon-library.com/images/img-icon/img-icon-11.jpg"
+          src={image}
         />
-        <button className="upload-btn">Upload ảnh</button>
+        <button className="upload-btn" onClick={uploadImage}>Upload ảnh</button>
       </div>
 
       <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
