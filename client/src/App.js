@@ -11,6 +11,7 @@ import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
 import { PrivateRoute } from "./react-routes/privateRoute";
 import Infor from "./pages/user/Infor";
+import AddUser from "./pages/auth/components/landlord/UserInfor";
 import Home from "./pages/user/Home";
 
 export default function App() {
@@ -40,6 +41,11 @@ export default function App() {
                             <Guide />
                         </Layout>
                 } />
+                 <Route path="/boarding-room/user" element={
+                        <Layout nav={true}>
+                            <AddUser />
+                        </Layout>
+                } />
                 <Route path="/boarding-room/add" element={
                     <PrivateRoute>
                         <Layout nav={true}>
@@ -47,13 +53,12 @@ export default function App() {
                         </Layout>
                     </PrivateRoute>
                 } />
-
                 <Route path="/boarding-room/update/:id" element={
                     <PrivateRoute>
                         <Layout nav={true}>
                             <UpdateBoardingRoom/>
                         </Layout>
-                    </PrivateRoute>
+                    </PrivateRoute>   
                 } />
                 <Route path="/find-a-roomate/add" element={
                         <Layout nav={true}>
@@ -76,3 +81,5 @@ export default function App() {
         </div>
     );
 }
+
+   

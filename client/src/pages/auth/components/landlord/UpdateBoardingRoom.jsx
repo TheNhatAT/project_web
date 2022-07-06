@@ -2,7 +2,7 @@
 import "./styles.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const UpdateBoardingRoom = () => {
   const [boardingRoom, setBoardingRoom] = useState({
     name: "",
@@ -15,10 +15,14 @@ const UpdateBoardingRoom = () => {
   const [city, setCity] = useState([]);
   const [district, setDistrict] = useState([]);
   const [subdistrict, setSubdistrict] = useState([]);
+  const [users, setUsers] = useState([])
   const [cityname, setCityname] = useState("");
   const [districtname, setDistrictname] = useState("");
   const [subdistrictname, setSubdistrictname] = useState("");
   const [missingInforNoti, setMissingInforNoti] = useState(false);
+  const location = useLocation();
+    const redirectPagePath = location.pathname + location.search;
+    const id = redirectPagePath[redirectPagePath.length - 1];
 
   useEffect(() => {
     axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
@@ -32,18 +36,17 @@ const UpdateBoardingRoom = () => {
     });
   }, []);
 
-  async function addBoardingRoom(boardingRoom) {
-    console.log("user: ", JSON.stringify(boardingRoom));
-    return await axios.post("http://localhost:8000/boarding-rooms/add", {
-      name: boardingRoom.name,
-      room_price: boardingRoom.room_price,
-      area: boardingRoom.area,
-      description: boardingRoom.description,
-      category: boardingRoom.category,
-      address: cityname + ", " + districtname + ", " + subdistrictname,
-      user_id: localStorage.getItem("user_id")
+  useEffect(() => {
+    async function fetchData() {
+        return await axios.get(`http://localhost:8000/boarding-rooms/id/${id}`);
+    }
+    fetchData().then((res) => {
+        console.log('data: ', res.data.content);
+        setBoardingRoom(res.data.content.boarding_room);
+        setUsers(res.data.content.owner);
     });
-  }
+}, [id]);
+
   const handlecity = (event) => {
     setCityname(event.target.value);
     setDistrict(city.filter((x) => x.name == event.target.value)[0].districts);
@@ -61,26 +64,7 @@ const UpdateBoardingRoom = () => {
     const getsubdistrictname = event.target.value;
     setSubdistrictname(getsubdistrictname);
   };
-  const handleAddBoardingRoom = async (e) => {
-    e.preventDefault();
-    if (
-      boardingRoom.name.length == 0 ||
-      boardingRoom.room_price.length == 0 ||
-      boardingRoom.address.length ||
-      0 ||
-      boardingRoom.area.length == 0
-    ) {
-      setMissingInforNoti(true);
-      alert("Bạn cần điền đầy đủ thông tin yêu cầu");
-      return;
-    }
-    let res;
-    try {
-      res = await addBoardingRoom(boardingRoom);
-    } catch (error) {
-      console.log("error: ", error);
-    }
-  };
+  
   return (
     <>
       <div
@@ -165,6 +149,7 @@ const UpdateBoardingRoom = () => {
           <br />
           <input
             name="name"
+            value={boardingRoom.name}
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, name: e.target.value })
             }
@@ -179,11 +164,12 @@ const UpdateBoardingRoom = () => {
           <br />
           <select
             className="input-form -mt-2"
+            value={boardingRoom.category}
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, category: e.target.value })
             }
             name="category"
-          >
+          > 
             <option value="Chung cư">Chung cư</option>
             <option value="Phòng trọ">Phòng trọ</option>
             <option value="Nhà nguyên căn">Nhà nguyên căn</option>
@@ -197,6 +183,7 @@ const UpdateBoardingRoom = () => {
           <br />
           <input
             name="area"
+            value={boardingRoom.area}
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, area: e.target.value })
             }
@@ -213,6 +200,7 @@ const UpdateBoardingRoom = () => {
           <br />
           <input
             name="room_price"
+            value={boardingRoom.room_price}
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, room_price: e.target.value })
             }
@@ -225,26 +213,11 @@ const UpdateBoardingRoom = () => {
           <textarea
           className="mt-4"
             name="description"
+            value={boardingRoom.description}
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, description: e.target.value })
             }
           ></textarea>
-        </div>
-        <div className="text-black ml-5 mt-3">
-          <span>
-            Tên liên hệ{" "}
-              <div className="require">* Thông tin này là bắt buộc</div>
-          </span>
-          <br />
-          <input className="input-form -mt-1" />
-        </div>
-        <div className="sdt mb-5">
-          <span>
-            Số điện thoại{" "}
-              <div className="require">* Thông tin này là bắt buộc</div>
-          </span>
-          <br />
-          <input className="input-form-right -mt-2" />
         </div>
       </div>
 
@@ -260,6 +233,9 @@ const UpdateBoardingRoom = () => {
         <div className="bg-blue-600 w-full h-8">Người thuê</div>
         <Link to={'/boarding-room/user'}><button className="update-btn mt-3 mb-3 ml-5" >Thêm người</button></Link>
         <table className="text-black font-normal">
+          {
+
+          }
           <tr>
             <th>Họ tên</th>
             <th>CCCD</th>

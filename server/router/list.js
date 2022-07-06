@@ -41,6 +41,14 @@ class List {
         UserController.pageFragment(res, pathname, query, body);
     }
 
+    '/boarding-rooms/users'(res, pathname, query, body) {
+        UserController.getAllUserByRoomId(res, pathname, query, body)
+    }
+
+    'boarding-rooms/delete-user'(res, pathname, query, body) {
+        UserController.removeUserFromBoardingRoom(res, pathname, query, body)
+    }
+    
     '/boarding-rooms/add' (res, pathname, query, body) {
         BoardingRoomController.addBoardingRoom(res, pathname, query, body)
     }

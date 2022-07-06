@@ -33,10 +33,9 @@ exports.addBoardingRoom = async (pathname, query, body) => {
   const { name, room_price, area, description, category, address, user_id } =
     body;
   const created_at = new Date();
-  let roomId;
-  let newBoardingRoom = await conn
+  let [newBoardingRoom] = await conn
     .execute(
-      `INSERT INTO boarding_rooms 
+    `INSERT INTO boarding_rooms 
     (name, room_price, electricity_price, water_price, parking_price, other_price, area, description, category, address, created_at, updated_at, photo_id, revenue_id, user_id)
     VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
@@ -57,27 +56,19 @@ exports.addBoardingRoom = async (pathname, query, body) => {
         user_id,
       ]
     )
-    .then(function findId() {
-      roomId = conn
-        .execute(
-          `SELECT TOP 1 * FROM boarding_rooms WHERE id = ? ORDER BY created_at`,
-          [user_id]
-        )
-        .then(function addRelationship() {
-          conn.execute(
-            `INSERT INTO users_boarding_rooms (relationship, user_id, boarding_room_id) VALUES (?, ?, ?)`,
-            [1, user_id, roomId]
-          );
-        });
-    });
+    
+    let roomId = await conn.execute(`SELECT TOP 1 * FROM boarding_rooms WHERE id = ? ORDER BY created_at`,
+    [newBoardingRoom[0].user_id])
+
+    let userBoardingRoom = conn.execute(`INSERT INTO users_boarding_rooms (relationship, user_id, boarding_room_id) VALUES (?, ?, ?)`,
+    [1, newBoardingRoom[0].user_id, roomId]);
 
   return newBoardingRoom[0];
 };
 
 exports.updateBoardingRoomById = async (id, body) => {
   console.log("id: ", id);
-  const { name, room_price, area, description, category, address, created_at } =
-    body;
+  const { name, room_price, area, description, category, address, created_at } = body;
   let [boarding_rooms] = await conn.execute(
     `UPDATE boarding_rooms 
       (name, room_price, electricity_price, water_price, parking_price, other_price, area, description, category, address, created_at, updated_at, photo_id, revenue_id)
