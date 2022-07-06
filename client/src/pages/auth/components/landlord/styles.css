@@ -41,17 +41,17 @@
 }
 
 .chuyen-muc {
-  margin-top: -50px;
+  margin-top: -70px;
   margin-left: 50%;
   color: black;
 }
 .gia-thue {
-  margin-top: -50px;
+  margin-top: -73px;
   margin-left: 50%;
   color: black;
 }
 .sdt {
-  margin-top: -50px;
+  margin-top: -70px;
   margin-left: 50%;
   color: black;
 }
@@ -62,7 +62,7 @@ textarea {
   height: 50px;
 }
 .district {
-  margin-top: -50px;
+  margin-top: -64px;
   margin-left: 50%;
   color: black;
 }
@@ -88,7 +88,7 @@ tr:nth-child(even) {
   background-color: #f1f1f1;
   border-radius: 4px;
   height: 30px;
-  width: 45%;
+  width: 35%;
 }
 
 .input-form-right {
@@ -123,8 +123,9 @@ tr:nth-child(even) {
 .require {
   font-size: 10px;
   color: #e30a0d;
+  margin-left: 130px;
   margin-top: -20px;
-  margin-left: 120px;
+  
 }
 
 .requireFinal {

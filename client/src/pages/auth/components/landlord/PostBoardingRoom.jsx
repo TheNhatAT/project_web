@@ -12,6 +12,8 @@ const PostBoardingRoom = () => {
     address: "",
   });
   const [city, setCity] = useState([]);
+  const [district, setDistrict] = useState([]);
+  const [subdistrict, setSubdistrict] = useState([]);
   const [cityname, setCityname] = useState("");
   const [districtname, setDistrictname] = useState("");
   const [subdistrictname, setSubdistrictname] = useState("");
@@ -35,13 +37,16 @@ const PostBoardingRoom = () => {
     });
   }
   const handlecity = (event) => {
-    const getcityname = event.target.value;
-    setCityname(getcityname);
+    setCityname(event.target.value);
+    setDistrict(city.filter((x) => x.name == event.target.value)[0].districts);
   };
 
   const handledistrict = (event) => {
     const getdistrictname = event.target.value;
     setDistrictname(getdistrictname);
+    setSubdistrict(
+      district.filter((x) => x.name == event.target.value)[0].wards
+    );
   };
 
   const handlesubdistrict = (event) => {
@@ -68,12 +73,6 @@ const PostBoardingRoom = () => {
       console.log("error: ", error);
     }
   };
-  /*useEffect( () => {
-        axios.get(`https://provinces.open-api.vn/api/p/${}?depth=3`).then((response) =>{
-            console.log(cityid)
-            setDistrict(response.data.districts)
-        })
-    },[]);*/
 
   return (
     <>
@@ -82,56 +81,68 @@ const PostBoardingRoom = () => {
         className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20"
       >
         <div className="bg-blue-600 w-full h-8">Địa chỉ nhà trọ cho thuê</div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-2">
           <span>
             Tỉnh/Thành phố{" "}
-            {cityname.length == 0 && (
-              <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            <div className="require">* Thông tin này là bắt buộc</div>
           </span>
-          <div>
-            <input
-              className="input-form"
-              onChange={(e) => handlecity(e)}
-              name="city"
-            ></input>
-          </div>
+          <select
+            name="city"
+            className="input-form mt-4"
+            onChange={(e) => handlecity(e)}
+          >
+            <option value="">--Chọn tỉnh/tp--</option>
+            {city.map((getcity, code) => (
+              <option key={code} value={getcity.name}>
+                {getcity.name}{" "}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="district">
           <span>
             Quận/Huyện{" "}
-            {districtname.length == 0 && (
-              <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            <div className="require">* Thông tin này là bắt buộc</div>
           </span>
           <div>
-            <input
-              className="input-form"
-              onChange={(e) => handledistrict(e)}
+            <select
               name="district"
-            />
+              className="input-form mt-4"
+              onChange={(e) => handledistrict(e)}
+            >
+              <option value="">--Chọn quận/huyện--</option>
+              {district.map((dist, code) => (
+                <option key={code} value={dist.name}>
+                  {dist.name}{" "}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-3">
           <span>
-            Phường/Xã{" "}
-            {subdistrictname.length == 0 && (
-              <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            Phường/Xã <div className="require">* Thông tin này là bắt buộc</div>
           </span>
           <div>
-            <input
-              className="input-form"
+            <select
+              name="city"
+              className="input-form mt-4"
               onChange={(e) => handlesubdistrict(e)}
-              name="subdistrict"
-            ></input>
+            >
+              <option value="">--Chọn phường/xã--</option>
+              {subdistrict.map((dist, code) => (
+                <option key={code} value={dist.name}>
+                  {dist.name}{" "}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
-        <div className=" text-black ml-5">
+        <div className=" text-black ml-5 mt-3">
           <span>Địa chỉ cụ thể </span>
           <br />
           <textarea
-            className="shadow rounded w-3/4 py-2 px-3 text-gray-700 focus:shadow-outline"
+            className="shadow rounded w-3/4 py-2 px-3 text-gray-700 mt-3 focus:shadow-outline"
             placeholder="Điền địa chỉ phòng trọ"
           ></textarea>
         </div>
@@ -139,12 +150,10 @@ const PostBoardingRoom = () => {
 
       <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
         <div className="bg-blue-600 w-full h-8">Thông tin cho thuê</div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-2">
           <span>
             Tiêu đề tin{" "}
-            {boardingRoom.name.length == 0 && (
-              <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            <div className="require">* Thông tin này là bắt buộc</div>
           </span>
           <br />
           <input
@@ -152,19 +161,17 @@ const PostBoardingRoom = () => {
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, name: e.target.value })
             }
-            className="input-form"
+            className="input-form -mt-1"
           />
         </div>
         <div className="chuyen-muc">
           <span>
             Chuyên mục{" "}
-            {boardingRoom.category.length == 0 && (
               <div className="require">* Thông tin này là bắt buộc</div>
-            )}
           </span>
           <br />
           <select
-            className="input-form"
+            className="input-form -mt-2"
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, category: e.target.value })
             }
@@ -175,12 +182,10 @@ const PostBoardingRoom = () => {
             <option value="Nhà nguyên căn">Nhà nguyên căn</option>
           </select>
         </div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-4">
           <span>
             Diện tích{" "}
-            {boardingRoom.area.length == 0 && (
-              <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            <div className="require">* Thông tin này là bắt buộc</div>
           </span>{" "}
           <br />
           <input
@@ -194,9 +199,9 @@ const PostBoardingRoom = () => {
         <div className="gia-thue">
           <span>
             Giá cho thuê{" "}
-            {boardingRoom.room_price.length == 0 && (
+            
               <div className="require">* Thông tin này là bắt buộc</div>
-            )}
+            
           </span>
           <br />
           <input
@@ -204,38 +209,35 @@ const PostBoardingRoom = () => {
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, room_price: e.target.value })
             }
-            className="input-form-right"
+            className="input-form-right -mt-2"
           />
         </div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-5">
           <span>Nội dung</span>
           <br />
           <textarea
+          className="mt-4"
             name="description"
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, description: e.target.value })
             }
           ></textarea>
         </div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-3">
           <span>
             Tên liên hệ{" "}
-            {missingInforNoti && (
               <div className="require">* Thông tin này là bắt buộc</div>
-            )}
           </span>
           <br />
-          <input className="input-form" />
+          <input className="input-form -mt-1" />
         </div>
         <div className="sdt mb-5">
           <span>
             Số điện thoại{" "}
-            {missingInforNoti && (
               <div className="require">* Thông tin này là bắt buộc</div>
-            )}
           </span>
           <br />
-          <input className="input-form-right" />
+          <input className="input-form-right -mt-2" />
         </div>
       </div>
 
