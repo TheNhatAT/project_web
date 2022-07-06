@@ -22,3 +22,12 @@ exports.getBoardingRoomById = async (id) => {
     return { boarding_room: boarding_rooms[0], owner: { id: owners[0].id, name: owners[0].name, phone_number: owners[0].phone_number } };
 
 }
+
+exports.getUsersByBoardingRoomId = async (boarding_room_id) => {
+  let [users, fields] = await conn.execute('SELECT * FROM `users` ' +
+      'JOIN `users_boarding_rooms` ON users.id = users_boarding_rooms.user_id ' +
+      'JOIN `boarding_rooms` ON users_boarding_rooms.boarding_room_id = boarding_rooms.id ' +
+      'WHERE boarding_rooms.id = ?', [boarding_room_id]);
+  console.log(users);
+  return users;
+}

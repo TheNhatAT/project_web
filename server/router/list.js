@@ -41,12 +41,17 @@ class List {
         UserController.pageFragment(res, pathname, query, body);
     }
 
+    // Router of BoardingRoom
     '/boarding-rooms/add' (res, pathname, query, body) {
         BoardingRoomController.addBoardingRoom(res, pathname, query, body)
     }
-    // Router of BoardingRoom
+
     '/boarding-rooms/id'(res, pathname, query, body) {
         BoardingRoomController.getBoardingRoomById(res, pathname, query, body);
+    }
+
+    '/boarding-rooms/users' (res, pathname, query, body) {
+        BoardingRoomController.getUsersByBoardingRoomId(res, pathname, query, body);
     }
 }
 

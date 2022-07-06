@@ -106,3 +106,28 @@ exports.updateBoardingRoomById = async (res, pathname, query, body) => {
             );
     }
 };
+exports.getUsersByBoardingRoomId = async (res, pathname, query, body) => {
+    const  boarding_room_id  = query.get('boarding_room_id');
+    console.log(boarding_room_id)
+    try {
+        const users = await BoardingRoomService.getUsersByBoardingRoomId(boarding_room_id);
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: true,
+            message: 'Get successfully',
+            content: users
+        }));
+    } catch (error) {
+        console.log(error)
+        res.writeHead(400, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: false,
+            message: 'Not successful',
+            content: error.toString()
+        }));
+    }
+}
