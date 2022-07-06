@@ -23,26 +23,10 @@ exports.createOne = async (pathname, query, body) => {
     return user;
 }
 
-exports.getAllUserByRoomId = async (boarding_room_id) => {
-    let userList = []
-    let user_id = await conn.execute(`SELECT user_id FROM users_boarding_rooms WHERE boarding_room_id=?`,[boarding_room_id])
-    .then(async function getUser () {
-        numberOfUser = user_id[0].length();
-        while (numberOfUser--) {
-            let user = await conn.execute(`SELECT * FROM users WHERE user_id=? AND role=?`, [user_id[0][numberOfUser], 2]);
-            userList.push(user);
-        } 
-    })  
-    return {data: userList}
-}
-
-exports.removeUserFromBoardingRoom = async (id) => {
-    let deletedUser;
-    let deletedUserRoom = await conn.execute(`DELETE FROM users_boarding_rooms WHERE user_id=?`, [id])
-    .then( async function deleteAUser () {
-         deletedUser = await conn.execute(`DELETE FROM users WHERE user_id=?`, [id])
-    }
-    )
+exports.removeUserFromBoardingRoom = async (user_id) => {
+    console.log("id-user: ", user_id);
+    let deletedUserRoom = await conn.execute(`DELETE FROM users_boarding_rooms WHERE user_id=?`, [user_id])
+    let deletedUser = await conn.execute(`DELETE FROM users WHERE user_id=?`, [user_id])
     return deletedUser;
 }
 

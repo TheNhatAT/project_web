@@ -55,35 +55,11 @@ exports.addUser = async (res, pathname, query, body) => {
         }));
     }
 }
-exports.getAllUserByRoomId = async (res, pathname, query, body) => {
-    const {boarding_room_id} = body
-    try{
-    const allUser = await UserService.getAllUserByRoomId(boarding_room_id);
-        res.writeHead(200, {
-            'Content-Type':'application/json',
-            'Access-Control-Allow-Origin': '*',
-        }).end(JSON.stringify({
-            success: true,
-            message: 'successfully',
-            content: allUser.data
-        }))
-    } catch (error) {
-        console.log(error)
-        res.writeHead(400, {
-            'Content-Type':'application/json',
-            'Access-Control-Allow-Origin': '*',
-        }).end(JSON.stringify({
-            success: false,
-            message: 'Get all boarding room fail',
-            content: error.toString()
-        }));
-    }
-}
 
-exports.removeUserFromBoardingRoom = async (res, pathname,query, body) => {
+exports.removeUserFromBoardingRoom = async (res, pathname, query, body) => {
+    const {user_id} = body;
     try {
-        const {id} = body;
-        let deletedUser = UserService.removeUserFromBoardingRoom(id);
+        let deletedUser = UserService.removeUserFromBoardingRoom(user_id);
         res.writeHead(200, {
             'Content-Type':'application/json',
             'Access-Control-Allow-Origin': '*',
@@ -314,3 +290,4 @@ exports.pageFragment = async (res, pathname, query, body) => {
             }));
         }
 }
+

@@ -30,10 +30,10 @@ exports.getBoardingRoomById = async (id) => {
 };
 
 exports.addBoardingRoom = async (pathname, query, body) => {
-  const { name, room_price, area, description, category, address, user_id } =
-    body;
+  const { name, room_price, area, description, category, address, user_id } = body;
   const created_at = new Date();
-  let [newBoardingRoom] = await conn
+  console.log("userId ", user_id)
+  let newBoardingRoom = await conn
     .execute(
     `INSERT INTO boarding_rooms 
     (name, room_price, electricity_price, water_price, parking_price, other_price, area, description, category, address, created_at, updated_at, photo_id, revenue_id, user_id)
@@ -56,14 +56,14 @@ exports.addBoardingRoom = async (pathname, query, body) => {
         user_id,
       ]
     )
-    
-    let roomId = await conn.execute(`SELECT TOP 1 * FROM boarding_rooms WHERE id = ? ORDER BY created_at`,
-    [newBoardingRoom[0].user_id])
+    let roomId = await conn.execute(`SELECT id FROM boarding_rooms WHERE user_id = ? ORDER BY created_at DESC LIMIT 1`,
+    [user_id])
+    console.log("room id: ", roomId[0][0].id)
 
     let userBoardingRoom = conn.execute(`INSERT INTO users_boarding_rooms (relationship, user_id, boarding_room_id) VALUES (?, ?, ?)`,
-    [1, newBoardingRoom[0].user_id, roomId]);
+    [1, user_id, roomId[0][0].id]);
 
-  return newBoardingRoom[0];
+  return [newBoardingRoom];
 };
 
 exports.updateBoardingRoomById = async (id, body) => {
@@ -92,7 +92,13 @@ exports.updateBoardingRoomById = async (id, body) => {
     ]
   );
 
-  return {
-    boarding_room: boarding_rooms[0],
-  };
-};
+}
+
+exports.getUsersByBoardingRoomId = async (boarding_room_id) => {
+  let [users, fields] = await conn.execute('SELECT * FROM `users` ' +
+      'JOIN `users_boarding_rooms` ON users.id = users_boarding_rooms.user_id ' +
+      'JOIN `boarding_rooms` ON users_boarding_rooms.boarding_room_id = boarding_rooms.id ' +
+      'WHERE boarding_rooms.id = ?', [boarding_room_id]);
+  console.log(users);
+  return users;
+}
