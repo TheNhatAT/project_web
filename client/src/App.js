@@ -12,6 +12,7 @@ import BoardingRoomDetail from "./pages/manage-boarding-house/components/Boardin
 import { PrivateRoute } from "./react-routes/privateRoute";
 import Infor from "./pages/user/Infor";
 import Home from "./pages/user/Home";
+import BoardingRoomUser from "./pages/manage-boarding-house/components/BoardingRoomUser";
 
 export default function App() {
     return (
@@ -67,7 +68,12 @@ export default function App() {
                         </Layout>
                     </PrivateRoute>
                 } />
-                <Route path="/dashboard" element={
+                <Route path="/boarding-room/users" element={
+                    <Layout nav={true}>
+                        <BoardingRoomUser />
+                    </Layout>
+                } />
+                <Route path="/" element={
                         <Layout nav={true}>
                             <Home />
                         </Layout>

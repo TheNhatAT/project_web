@@ -11,7 +11,8 @@ export default function Header () {
 
     const handleLogout = () => {
         localStorage.clear();
-        navigate("/dashboard");
+        navigate("/");
+        navigate("/");
     }
 
     const handleRegister = () => {
