@@ -11,6 +11,8 @@ import BoardingRoomDetail from "./pages/manage-boarding-house/components/Boardin
 import { PrivateRoute } from "./react-routes/privateRoute";
 import Infor from "./pages/user/infor";
 import Home from "./pages/example/components/Home";
+import UploadedList from "./pages/example/components/UploadedList";
+import DetailsRoom from "./pages/example/components/DetailsRoom";
 
 export default function App() {
     return (
@@ -65,6 +67,20 @@ export default function App() {
 
                     <Layout nav={true}>
                         <Home />
+                    </Layout>
+
+                } />
+                <Route path="/uploaded-list" element={
+
+                    <Layout nav={true}>
+                        <UploadedList />
+                    </Layout>
+
+                } />
+                <Route path="/details-room" element={
+
+                    <Layout nav={true}>
+                        <DetailsRoom />
                     </Layout>
 
                 } />
