@@ -24,7 +24,7 @@ exports.getBoardingRoomById = async (id) => {
 }
 
 exports.getUsersByBoardingRoomId = async (boarding_room_id) => {
-  let [users, fields] = await conn.execute('SELECT * FROM `users` ' +
+  let [users, fields] = await conn.execute('SELECT users.id as id, email, password, users.name as name, users.address, phone_number, role, status FROM `users` ' +
       'JOIN `users_boarding_rooms` ON users.id = users_boarding_rooms.user_id ' +
       'JOIN `boarding_rooms` ON users_boarding_rooms.boarding_room_id = boarding_rooms.id ' +
       'WHERE boarding_rooms.id = ?', [boarding_room_id]);
