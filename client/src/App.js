@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Route, Routes } from "react-router-dom";
-import { AuthRoute } from "./react-routes/authRoute";
 import Layout from "./layout/Layout";
 import Login from "./pages/auth/components/Login";
 import Register from "./pages/auth/components/Register";
@@ -42,7 +41,7 @@ export default function App() {
                             <Guide />
                         </Layout>
                 } />
-                 <Route path="/boarding-room/user" element={
+                 <Route path="/boarding-room/add/user" element={
                         <Layout nav={true}>
                             <AddUser />
                         </Layout>
