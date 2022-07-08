@@ -1,103 +1,226 @@
+
 import "./styles.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
 const UpdateBoardingRoom = () => {
+  const [boardingRoom, setBoardingRoom] = useState({
+    name: "",
+    room_price: "",
+    area: "",
+    description: "",
+    category: "",
+    address: "",
+  });
+  const [city, setCity] = useState([]);
+  const [district, setDistrict] = useState([]);
+  const [subdistrict, setSubdistrict] = useState([]);
+  const [users, setUsers] = useState([])
+  const [cityname, setCityname] = useState("");
+  const [districtname, setDistrictname] = useState("");
+  const [subdistrictname, setSubdistrictname] = useState("");
+  const [missingInforNoti, setMissingInforNoti] = useState(false);
+  const location = useLocation();
+    const redirectPagePath = location.pathname + location.search;
+    const id = redirectPagePath[redirectPagePath.length - 1];
+
+  useEffect(() => {
+    axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
+      setCity(response.data);
+      
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
+    });
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+        return await axios.get(`http://localhost:8000/boarding-rooms/id/${id}`);
+    }
+    fetchData().then((res) => {
+        console.log('data: ', res.data.content);
+        setBoardingRoom(res.data.content.boarding_room);
+        setUsers(res.data.content.owner);
+    });
+}, [id]);
+
+  const handlecity = (event) => {
+    setCityname(event.target.value);
+    setDistrict(city.filter((x) => x.name == event.target.value)[0].districts);
+  };
+
+  const handledistrict = (event) => {
+    const getdistrictname = event.target.value;
+    setDistrictname(getdistrictname);
+    setSubdistrict(
+      district.filter((x) => x.name == event.target.value)[0].wards
+    );
+  };
+
+  const handlesubdistrict = (event) => {
+    const getsubdistrictname = event.target.value;
+    setSubdistrictname(getsubdistrictname);
+  };
+  
   return (
     <>
-      <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
+      <div
+        id="head"
+        className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20"
+      >
         <div className="bg-blue-600 w-full h-8">Địa chỉ nhà trọ cho thuê</div>
-        <div className="text-black ml-5">
-          <span>Tỉnh/Thành phố</span>
-          <form>
-            <select
-              className="shadow background-form-select rounded w-1/3 py-2 px-3 text-gray-700 focus:shadow-outline"
-              name="district"
-            >
-              <option value="Ha Noi">Hà Nội</option>
-              <option value="Tp. Hồ Chí Minh">Tp. Hồ Chí Minh</option>
-              <option value="Đà Nẵng">Đà Nẵng</option>
-            </select>
-          </form>
+        <div className="text-black ml-5 mt-2">
+          <span>
+            Tỉnh/Thành phố{" "}
+            <div className="require">* Thông tin này là bắt buộc</div>
+          </span>
+          <select
+            name="city"
+            className="input-form mt-4"
+            onChange={(e) => handlecity(e)}
+          >
+            <option value="">--Chọn tỉnh/tp--</option>
+            {city.map((getcity, code) => (
+              <option key={code} value={getcity.name}>
+                {getcity.name}{" "}
+              </option>
+            ))}
+          </select>
         </div>
         <div className="district">
-          <span>Quận/Huyện</span>
-          <form>
+          <span>
+            Quận/Huyện{" "}
+            <div className="require">* Thông tin này là bắt buộc</div>
+          </span>
+          <div>
             <select
-              className="shadow background-form-select rounded w-3/4 py-2 px-3 text-gray-700 focus:shadow-outline"
               name="district"
+              className="input-form mt-4"
+              onChange={(e) => handledistrict(e)}
             >
-              <option value="Ha Noi">Hai Bà Trưng</option>
-              <option value="Tp. Hồ Chí Minh">Tp. Hồ Chí Minh</option>
-              <option value="Đà Nẵng">Đà Nẵng</option>
+              <option value="">--Chọn quận/huyện--</option>
+              {district.map((dist, code) => (
+                <option key={code} value={dist.name}>
+                  {dist.name}{" "}
+                </option>
+              ))}
             </select>
-          </form>
+          </div>
         </div>
-        <div className="text-black ml-5">
-          <span>Phường/Xã</span>
-          <form>
+        <div className="text-black ml-5 mt-3">
+          <span>
+            Phường/Xã <div className="require">* Thông tin này là bắt buộc</div>
+          </span>
+          <div>
             <select
-              className="shadow background-form-select rounded w-1/3 py-2 px-3 text-gray-700 focus:shadow-outline"
-              name="district"
+              name="city"
+              className="input-form mt-4"
+              onChange={(e) => handlesubdistrict(e)}
             >
-              <option value="Ha Noi">Bách Khoa</option>
-              <option value="Tp. Hồ Chí Minh">Tp. Hồ Chí Minh</option>
-              <option value="Đà Nẵng">Đà Nẵng</option>
+              <option value="">--Chọn phường/xã--</option>
+              {subdistrict.map((dist, code) => (
+                <option key={code} value={dist.name}>
+                  {dist.name}{" "}
+                </option>
+              ))}
             </select>
-          </form>
+          </div>
         </div>
-        <div className=" text-black ml-5">
-          <span>Địa chỉ</span>
+        <div className=" text-black ml-5 mt-3">
+          <span>Địa chỉ cụ thể </span>
           <br />
           <textarea
-            className="shadow rounded w-3/4 py-2 px-3 text-gray-700 focus:shadow-outline"
+            className="shadow rounded w-3/4 py-2 px-3 text-gray-700 mt-3 focus:shadow-outline"
             placeholder="Điền địa chỉ phòng trọ"
           ></textarea>
         </div>
       </div>
+
       <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
         <div className="bg-blue-600 w-full h-8">Thông tin cho thuê</div>
-        <div className="text-black ml-5">
-          <span>Tiêu đề tin</span>
+        <div className="text-black ml-5 mt-2">
+          <span>
+            Tiêu đề tin{" "}
+            <div className="require">* Thông tin này là bắt buộc</div>
+          </span>
           <br />
-          <input className="input-form" />
+          <input
+            name="name"
+            value={boardingRoom.name}
+            onChange={(e) =>
+              setBoardingRoom({ ...boardingRoom, name: e.target.value })
+            }
+            className="input-form -mt-1"
+          />
         </div>
         <div className="chuyen-muc">
-          <span>Chuyên mục</span>
-          <form>
-            <select
-              className="shadow background-form-select rounded w-3/4 py-2 px-3 text-gray-700 focus:shadow-outline"
-              id="district"
-              name="district"
-            >
-              <option value="Chung cư">Chung cư</option>
-              <option value="Phòng trọ">Phòng trọ</option>
-              <option value="Nhà nguyên căn">Nhà nguyên căn</option>
-            </select>
-          </form>
+          <span>
+            Chuyên mục{" "}
+              <div className="require">* Thông tin này là bắt buộc</div>
+          </span>
+          <br />
+          <select
+            className="input-form -mt-2"
+            value={boardingRoom.category}
+            onChange={(e) =>
+              setBoardingRoom({ ...boardingRoom, category: e.target.value })
+            }
+            name="category"
+          > 
+            <option value="Chung cư">Chung cư</option>
+            <option value="Phòng trọ">Phòng trọ</option>
+            <option value="Nhà nguyên căn">Nhà nguyên căn</option>
+          </select>
         </div>
-        <div className="text-black ml-5">
-          <span>Diện tích</span> <br />
-          <input className="input-form" />
+        <div className="text-black ml-5 mt-4">
+          <span>
+            Diện tích{" "}
+            <div className="require">* Thông tin này là bắt buộc</div>
+          </span>{" "}
+          <br />
+          <input
+            name="area"
+            value={boardingRoom.area}
+            onChange={(e) =>
+              setBoardingRoom({ ...boardingRoom, area: e.target.value })
+            }
+            className="input-form"
+          />
         </div>
         <div className="gia-thue">
-          <span>Giá cho thuê</span>
+          <span>
+            Giá cho thuê{" "}
+            
+              <div className="require">* Thông tin này là bắt buộc</div>
+            
+          </span>
           <br />
-          <input className="input-form-right" />
+          <input
+            name="room_price"
+            value={boardingRoom.room_price}
+            onChange={(e) =>
+              setBoardingRoom({ ...boardingRoom, room_price: e.target.value })
+            }
+            className="input-form-right -mt-2"
+          />
         </div>
-        <div className="text-black ml-5">
+        <div className="text-black ml-5 mt-5">
           <span>Nội dung</span>
           <br />
-          <textarea></textarea>
-        </div>
-        <div className="text-black ml-5">
-          <span>Tên liên hệ</span>
-          <br />
-          <input className="input-form" />
-        </div>
-        <div className="sdt mb-5">
-          <span>Số điện thoại</span>
-          <br />
-          <input className="input-form-right" />
+          <textarea
+          className="mt-4"
+            name="description"
+            value={boardingRoom.description}
+            onChange={(e) =>
+              setBoardingRoom({ ...boardingRoom, description: e.target.value })
+            }
+          ></textarea>
         </div>
       </div>
+
       <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
         <div className="bg-blue-600 w-full h-8">Hình ảnh</div>
         <img
@@ -108,8 +231,11 @@ const UpdateBoardingRoom = () => {
       </div>
       <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
         <div className="bg-blue-600 w-full h-8">Người thuê</div>
-
+        <Link to={'/boarding-room/user'}><button className="update-btn mt-3 mb-3 ml-5" >Thêm người</button></Link>
         <table className="text-black font-normal">
+          {
+
+          }
           <tr>
             <th>Họ tên</th>
             <th>CCCD</th>
@@ -187,7 +313,9 @@ const UpdateBoardingRoom = () => {
           </form>
         </div>
       </div>
+
       <button className="button">Đăng tin</button>
+      
     </>
   );
 };

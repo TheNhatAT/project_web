@@ -23,6 +23,13 @@ exports.createOne = async (pathname, query, body) => {
     return user;
 }
 
+exports.removeUserFromBoardingRoom = async (user_id) => {
+    console.log("id-user: ", user_id);
+    let deletedUserRoom = await conn.execute(`DELETE FROM users_boarding_rooms WHERE user_id=?`, [user_id])
+    let deletedUser = await conn.execute(`DELETE FROM users WHERE user_id=?`, [user_id])
+    return deletedUser;
+}
+
 exports.getOneByEmail = async (email) => {
     let [check_users, fields]  = await conn.execute('SELECT * FROM `users` WHERE `email` = ?',
         [email])

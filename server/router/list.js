@@ -53,6 +53,9 @@ class List {
     '/boarding-rooms/users' (res, pathname, query, body) {
         BoardingRoomController.getUsersByBoardingRoomId(res, pathname, query, body);
     }
+    '/boarding-rooms/remove-user' (res, pathname, query, body) {
+        UserController.removeUserFromBoardingRoom(res, pathname, query, body)
+    }
 }
 
 const routerAttrList = Object.getOwnPropertyNames(List.prototype);
