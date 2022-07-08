@@ -13,7 +13,7 @@ async function registry(user) {
     });
 }
 
-export default function Register () {
+export default function AddUser () {
     const [user, setUser] = useState({
         username: '',
         email: '',
@@ -22,6 +22,13 @@ export default function Register () {
         phone_number: '',
         cf_password: ''
     });
+    const id = redirectPagePath[redirectPagePath.length - 1];
+    useEffect( () =>{
+        await axios.get(`http://localhost:8000/users/id/${id}`).then((response) =>{
+            setUser(response.data)
+        })
+        
+    } , [id]);
 
     const navigate = useNavigate();
     const [error, setError] = useState(undefined);
@@ -48,11 +55,11 @@ export default function Register () {
             <div className="h-screen bg-indigo-100 flex justify-center items-center">
                 <div className="lg:w-2/5 md:w-1/2 w-2/3">
                     <form className="bg-white p-10 rounded-lg shadow-lg min-w-full">
-                        <h1 className="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Đăng ký tài khoản</h1>
+                        <h1 className="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Cập nhật cho người thuê phòng</h1>
                         <div>
                             <label className="text-gray-800 font-semibold block my-3 text-md" >Họ và tên</label>
                             <input className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
-                                   type="text" name="username" id="username" placeholder="Tên đăng nhập"
+                                   type="text" name="username" id="username" placeholder="Tên đăng nhập" value={user.username}
                                    onChange={e => setUser({...user, username: e.target.value})}
                             />
                         </div>
@@ -61,6 +68,7 @@ export default function Register () {
                             <input className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
                                    type="text" name="address" id="address" placeholder="Địa chỉ"
                                    onChange={e => setUser({...user, address: e.target.value})}
+                                   value={user.address}
                             />
                         </div>
                         <div>
@@ -69,6 +77,7 @@ export default function Register () {
                                    type="tel" pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b" name="phoneNumber"
                                    id="phoneNumber" placeholder="Số điện thoại"
                                    onChange={e => setUser({...user, phone_number: e.target.value})}
+                                   value={user.phone_number}
                             />
                         </div>
                         <div>
@@ -76,6 +85,7 @@ export default function Register () {
                             <input className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
                                    type="text" name="email" id="email" placeholder="Email"
                                    onChange={e => setUser({...user, email: e.target.value})}
+                                   value={user.email}
                             />
                         </div>
                         <div>
@@ -83,6 +93,7 @@ export default function Register () {
                             <input className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
                                    type="password" name="password" id="password" placeholder="Mật khẩu"
                                    onChange={e => setUser({...user, password: e.target.value})}
+                                   value={user.password}
                             />
                         </div>
                         <div>
@@ -90,6 +101,7 @@ export default function Register () {
                             <input className="w-full bg-gray-100 px-4 py-2 rounded-lg focus:outline-none"
                                    type="password" name="confirm" id="confirm" placeholder="Nhập lại mật khẩu"
                                    onChange={e => setUser({...user, cf_password: e.target.value})}
+                                   value={user.cf_password}
                             />
                         </div>
                         <div>
@@ -103,7 +115,7 @@ export default function Register () {
                         </div>
                         <button onClick={handleRegistry} className="w-full mt-6 bg-indigo-600 rounded-lg px-4 py-2 text-lg text-white tracking-wide font-semibold font-sans">Đăng ký</button>
                         <button className="w-full mt-6 mb-3 bg-indigo-100 rounded-lg px-4 py-2 text-lg text-gray-800 tracking-wide font-semibold font-sans">
-                            <Link to="/login">Đăng nhập</Link>
+                            <Link to="/boarding-room/update/:id">Cập nhật</Link>
                         </button>
                     </form>
                 </div>

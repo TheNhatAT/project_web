@@ -23,6 +23,13 @@ exports.createOne = async (pathname, query, body) => {
     return user;
 }
 
+exports.removeUserFromBoardingRoom = async (user_id) => {
+    console.log("id-user: ", user_id);
+    let deletedUserRoom = await conn.execute(`DELETE FROM users_boarding_rooms WHERE user_id=?`, [user_id])
+    let deletedUser = await conn.execute(`DELETE FROM users WHERE user_id=?`, [user_id])
+    return deletedUser;
+}
+
 exports.getOneByEmail = async (email) => {
     let [check_users, fields]  = await conn.execute('SELECT * FROM `users` WHERE `email` = ?',
         [email])
@@ -43,19 +50,23 @@ exports.getOneById = async (id) => {
 
 exports.updateOne = async (id, data) => {
     let {name, email, address, role, phone_number, auth_token, avatar, status} = data;
-    name =( name !== undefined ? name: null);
-    email = (email !== undefined ? email: null);
-    address = (address !== undefined ? address: null);
-    role = (role !== undefined ? role: null);
-    phone_number = (phone_number !== undefined ? phone_number: null);
-    avatar = (avatar !== undefined ? avatar: null);
-    status = (status !== undefined ? status: null);
-    console.log(name, email, address, role, phone_number, auth_token, avatar, status)
+
     let [users, fields]  = await conn.execute('SELECT * FROM `users` WHERE `id` = ?',
         [id]);
+
     if (users.length === 0) {
         throw new Error(`User with ${id} is not exist!`);
     }
+    name =( name !== undefined ? name: users[0].name);
+    email = (email !== undefined ? email: users[0].email);
+    address = (address !== undefined ? address: users[0].address);
+    role = (role !== undefined ? role: users[0].role);
+    phone_number = (phone_number !== undefined ? phone_number: users[0].phone_number);
+    auth_token = (auth_token !== undefined ? auth_token: users[0].auth_token);
+    avatar = (avatar !== undefined ? avatar: users[0].avatar);
+    status = (status !== undefined ? status: users[0].status);
+    console.log(name, email, address, role, phone_number, auth_token, avatar, status)
+
     let [updatedUser] = await conn.execute('UPDATE `users` SET name = ?, email = ?, address = ?, role = ?, phone_number = ?, auth_token = ?, avatar = ?, status = ?'
         , [name, email, address, role, phone_number, auth_token, avatar, status]);
     return updatedUser;
@@ -238,10 +249,19 @@ else{
 }
     return {'data': rows[0]}
 }
+
 exports.pageFragment = async (pathname, query, body) =>{
     let page = (query.get('page') - 1)*10;
-    console.log(page)
-    let rows = await conn.execute(`SELECT * from boarding_rooms LIMIT ${page}, 10`)
+    console.log(query.get('page'))
+    let rows
+
+    if(page==1) {
+        rows = await conn.execute(`SELECT * from boarding_rooms LIMIT 10`)
+    }
+    else{
+        rows = await conn.execute(`SELECT * from boarding_rooms LIMIT ${page}, 10`)
+    }
+
     if(!rows){
         throw Error('Error')
     }

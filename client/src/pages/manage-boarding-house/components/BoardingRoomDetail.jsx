@@ -34,7 +34,7 @@ export default function BoardingRoomDetail() {
 
     useEffect(() => {
         async function fetchData() {
-            return await axios.get(`http://localhost:8000/boardind-rooms/id/${id}`);
+            return await axios.get(`http://localhost:8000/boarding-rooms/id/${id}`);
         }
         fetchData().then((res) => {
             console.log('data: ', res.data.content);

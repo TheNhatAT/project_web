@@ -4,6 +4,7 @@ require('dotenv').config()
 
 
 // switch function for HTTP method
+
 /**
  * Docs: https://nodejs.org/dist/latest-v16.x/docs/api/url.html
  * Format:
@@ -40,6 +41,7 @@ const handleMethod = (req, res, data, callback) => {
             console.log('req.method: ', req.method)
             console.log('date server: ', data)
             body = JSON.parse(data);
+            console.log(body)
             callback({pathname, body});
             break;
         case "PUT":

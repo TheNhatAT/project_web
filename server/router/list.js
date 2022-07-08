@@ -9,21 +9,22 @@ class List {
     }
 
     // Routes of User
-    '/users/registry'(res, pathname, query, body) {
+    '/users/registry' (res, pathname, query, body) {
         UserController.registry(res, pathname, query, body);
     }
-    '/users/login'(res, pathname, query, body) {
+    '/users/login' (res, pathname, query, body) {
         UserController.login(res, pathname, query, body);
     }
 
-    '/users/id'(res, pathname, query, body) {
-        if (body === undefined)
-            UserController.getUserById(res, pathname, query, body);
-        else
-            UserController.updateUserById(res, pathname, query, body);
+    '/users/id' (res, pathname, query, body) {
+        UserController.getUserById(res, pathname, query, body);
     }
 
-    '/users/home'(res, pathname, query, body) {
+    '/users/add' (res, pathname, query, body) {
+        UserController.updateUserById(res, pathname, query, body);
+    }
+
+    '/home'(res, pathname, query, body) {
         UserController.getAllBoardingRoom(res, pathname, query, body);
     }
     '/roommate'(res, pathname, query, body) {
@@ -35,13 +36,25 @@ class List {
     '/filter'(res, pathname, query, body) {
         UserController.filter(res, pathname, query, body);
     }
+
     '/page'(res, pathname, query, body) {
         UserController.pageFragment(res, pathname, query, body);
     }
 
     // Router of BoardingRoom
+    '/boarding-rooms/add' (res, pathname, query, body) {
+        BoardingRoomController.addBoardingRoom(res, pathname, query, body)
+    }
+
     '/boarding-rooms/id'(res, pathname, query, body) {
         BoardingRoomController.getBoardingRoomById(res, pathname, query, body);
+    }
+
+    '/boarding-rooms/users' (res, pathname, query, body) {
+        BoardingRoomController.getUsersByBoardingRoomId(res, pathname, query, body);
+    }
+    '/boarding-rooms/remove-user' (res, pathname, query, body) {
+        UserController.removeUserFromBoardingRoom(res, pathname, query, body)
     }
 }
 

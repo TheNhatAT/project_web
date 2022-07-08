@@ -50,7 +50,7 @@ export default function Guide() {
                     <h2 className="font-bold">Hướng dẫn đăng nhập và xem thông tin điện nước hàng tháng (đối với người đã thuê trọ)</h2>
                     <p className="px-10">
                         Nếu bạn đã thuê được 1 phòng trọ được đăng trên website của chúng tôi, bạn sẽ được người thuê trọ của bạn cung cấp tài khoản và mật khẩu để đăng nhập vào hệ thống. Hãy chọn <Link className="text-green-600" to="/login">Đăng nhập</Link>. <br></br>
-                        Nếu bạn chưa thuê được trọ, hãy vào <Link className="text-green-600" to="/dashboard">Trang chủ</Link> để tìm trọ.
+                        Nếu bạn chưa thuê được trọ, hãy vào <Link className="text-green-600" to="/">Trang chủ</Link> để tìm trọ.
                     </p>
                     <p className="px-10">
                         Bạn sẽ xem được các thông tin: Thông tin tiền trọ, điện nước hàng tháng,.., thống kê tiền đã thanh toán,..

@@ -29,6 +29,58 @@ exports.registry = async (res, pathname, query, body) => {
         }));
     }
 }
+exports.addUser = async (res, pathname, query, body) => {
+    try {
+        if (!body.role)
+            body.role = 2; // người cho thuê
+        const user = await UserService.createOne(pathname, query, body);
+
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: true,
+            message: 'Add user successfully',
+            content: user
+        }));
+    } catch (error) {
+        console.log(error)
+        res.writeHead(400, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: false,
+            message: 'Add user failed',
+            content: error.toString()
+        }));
+    }
+}
+
+exports.removeUserFromBoardingRoom = async (res, pathname, query, body) => {
+    const {user_id} = body;
+    try {
+        let deletedUser = UserService.removeUserFromBoardingRoom(user_id);
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: true,
+            message: 'Removed user successfully',
+            content: deletedUser
+        }))
+    } catch (error) {
+        console.log(error)
+        res.writeHead(400, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: false,
+            message: `Can not delete user with id = ${id}`,
+            content: error.toString()
+        }));
+    }
+}
+
 exports.login = async (res, pathname, query, body) => {
     try {
         const {email, password} = body;
@@ -90,7 +142,7 @@ exports.getUserById = async (res, pathname, query, body) => {
 exports.updateUserById = async (res, pathname,query, body) => {
     console.log("pathname: ", pathname);
     console.log("body: ", body);
-    const id = Number(pathname[pathname.length - 1]);
+    const id = body.id;
 
     try {
         const user = await UserService.updateOne(id, body);
@@ -120,8 +172,9 @@ exports.getAllBoardingRoom = async (res, pathname, query, body) => {
         
         const allBoardingRoom = await UserService.getAllBoardingRoom(pathname, query, body);
 
-        res.writeHead(400, {
-            'Content-Type':'application/json'
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
             message: 'successfully',
@@ -130,7 +183,8 @@ exports.getAllBoardingRoom = async (res, pathname, query, body) => {
     } catch (error) {
         console.log(error)
         res.writeHead(400, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
             message: 'Get all boarding room fail',
@@ -144,8 +198,9 @@ exports.findARoomate = async (res, pathname, query, body) => {
         
         const rows = await UserService.findARoomate(pathname, query, body);
         
-        res.writeHead(400, {
-            'Content-Type':'application/json'
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
             message: 'Register successfully',
@@ -154,7 +209,8 @@ exports.findARoomate = async (res, pathname, query, body) => {
     } catch (error) {
         console.log(error)
         res.writeHead(400, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
             message: 'Not successful',
@@ -166,8 +222,9 @@ exports.findARoomate = async (res, pathname, query, body) => {
 exports.findByAddr = async (res, pathname, query, body) => {
     try {
         const rows = await UserService.findByAddr(pathname, query, body);
-        res.writeHead(400, {
-            'Content-Type':'application/json'
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
             message: 'successful',
@@ -176,7 +233,8 @@ exports.findByAddr = async (res, pathname, query, body) => {
     } catch (error) {
         console.log(error)
         res.writeHead(400, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
             message: 'Not successful',
@@ -188,8 +246,9 @@ exports.findByAddr = async (res, pathname, query, body) => {
 exports.filter = async (res, pathname, query, body) => {
     try {   
         const rows = await UserService.filter(pathname, query, body);
-        res.writeHead(400, {
-            'Content-Type':'application/json'
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
             message: 'successful',
@@ -198,7 +257,8 @@ exports.filter = async (res, pathname, query, body) => {
     } catch (error) {
         console.log(error)
         res.writeHead(400, {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
             message: 'Not successful',
@@ -208,11 +268,11 @@ exports.filter = async (res, pathname, query, body) => {
 }
 
 exports.pageFragment = async (res, pathname, query, body) => {
-    async (res, pathname, query, body) => {
         try {  
             const rows = await UserService.pageFragment(pathname, query, body);
-            res.writeHead(400, {
-                'Content-Type':'application/json'
+            res.writeHead(200, {
+                'Content-Type':'application/json',
+                'Access-Control-Allow-Origin': '*',
             }).end(JSON.stringify({
                 success: true,
                 message: 'successful',
@@ -221,12 +281,13 @@ exports.pageFragment = async (res, pathname, query, body) => {
         } catch (error) {
             console.log(error)
             res.writeHead(400, {
-                'Content-Type':'application/json'
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             }).end(JSON.stringify({
                 success: false,
                 message: 'Not successful',
                 content: error.toString()
             }));
         }
-    }
 }
+

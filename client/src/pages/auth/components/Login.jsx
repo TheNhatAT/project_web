@@ -36,7 +36,7 @@ export default function Login() {
             setAuth(undefined);
         }
         if (auth) {
-            navigate("/dashboard");
+            navigate("/");
         }
     }
     return (
