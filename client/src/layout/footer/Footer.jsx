@@ -1,8 +1,11 @@
 export default function Footer() {
 
+
+
     return (
         <>
-            <footer className="relative border-t-2 border-slate-800 bg-blueGray-200 pt-8 pb-6">
+            <div />
+            <footer className="relative border-t-2 border-slate-800 bg-blueGray-200 pt-8 pb-6 p-5">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-wrap text-left lg:text-left">
                         <div className="w-full lg:w-6/12 px-4">
@@ -26,16 +29,16 @@ export default function Footer() {
                                     <ul className="list-unstyled">
                                         <li>
                                             <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                               href="https://www.creative-tim.com/presentation?ref=njs-profile">About
+                                                href="https://www.creative-tim.com/presentation?ref=njs-profile">About
                                                 Us</a>
                                         </li>
                                         <li>
                                             <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                               href="https://blog.creative-tim.com?ref=njs-profile">Blog</a>
+                                                href="https://blog.creative-tim.com?ref=njs-profile">Blog</a>
                                         </li>
                                         <li>
                                             <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                               href="https://www.github.com/creativetimofficial?ref=njs-profile">Github</a>
+                                                href="https://www.github.com/creativetimofficial?ref=njs-profile">Github</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -44,16 +47,16 @@ export default function Footer() {
                                     <ul className="list-unstyled">
                                         <li>
                                             <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                               href="https://creative-tim.com/terms?ref=njs-profile">Terms &amp; Conditions</a>
+                                                href="https://creative-tim.com/terms?ref=njs-profile">Terms &amp; Conditions</a>
                                         </li>
                                         <li>
                                             <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                               href="https://creative-tim.com/privacy?ref=njs-profile">Privacy
+                                                href="https://creative-tim.com/privacy?ref=njs-profile">Privacy
                                                 Policy</a>
                                         </li>
                                         <li>
                                             <a className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                                               href="https://creative-tim.com/contact-us?ref=njs-profile">Contact Us</a>
+                                                href="https://creative-tim.com/contact-us?ref=njs-profile">Contact Us</a>
                                         </li>
                                     </ul>
                                 </div>

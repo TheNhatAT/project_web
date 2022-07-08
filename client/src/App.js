@@ -9,6 +9,8 @@ import PostFindARoomate from "./pages/auth/components/landlord/PostFindRoomate";
 import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
 import { PrivateRoute } from "./react-routes/privateRoute";
+import UploadedList from "./pages/example/components/UploadedList";
+import DetailsRoom from "./pages/example/components/DetailsRoom";
 import Infor from "./pages/user/Infor";
 import AddUser from "./pages/auth/components/landlord/UserInfor";
 import Home from "./pages/user/Home";
@@ -80,6 +82,19 @@ export default function App() {
                 <Route path="/" element={
                     <Layout nav={true}>
                         <Home />
+                    </Layout>
+                } />
+                <Route path="/uploaded-list" element={
+
+                    <Layout nav={true}>
+                        <UploadedList />
+                    </Layout>
+
+                } />
+                <Route path="/details-room" element={
+
+                    <Layout nav={true}>
+                        <DetailsRoom />
                     </Layout>
                 } />
             </Routes>
