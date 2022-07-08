@@ -79,9 +79,9 @@ export default function App() {
                     </Layout>
                 } />
                 <Route path="/" element={
-                        <Layout nav={true}>
-                            <Home />
-                        </Layout>
+                    <Layout nav={true}>
+                        <Home />
+                    </Layout>
                 } />
             </Routes>
         </div>
