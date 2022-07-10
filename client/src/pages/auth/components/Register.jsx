@@ -31,7 +31,7 @@ export default function Register () {
         let res
         try {
             res = (await registry(user));
-            console.log('res: ', res)
+            navigate('/login')
             setError(undefined);
         } catch (error) {
             console.log('error: ', error)
@@ -45,8 +45,8 @@ export default function Register () {
     
     return (
         <>
-            <div className="h-screen bg-indigo-100 flex justify-center items-center">
-                <div className="lg:w-2/5 md:w-1/2 w-2/3">
+            <div className="m-4 bg-indigo-100 flex justify-center items-center">
+                <div className="lg:w-2/5 md:w-1/2 w-2/3 m-4">
                     <form className="bg-white p-10 rounded-lg shadow-lg min-w-full">
                         <h1 className="text-center text-2xl mb-6 text-gray-600 font-bold font-sans">Đăng ký tài khoản</h1>
                         <div>
