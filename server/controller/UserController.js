@@ -114,6 +114,7 @@ exports.login = async (res, pathname, query, body) => {
 
 exports.getUserById = async (res, pathname, query, body) => {
     console.log("pathname: ", pathname);
+    pathname = pathname.split("/");
     const id = Number(pathname[pathname.length - 1]);
     try {
         const user = await UserService.getOneById(id);

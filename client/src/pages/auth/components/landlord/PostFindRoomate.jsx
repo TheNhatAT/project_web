@@ -83,12 +83,6 @@ const PostFindARoomate = () => {
         </div>
       </div>
 
-      <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
-        <div className="bg-blue-600 w-full h-8">Mức giá</div>
-        <br />
-        <span className="text-black ml-5 mb-10">20000 đồng\tin</span>
-        <br />
-      </div>
       <button className="button">Đăng tin</button>
     </>
   );

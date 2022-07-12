@@ -24,7 +24,7 @@ export default function AddUser () {
     });
     const id = redirectPagePath[redirectPagePath.length - 1];
     useEffect( () =>{
-        await axios.get(`http://localhost:8000/users/id/${id}`).then((response) =>{
+        axios.get(`http://localhost:8000/users/id/${id}`).then((response) =>{
             setUser(response.data)
         })
         
