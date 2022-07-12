@@ -1,4 +1,5 @@
 const { connect } = require("../helper/database");
+const {raw} = require("mysql");
 
 let conn = connect();
 
@@ -12,9 +13,11 @@ exports.getBoardingRoomById = async (id) => {
   if (boarding_rooms.length === 0) {
     throw new Error(`Boarding room with id = ${id} doesn't exist!!!`);
   }
-  let [owners] = await conn.execute("SELECT * FROM `users` WHERE `id` = ?", [
-    boarding_rooms[0].user_id,
-  ]);
+    let [owners, fields] = await conn.execute('SELECT users.id as id, email, users.name as name, users.address, phone_number, role, status FROM `users` ' +
+        'JOIN `users_boarding_rooms` ON users.id = users_boarding_rooms.user_id ' +
+        'JOIN `boarding_rooms` ON users_boarding_rooms.boarding_room_id = boarding_rooms.id ' +
+        'WHERE boarding_rooms.id = ? AND users_boarding_rooms.relationship = 1', [id]);
+    console.log(owners);
 
   if (owners.length === 0) {
     throw new Error(`Boarding room with id = ${id} doesn't have any owners!!!`);
@@ -98,7 +101,11 @@ exports.getUsersByBoardingRoomId = async (boarding_room_id) => {
   let [users, fields] = await conn.execute('SELECT users.id as id, email, users.name as name, users.address, phone_number, role, status FROM `users` ' +
       'JOIN `users_boarding_rooms` ON users.id = users_boarding_rooms.user_id ' +
       'JOIN `boarding_rooms` ON users_boarding_rooms.boarding_room_id = boarding_rooms.id ' +
-      'WHERE boarding_rooms.id = ?', [boarding_room_id]);
+      'WHERE boarding_rooms.id = ? AND users_boarding_rooms.relationship = 2', [boarding_room_id]);
   console.log(users);
   return users;
+}
+
+exports.getBoardingRoomsByOwnerId = async (owner_id) => {
+    let [boarding_rooms, fields] = await conn.execute()
 }
