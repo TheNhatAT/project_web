@@ -82,15 +82,16 @@ export default function App() {
                         <Home />
                     </Layout>
                 } />
-                <Route path="/uploaded-list" element={
 
+                {/* Danh sách phòng trọ của người thuê */}
+                <Route path="/uploaded-list" element={
                     <Layout nav={true}>
                         <UploadedList />
                     </Layout>
-
                 } />
-                <Route path="/details-room" element={
 
+                {/* Phòng trọ đã thuê của người đi thuê */}
+                <Route path="/details-room" element={
                     <Layout nav={true}>
                         <DetailsRoom />
                     </Layout>
