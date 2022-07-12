@@ -272,48 +272,6 @@ const UpdateBoardingRoom = () => {
         </table>
       </div>
 
-      <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
-        <div className="bg-blue-600 w-full h-8">Lịch đăng tin</div>
-        <div>
-          <span className="text-black ml-5">Loại tin</span>
-          <form className="text-black ml-5">
-            <select
-              className="shadow background-form-select rounded w-1/3 py-2 px-3 text-gray-700 focus:shadow-outline"
-              id="new"
-              name="new"
-            >
-              <option value="Tin HOT">Tin HOT</option>
-              <option value="Tin VIP 1">Tin VIP 1</option>
-              <option value="Tin VIP 2">Tin VIP 2</option>
-              <option value="Tin thường">Tin thường</option>
-            </select>
-          </form>
-        </div>
-        <div>
-          <span className="text-black ml-5">Gói tin</span>
-          <form className="text-black ml-5">
-            <select
-              className="shadow background-form-select rounded w-1/3 py-2 px-3 text-gray-700 focus:shadow-outline"
-              id=""
-              name=""
-            >
-              <option value="Theo ngày">Đăng tin theo ngày</option>
-              <option value="Theo tuần">Đăng tin theo tuần</option>
-              <option value="Theo tháng">Dăng tin theo tháng</option>
-            </select>
-          </form>
-        </div>
-        <div>
-          <span className="text-black ml-5">Thời gian đăng</span>
-          <form className="ml-5">
-            <input
-              className="mb-5 input-form text-black"
-              placeholder="nhập theo đơn vị gói tin bạn chọn"
-            />
-          </form>
-        </div>
-      </div>
-
       <button className="button">Đăng tin</button>
       
     </>

@@ -27,8 +27,6 @@ const PostBoardingRoom = () => {
   }, []);
   useEffect(() => {
     axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
-      
-      
     });
   }, []);
 
@@ -43,7 +41,7 @@ const PostBoardingRoom = () => {
       description: boardingRoom.description,
       category: boardingRoom.category,
       address: cityname + ", " + districtname + ", " + subdistrictname,
-      user_id: localStorage.getItem("user_id")
+      user_id: localStorage.getItem("userId")
     });
   }
   const handlecity = (event) => {
@@ -79,6 +77,7 @@ const PostBoardingRoom = () => {
     let res;
     try {
       res = await addBoardingRoom(boardingRoom);
+      window.alert("Đăng tin thành công!")
     } catch (error) {
       console.log("error: ", error);
     }
@@ -258,85 +257,6 @@ const PostBoardingRoom = () => {
           src={"https://icon-library.com/images/img-icon/img-icon-11.jpg"}
         />
         <button className="upload-btn">Upload ảnh</button>
-      </div>
-
-      <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
-        <div className="bg-blue-600 w-full h-8">Lịch đăng tin</div>
-        <table className="text-black font-normal">
-          <tr>
-            <th>Loại tin</th>
-            <th>Gói ngày</th>
-            <th>Gói tuần</th>
-            <th>Gói tháng</th>
-          </tr>
-          <tr>
-            <td>Tin HOT</td>
-            <td>30.000 đ/ngày</td>
-            <td>189.000 đ/tuần</td>
-            <td>720.000 đ/tháng</td>
-          </tr>
-          <tr>
-            <td>Tin VIP 1</td>
-            <td>20.000 đ/ngày</td>
-            <td>126.000 đ/tuần</td>
-            <td>550.000 đ/tháng</td>
-          </tr>
-          <tr>
-            <td>Tin VIP 2</td>
-            <td>15.000 đ/ngày</td>
-            <td>95.000 đ/tháng</td>
-            <td>360.000 đ/tháng</td>
-          </tr>
-          <tr>
-            <td>Tin thường</td>
-            <td>2.000 đ/ngày</td>
-            <td>12.000 đ/tuần</td>
-            <td>48.000 đ/tháng</td>
-          </tr>
-        </table>
-        <div>
-          <span className="text-black ml-5">Loại tin</span>
-          <div className="text-black ml-5">
-            <select
-              className="shadow background-form-select rounded w-1/3 py-2 px-3 text-gray-700 focus:shadow-outline"
-              id="new"
-              name="new"
-            >
-              <option value="Tin HOT">Tin HOT</option>
-              <option value="Tin VIP 1">Tin VIP 1</option>
-              <option value="Tin VIP 2">Tin VIP 2</option>
-              <option value="Tin thường">Tin thường</option>
-            </select>
-          </div>
-        </div>
-        <div>
-          <span className="text-black ml-5">Gói tin</span>
-          <div className="text-black ml-5">
-            <select
-              className="shadow background-form-select rounded w-1/3 py-2 px-3 text-gray-700 focus:shadow-outline"
-              id=""
-              name=""
-            >
-              <option value="Theo ngày">Đăng tin theo ngày</option>
-              <option value="Theo tuần">Đăng tin theo tuần</option>
-              <option value="Theo tháng">Dăng tin theo tháng</option>
-            </select>
-          </div>
-        </div>
-        <div>
-          <span className="text-black ml-5">
-            Thời gian đăng{" "}
-            {missingInforNoti && (
-              <div className="requireFinal">* Thông tin này là bắt buộc</div>
-            )}
-          </span>
-          <div className="ml-5">
-            <input
-              className="mb-5 input-form text-black"
-              placeholder="nhập theo đơn vị gói tin bạn chọn"
-            />
-          </div>
-        </div>
       </div>
 
       <button className="button" onClick={handleAddBoardingRoom} type="submit">
