@@ -68,11 +68,9 @@ export default function App() {
                         </Layout>
                 } />
                 <Route path="/boarding-room/detail/:id" element={
-                    <PrivateRoute>
-                        <Layout nav={true}>
-                            <BoardingRoomDetail />
-                        </Layout>
-                    </PrivateRoute>
+                    <Layout nav={true}>
+                        <BoardingRoomDetail />
+                    </Layout>
                 } />
                 <Route path="/boarding-room/users" element={
                     <Layout nav={true}>

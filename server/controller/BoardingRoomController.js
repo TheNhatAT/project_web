@@ -2,6 +2,7 @@ const BoardingRoomService = require("../services/BoardingRoomService");
 
 exports.getBoardingRoomById = async (res, pathname, query, body) => {
     console.log("pathname: ", pathname);
+    pathname = pathname.split("/");
     const id = Number(pathname[pathname.length - 1]);
     try {
         const data = await BoardingRoomService.getBoardingRoomById(id);

@@ -6,34 +6,17 @@ import { useLocation } from "react-router-dom";
 export default function BoardingRoomDetail() {
     const location = useLocation();
 
-    const redirectPagePath = location.pathname + location.search;
+    let redirectPagePath = location.pathname + location.search;
+    redirectPagePath = redirectPagePath.split("/");
     const id = redirectPagePath[redirectPagePath.length - 1];
     console.log('path: ', redirectPagePath);
-    const [boardingRoom, setBoardingRoom] = useState({
-        id: 1,
-        name: 'Nhà trọ Bình An',
-        room_price: 1500000,
-        electricity_price: 3500,
-        water_price: 80000,
-        parking_price: 100000,
-        other_price: 100000,
-        area: 15,//m2
-        description: `CÁCH Đại Học Bách - Kinh - Xây CHỈ TỪ 1-2KM
-️           Phòng Full nội thất như hình
-️                    TÒA NHÀ ĐẢM BẢO AN NINH_SẠCH SẼ_BẢO VỆ 24/7
-️                    THUẬN TIỆN DI CHUYỂN SANG CÁC QUẬN LÂN CẬN`,
-        category: '',
-        address: 'Số 134 ngõ 210, Định Công Thượng, Hoàng Mai, Hà Nội'
-    });
+    const [boardingRoom, setBoardingRoom] = useState({});
 
-    const [user, setUser] = useState({
-        id: 1,
-        name: "Nguyen Van XXX",
-        phone_number: '0368734234'
-    });
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         async function fetchData() {
+            console.log('get boarding room id: ', id)
             return await axios.get(`http://localhost:8000/boarding-rooms/id/${id}`);
         }
         fetchData().then((res) => {
@@ -78,10 +61,6 @@ export default function BoardingRoomDetail() {
                                     className="block w-full"
                                     alt="..."
                                 />
-                                <div className="carousel-caption hidden md:block absolute text-center">
-                                    <h5 className="text-xl">First slide label</h5>
-                                    <p>Some representative placeholder content for the first slide.</p>
-                                </div>
                             </div>
                             <div className="carousel-item relative float-left w-full">
                                 <img
@@ -89,10 +68,6 @@ export default function BoardingRoomDetail() {
                                     className="block w-full"
                                     alt="..."
                                 />
-                                <div className="carousel-caption hidden md:block absolute text-center">
-                                    <h5 className="text-xl">Second slide label</h5>
-                                    <p>Some representative placeholder content for the second slide.</p>
-                                </div>
                             </div>
                             <div className="carousel-item relative float-left w-full">
                                 <img
@@ -100,10 +75,6 @@ export default function BoardingRoomDetail() {
                                     className="block w-full"
                                     alt="..."
                                 />
-                                <div className="carousel-caption hidden md:block absolute text-center">
-                                    <h5 className="text-xl">Third slide label</h5>
-                                    <p>Some representative placeholder content for the third slide.</p>
-                                </div>
                             </div>
                         </div>
                         <button
