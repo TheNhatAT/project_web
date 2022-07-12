@@ -1,10 +1,12 @@
+import "../../App.css";
+
 export default function FilterForm() {
     return (
         <div className="w-full md:w-3/3 shadow p-5 rounded-lg bg-white">
 
             <div className="flex items-center justify-between mt-4">
-                <p className="font-medium">
-                    Filters
+                <p className="title-filter">
+                    Bộ lọc tìm kiếm
                 </p>
             </div>
 

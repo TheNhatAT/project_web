@@ -44,3 +44,16 @@ html {
     bottom: 0;
     right: 0;
 }
+.title-addr {
+    margin-left: 30px;
+    font-size: 20px;
+    color: blue;
+    font-family:cursive
+}
+
+.title-filter {
+    margin-left: 10px;
+    font-size: 20px;
+    color: rgb(17, 14, 14);
+    font-family:cursive
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import '../../../App.css'
 import {useNavigate} from "react-router";
+import './stylesForRoom.css'
 
 export default function RoomTag() {
 
@@ -23,18 +24,21 @@ export default function RoomTag() {
     return (
         <>
             <div>
-                <h2>Nhà trọ mới nhất</h2>
+                <h2 className="title">Nhà trọ mới nhất</h2><img className="title-img" src="https://iprmentlaw.com/wp-content/uploads/2018/10/new.png"/>
             </div>
 
             <div className="grid grid-cols-4 gap-5">
                 {boardingRooms.map((item, index) => {
                     return (
-                        <div className="flex flex-col" key={index}>
-                            <img onClick={() => { handleClickItem(item.id)}} className="img-hometag" src="https://wedo.vn/wp-content/uploads/2018/12/chi-phi-nha-tro-moi-xay-can-tho-2-370x260.jpg" alt="" />
-                            <div className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">{item.name}</div>
+                        <div className="flex flex-col card" key={index}>
+                            <img onClick={() => { handleClickItem(item.id)}} src="https://wedo.vn/wp-content/uploads/2018/12/chi-phi-nha-tro-moi-xay-can-tho-2-370x260.jpg" alt="" />
+                            <h4 className="name">{item.name}</h4>
                             {/*<h1 className="description">{item.description}</h1>*/}
-                            <h1 className="address">{item.address}</h1>
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            <img className="addr-icon" src="https://cdn-icons-png.flaticon.com/512/1275/1275302.png"/>
+                            <p className="address"> {item.address}</p>
+                            <img className="desc" src="https://www.seekpng.com/png/full/520-5202827_luxembourg-residents-house-land-icon-png.png"/>
+                            <p className="area" >{item.area} m2</p>
+                            <button >
                                 Giá tiền : {item.room_price}
                             </button>
                         </div>
