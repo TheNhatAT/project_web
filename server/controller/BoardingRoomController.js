@@ -132,28 +132,3 @@ exports.getUsersByBoardingRoomId = async (res, pathname, query, body) => {
         }));
     }
 };
-exports.getBoardingRoomsByOwnerId = async (res, pathname, query, body) => {
-    const  ownerId  = query.get('owner_id');
-    console.log(ownerId)
-    try {
-        const users = await BoardingRoomService.getBoardingRoomsByOwnerId(ownerId);
-        res.writeHead(200, {
-            'Content-Type':'application/json',
-            'Access-Control-Allow-Origin': '*',
-        }).end(JSON.stringify({
-            success: true,
-            message: 'Get successfully',
-            content: users
-        }));
-    } catch (error) {
-        console.log(error)
-        res.writeHead(400, {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-        }).end(JSON.stringify({
-            success: false,
-            message: 'Not successful',
-            content: error.toString()
-        }));
-    }
-}

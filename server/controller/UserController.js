@@ -1,6 +1,7 @@
 const UserService = require('../services/UserService')
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+const BoardingRoomService = require("../services/BoardingRoomService");
 require('dotenv').config()
 
 exports.registry = async (res, pathname, query, body) => {
@@ -292,3 +293,28 @@ exports.pageFragment = async (res, pathname, query, body) => {
         }
 }
 
+exports.getBoardingRoomsByOwnerId = async (res, pathname, query, body) => {
+    const  ownerId  = query.get('owner_id');
+    console.log(ownerId)
+    try {
+        const boardingRooms = await UserService.getBoardingRoomsByOwnerId(ownerId);
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: true,
+            message: 'Get successfully',
+            content: boardingRooms
+        }));
+    } catch (error) {
+        console.log(error)
+        res.writeHead(400, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: false,
+            message: 'Not successful',
+            content: error.toString()
+        }));
+    }
+}

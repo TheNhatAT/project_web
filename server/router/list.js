@@ -23,6 +23,9 @@ class List {
     '/users/add' (res, pathname, query, body) {
         UserController.updateUserById(res, pathname, query, body);
     }
+    '/users/boarding-rooms' (res, pathname, query, body) {
+        UserController.getBoardingRoomsByOwnerId(res, pathname, query, body);
+    }
 
     // API get all boarding rooms
     '/home'(res, pathname, query, body) {

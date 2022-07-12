@@ -268,3 +268,13 @@ exports.pageFragment = async (pathname, query, body) =>{
     return {'data': rows[0]}
     
 }
+
+exports.getBoardingRoomsByOwnerId = async (owner_id) => {
+    let [boarding_rooms, fields] = await conn.execute('SELECT boarding_rooms.id as id, boarding_rooms.name as name, room_price, electricity_price, water_price, parking_price, other_price,' +
+        'area, description, category, boarding_rooms.address as address FROM `users` ' +
+        'JOIN `users_boarding_rooms` ON users.id = users_boarding_rooms.user_id ' +
+        'JOIN `boarding_rooms` ON users_boarding_rooms.boarding_room_id = boarding_rooms.id ' +
+        'WHERE users.id = ? AND users_boarding_rooms.relationship = 1', [owner_id]);
+    console.log(boarding_rooms);
+    return boarding_rooms;
+}

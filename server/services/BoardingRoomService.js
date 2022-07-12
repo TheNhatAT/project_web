@@ -106,6 +106,3 @@ exports.getUsersByBoardingRoomId = async (boarding_room_id) => {
   return users;
 }
 
-exports.getBoardingRoomsByOwnerId = async (owner_id) => {
-    let [boarding_rooms, fields] = await conn.execute()
-}
