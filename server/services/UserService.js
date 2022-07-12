@@ -67,8 +67,8 @@ exports.updateOne = async (id, data) => {
     status = (status !== undefined ? status: users[0].status);
     console.log(name, email, address, role, phone_number, auth_token, avatar, status)
 
-    let [updatedUser] = await conn.execute('UPDATE `users` SET name = ?, email = ?, address = ?, role = ?, phone_number = ?, auth_token = ?, avatar = ?, status = ?'
-        , [name, email, address, role, phone_number, auth_token, avatar, status]);
+    let [updatedUser] = await conn.execute('UPDATE `users` SET name = ?, email = ?, address = ?, role = ?, phone_number = ?, auth_token = ?, avatar = ?, status = ? WHERE id = ?'
+        , [name, email, address, role, phone_number, auth_token, avatar, status, id]);
     return updatedUser;
 }
 exports.getAllBoardingRoom = async (pathname, query, body) =>{
