@@ -24,6 +24,7 @@ class List {
         UserController.updateUserById(res, pathname, query, body);
     }
 
+    // API get all boarding rooms
     '/home'(res, pathname, query, body) {
         UserController.getAllBoardingRoom(res, pathname, query, body);
     }
