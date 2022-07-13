@@ -35,6 +35,15 @@ export default function RoomTag() {
     const [cityname, setCityname] = useState("");
     const [districtname, setDistrictname] = useState("");
     const [subdistrictname, setSubdistrictname] = useState("");
+    const [category, setCategory] = useState("");
+    const [price, setPrice] = useState({
+        lowPrice: 0,
+        highPrice: 0,
+    });
+    const [area, setArea] = useState({
+        lowArea: 0,
+        highArea: 0,
+    });
 
     useEffect(() => {
         axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
@@ -59,6 +68,42 @@ export default function RoomTag() {
         const getsubdistrictname = event.target.value;
         setSubdistrictname(getsubdistrictname);
     };
+
+    const handleCategory = (e) => {
+        setCategory(e.target.value);
+    }
+
+    const handleLowPrice = (e) => {
+        setPrice({...price, lowPrice: Number(e.target.value)});
+    }
+
+    const handleHighPrice = (e) => {
+        setPrice({...price, highPrice: Number(e.target.value)});
+    }
+
+    const handleLowArea = (e) => {
+        setArea({...price, lowArea: Number(e.target.value)});
+    }
+
+    const handleHighArea = (e) => {
+        setArea({...price, highArea: Number(e.target.value)});
+    }
+
+    const handleSearch = () => {
+        let address = "";
+        if (cityname != "") {
+            address = cityname;
+            if (districtname != "") {
+                address = districtname + ',' + cityname;
+                if (subdistrictname != "") {
+                    address = subdistrictname + ',' + districtname + ',' + cityname;
+                }
+            }
+        }
+        axios.get(`http://localhost:8000/filter?minimal_room_price=${price.lowPrice}&maximal_room_price=${price.highPrice}&minimal_area=${area.lowArea}&maximal_area=${area.highArea}&address=${address}&category=${category}`).then((res) => {
+            setBoardingRooms(res.data.content);
+        });
+    }
     return (
         <>
             <div className="w-full md:w-3/3 shadow p-5 rounded-lg bg-white">
@@ -103,7 +148,9 @@ export default function RoomTag() {
                             ))}
                         </select>
 
-                        <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                        <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
+                                onChange={handleCategory}
+                        >
                             <option value="">Loại nhà trọ</option>
                             <option value="bds-1">Chung cư</option>
                             <option value="bds-2">Phòng trọ</option>
@@ -111,16 +158,26 @@ export default function RoomTag() {
                         </select>
 
                         <div className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                            <label >Mức giá trên</label>
-                            <input />
+                            <label >Mức giá tối thiểu</label>
+                            <input onChange={handleHighPrice}/>
                         </div>
 
                         <div className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                            <label >Mức giá dưới</label>
-                            <input />
+                            <label >Mức giá tối đa</label>
+                            <input onChange={handleLowPrice} />
+                        </div>
+
+                        <div className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                            <label >Diện tích tối thiểu</label>
+                            <input onChange={handleHighArea}/>
+                        </div>
+
+                        <div className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
+                            <label >Diện tích tối đa</label>
+                            <input onChange={handleLowArea} />
                         </div>
                     </div>
-                    <button className="bg-blue-500 mt-4 w-32 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                    <button onClick={handleSearch} className="bg-blue-500 mt-4 w-32 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                         Tìm Kiếm
                     </button>
                 </div>
