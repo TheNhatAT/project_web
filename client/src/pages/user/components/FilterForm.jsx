@@ -1,4 +1,4 @@
-import "../../App.css";
+import "../../../App.css";
 
 export default function FilterForm() {
     return (
@@ -43,7 +43,7 @@ export default function FilterForm() {
                     </select>
 
                     <select className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
-                        <option value="">Mức giá</option>
+                        <option value="">Mức giá trên</option>
                         <option value="1">1 bedroom</option>
                         <option value="2">2 bedrooms</option>
                         <option value="3">3 bedrooms</option>

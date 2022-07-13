@@ -36,7 +36,11 @@ export default function Login() {
             setAuth(undefined);
         }
         if (auth) {
-            navigate("/");
+            if (localStorage.getItem("userRole") == "1") {
+                navigate("/uploaded-list");
+            } else {
+                navigate("/details-room");
+            }
         }
     }
     return (

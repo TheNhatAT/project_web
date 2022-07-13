@@ -3,18 +3,19 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout";
 import Login from "./pages/auth/components/Login";
 import Register from "./pages/auth/components/Register";
-import PostBoardingRoom from "./pages/auth/components/landlord/PostBoardingRoom";
-import UpdateBoardingRoom from "./pages/auth/components/landlord/UpdateBoardingRoom";
-import PostFindARoomate from "./pages/auth/components/landlord/PostFindRoomate";
+import PostBoardingRoom from "./pages/manage-boarding-house/components/PostBoardingRoom";
+import UpdateBoardingRoom from "./pages/manage-boarding-house/components/UpdateBoardingRoom";
+import PostFindARoomate from "./pages/manage-boarding-house/components/PostFindRoomate";
 import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
 import { PrivateRoute } from "./react-routes/privateRoute";
 import UploadedList from "./pages/example/components/UploadedList";
 import DetailsRoom from "./pages/example/components/DetailsRoom";
-import Infor from "./pages/user/Infor";
-import AddUser from "./pages/auth/components/landlord/UserInfor";
-import Home from "./pages/user/Home";
+import Infor from "./pages/user/components/Infor";
+import AddUser from "./pages/user/components/UserInfor";
+import Home from "./pages/user/components/Home";
 import BoardingRoomUser from "./pages/manage-boarding-house/components/BoardingRoomUser";
+import Price from "./pages/example/components/Price";
 
 export default function App() {
     return (
@@ -63,9 +64,11 @@ export default function App() {
                     </PrivateRoute>   
                 } />
                 <Route path="/find-a-roomate/add" element={
+                    <PrivateRoute>
                         <Layout nav={true}>
                             <PostFindARoomate/>
                         </Layout>
+                    </PrivateRoute>
                 } />
                 <Route path="/boarding-room/detail/:id" element={
                     <Layout nav={true}>
@@ -85,16 +88,20 @@ export default function App() {
 
                 {/* Danh sách phòng trọ của người thuê */}
                 <Route path="/uploaded-list" element={
-                    <Layout nav={true}>
-                        <UploadedList />
-                    </Layout>
+                    <PrivateRoute>
+                        <Layout nav={true}>
+                            <UploadedList />
+                        </Layout>
+                    </PrivateRoute>
                 } />
 
                 {/* Phòng trọ đã thuê của người đi thuê */}
                 <Route path="/details-room" element={
-                    <Layout nav={true}>
-                        <DetailsRoom />
-                    </Layout>
+                    <PrivateRoute>
+                        <Layout nav={true}>
+                            <DetailsRoom />
+                        </Layout>
+                    </PrivateRoute>
                 } />
             </Routes>
         </div>
