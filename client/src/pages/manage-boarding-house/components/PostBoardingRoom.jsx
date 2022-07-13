@@ -22,15 +22,9 @@ const PostBoardingRoom = () => {
   useEffect(() => {
     axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
       setCity(response.data);
-      
-    });
-  }, []);
-  useEffect(() => {
-    axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
     });
   }, []);
 
-  
 
   async function addBoardingRoom(boardingRoom) {
     console.log("user: ", JSON.stringify(boardingRoom));
@@ -208,9 +202,7 @@ const PostBoardingRoom = () => {
         <div className="gia-thue">
           <span>
             Giá cho thuê{" "}
-            
               <div className="require">* Thông tin này là bắt buộc</div>
-            
           </span>
           <br />
           <input
