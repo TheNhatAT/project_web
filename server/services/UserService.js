@@ -89,13 +89,13 @@ exports.findARoomate = async (pathname, query, body) =>{
     return {'data':rows[0]}
 }
 exports.findByAddr = async (pathname, query, body) => {
-    console.log(query.get('addres'))
-    let rows = await conn.execute(`SELECT * from boarding_rooms where address like '%${query.get('address')}%' `)
+    console.log(query.get('address'))
+    let [rows, fields] = await conn.execute(`SELECT * from boarding_rooms where address like '%${query.get('address')}%' `)
     if(!rows){
         throw Error('Can not find by address');
     }
 
-    return {'data':rows[0]}
+    return {'data':rows}
 }
 exports.filter = async (pathname, query, body) => {
     let rows;

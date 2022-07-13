@@ -12,7 +12,7 @@ const root = ReactDOM.createRoot(rootElement);
 root.render(
     <React.StrictMode>
         <div className="yellow-border" />
-        <div className="container">
+        <div className="">
             <Router>
                 <AuthProvider>
                     <App />

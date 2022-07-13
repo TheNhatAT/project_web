@@ -22,7 +22,7 @@ export default function Header () {
     return (
         <>
           <header>
-              <div className="container flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
+              <div className=" flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
                   <div className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-0">
                       <svg width="253" height="49" viewBox="0 0 253 49" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                           <rect y="7" width="48.4067" height="35" fill="url(#pattern0)"/>

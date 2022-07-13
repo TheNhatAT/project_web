@@ -7,6 +7,7 @@ import './stylesForRoom.css'
 export default function RoomTag() {
 
     const [boardingRooms, setBoardingRooms] = useState([]);
+    const [city, setCity] = useState(null);
 
     useEffect(() => {
         async function fetchData() {
@@ -21,10 +22,29 @@ export default function RoomTag() {
     const handleClickItem = (id) => {
         navigate(`/boarding-room/detail/${id}`);
     }
+
+    const handleClickCity = (city) => {
+        axios.get(`http://localhost:8000/address?address=${city}`).then((res) => {
+            setBoardingRooms(res.data.content);
+        });
+    }
     return (
         <>
+            <div className="title-addr">Tìm kiếm nhà trọ theo địa chỉ</div>
             <div>
-                <h2 className="title">Nhà trọ mới nhất</h2><img className="title-img" src="https://iprmentlaw.com/wp-content/uploads/2018/10/new.png"/>
+                <ul className="list-home">
+
+                    <img onClick={() => {setCity("Hà Nội"); handleClickCity(city)}} src="https://sanvemaybay.vn/includes/uploads/2016/12/ve-may-bay-di-ha-noi-gia-re-tham-quan-ho-hoan-kiem-2.jpg" alt="" />
+                    <img onClick={() => {setCity("Đà Nẵng"); handleClickCity(city)}} src="https://i-dulich.vnecdn.net/2020/07/01/shutterstock-1169930359-4299-1593590420.jpg" alt="" />
+                    <img onClick={() => {setCity("Sài Gòn"); handleClickCity(city)}} src="https://tphcm.cdnchinhphu.vn/Uploaded/tranthithom/2017_07_06/TPHCM.jpg" alt="" />
+                    <img onClick={() => {setCity("Hải Phòng"); handleClickCity(city)}} src="https://hdproland.com/media/posts/ban-do-hai-phong.jpg" alt="" />
+                    <img onClick={() => {setCity("Huế"); handleClickCity(city)}} src="https://file3.qdnd.vn/data/images/0/2022/06/17/vuongha/tha_7400%20sua%202.jpg?dpi=150&quality=100&w=870" alt=""/>
+
+                </ul>
+            </div>
+
+            <div>
+                <h2 className="title">{city == null ? `Nhà trọ mới nhất` : `Nhà trọ mới nhất tại ${city}`}</h2>
             </div>
 
             <div className="grid grid-cols-4 gap-5">

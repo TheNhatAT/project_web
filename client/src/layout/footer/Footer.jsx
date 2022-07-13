@@ -6,7 +6,7 @@ export default function Footer() {
         <>
             <div />
             <footer className="relative border-t-2 border-slate-800 bg-blueGray-200 pt-8 pb-6 p-5">
-                <div className="container mx-auto px-4">
+                <div className=" mx-auto px-4">
                     <div className="flex flex-wrap text-left lg:text-left">
                         <div className="w-full lg:w-6/12 px-4">
                             <h4 className="text-3xl fonat-semibold text-blueGray-700">Liên hệ với chúng tôi tại!</h4>
