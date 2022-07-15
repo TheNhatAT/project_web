@@ -16,6 +16,7 @@ import AddUser from "./pages/user/components/UserInfor";
 import Home from "./pages/user/components/Home";
 import BoardingRoomUser from "./pages/manage-boarding-house/components/BoardingRoomUser";
 import Price from "./pages/example/components/Price";
+import FindARoomate from "./pages/example/components/FindARoomate";
 
 export default function App() {
     return (
@@ -83,6 +84,11 @@ export default function App() {
                 <Route path="/" element={
                     <Layout nav={true}>
                         <Home />
+                    </Layout>
+                } />
+                <Route path="/find-roomate" element={
+                    <Layout nav={true}>
+                        <FindARoomate />
                     </Layout>
                 } />
 

@@ -71,3 +71,22 @@
   .name {
     font-weight: bold;
   }
+
+  .img-1 {
+    width: 350px;
+    height: 250px;
+    margin-left: 100px;
+    margin-top: 50px;
+  }
+  .img-2 {
+    width: 350px;
+    height: 250px;
+    margin-top: -250px;
+    margin-left: 540px;
+  }
+  .img-3 {
+    width: 350px;
+    height: 250px;
+    margin-top: -250px;
+    margin-left: 970px;
+  }
