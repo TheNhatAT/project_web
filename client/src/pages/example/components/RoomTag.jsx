@@ -82,11 +82,11 @@ export default function RoomTag() {
     }
 
     const handleLowArea = (e) => {
-        setArea({...price, lowArea: Number(e.target.value)});
+        setArea({...area, lowArea: Number(e.target.value)});
     }
 
     const handleHighArea = (e) => {
-        setArea({...price, highArea: Number(e.target.value)});
+        setArea({...area, highArea: Number(e.target.value)});
     }
 
     const handleSearch = () => {
@@ -152,29 +152,29 @@ export default function RoomTag() {
                                 onChange={handleCategory}
                         >
                             <option value="">Loại nhà trọ</option>
-                            <option value="bds-1">Chung cư</option>
-                            <option value="bds-2">Phòng trọ</option>
-                            <option value="bds-3">Nhà nguyên căn</option>
+                            <option value="Chung cư">Chung cư</option>
+                            <option value="Phòng trọ">Phòng trọ</option>
+                            <option value="Nhà nguyên căn">Nhà nguyên căn</option>
                         </select>
 
                         <div className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
                             <label >Mức giá tối thiểu</label>
-                            <input onChange={handleHighPrice}/>
+                            <input onChange={handleLowPrice}/>
                         </div>
 
                         <div className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
                             <label >Mức giá tối đa</label>
-                            <input onChange={handleLowPrice} />
+                            <input onChange={handleHighPrice} />
                         </div>
 
                         <div className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
                             <label >Diện tích tối thiểu</label>
-                            <input onChange={handleHighArea}/>
+                            <input onChange={handleLowArea} />
                         </div>
 
                         <div className="px-4 py-3 w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0 text-sm">
                             <label >Diện tích tối đa</label>
-                            <input onChange={handleLowArea} />
+                            <input onChange={handleHighArea} />
                         </div>
                     </div>
                     <button onClick={handleSearch} className="bg-blue-500 mt-4 w-32 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
