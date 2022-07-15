@@ -82,7 +82,12 @@ exports.getAllBoardingRoom = async (pathname, query, body) =>{
 }
 
 exports.findARoomate = async (pathname, query, body) =>{
-    let rows = await conn.execute(`SELECT * from boarding_rooms where name like "%ở ghép%"`)
+    let rows
+    if (query.get('address')) {
+         rows = await conn.execute(`SELECT * from boarding_rooms where address like '%${query.get('address')}%' and  name like "%ở ghép%"`)
+    } else {
+        rows = await conn.execute(`SELECT * from boarding_rooms where name like "%ở ghép%"`)
+    }
     if(!rows){
         throw Error('Can not find a roomate');
     }

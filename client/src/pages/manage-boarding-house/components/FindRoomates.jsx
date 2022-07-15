@@ -24,7 +24,7 @@ export default function FindRoomates() {
     }
 
     const handleClickCity = (city) => {
-        axios.get(`http://localhost:8000/address?address=${city}`).then((res) => {
+        axios.get(`http://localhost:8000/roommate?address=${city}`).then((res) => {
             setBoardingRooms(res.data.content);
         });
     }
