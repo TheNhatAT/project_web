@@ -41,6 +41,7 @@ export default function Infor() {
                 phone_number: userInfor.phone_number,
             });
             // setUserInfor(userInfor);
+            alert("Cập nhật thông tin thành công!")
         } catch (error) {
             console.log('Error: ', error)
         }

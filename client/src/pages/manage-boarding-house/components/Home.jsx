@@ -1,5 +1,5 @@
 import * as React from "react";
-import RoomTag from "../../example/components/RoomTag";
+import RoomTag from "./RoomTag";
 
 
 export default function Home() {

@@ -21,8 +21,6 @@ const UpdateBoardingRoom = () => {
   const [subdistrictname, setSubdistrictname] = useState("");
   const [missingInforNoti, setMissingInforNoti] = useState(false);
   const location = useLocation();
-    const redirectPagePath = location.pathname + location.search;
-    const id = redirectPagePath[redirectPagePath.length - 1];
 
   useEffect(() => {
     axios.get("https://provinces.open-api.vn/api/?depth=3").then((response) => {
@@ -36,16 +34,27 @@ const UpdateBoardingRoom = () => {
     });
   }, []);
 
+  let redirectPagePath = location.pathname + location.search;
+  redirectPagePath = redirectPagePath.split('/');
+  let id = redirectPagePath[redirectPagePath.length - 1];
+
   useEffect(() => {
     async function fetchData() {
-        return await axios.get(`http://localhost:8000/boarding-rooms/id/${id}`);
+      return await axios.get(`http://localhost:8000/boarding-rooms/id/${id}`);
     }
     fetchData().then((res) => {
-        console.log('data: ', res.data.content);
         setBoardingRoom(res.data.content.boarding_room);
-        setUsers(res.data.content.owner);
     });
 }, [id]);
+
+  useEffect(() => {
+    async function fetchData() {
+      return await axios.get(`http://localhost:8000/boarding-rooms/users?boarding_room_id=${id}`);
+    }
+    fetchData().then((res) => {
+      setUsers(res.data.content);
+    });
+  }, [id]);
 
   const handlecity = (event) => {
     setCityname(event.target.value);
@@ -233,42 +242,27 @@ const UpdateBoardingRoom = () => {
         <div className="bg-blue-600 w-full h-8">Người thuê</div>
         <Link to={'/boarding-room/user'}><button className="update-btn mt-3 mb-3 ml-5" >Thêm người</button></Link>
         <table className="text-black font-normal">
-          {
-
-          }
           <tr>
             <th>Họ tên</th>
-            <th>CCCD</th>
+            <th>Email</th>
             <th>SĐT</th>
             <th>Action</th>
           </tr>
-          <tr>
-            <td>Nguyễn Văn A</td>
-            <td>03119098276</td>
-            <td>0977666554</td>
-            <td>
-              <button className="update-btn">Cập nhật</button>
-              <button className="delete-btn">Xóa</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Nguyễn Văn B</td>
-            <td>03130085644</td>
-            <td>0313456789</td>
-            <td>
-              <button className="update-btn">Cập nhật</button>
-              <button className="delete-btn">Xóa</button>
-            </td>
-          </tr>
-          <tr>
-            <td>Nguyễn Văn C</td>
-            <td>03130085333</td>
-            <td>0313657789</td>
-            <td>
-              <button className="update-btn">Cập nhật</button>
-              <button className="delete-btn">Xóa</button>
-            </td>
-          </tr>
+          {
+            users.length !== 0 && users.map((item, index) => {
+              return (
+                  <tr>
+                    <td>{item.name}</td>
+                    <td>{item.email}</td>
+                    <td>{item.phone_number}</td>
+                    <td>
+                      <button className="update-btn">Cập nhật</button>
+                      <button className="delete-btn">Xóa</button>
+                    </td>
+                  </tr>
+              )
+            })
+          }
         </table>
       </div>
 

@@ -13,10 +13,10 @@ import UploadedList from "./pages/example/components/UploadedList";
 import DetailsRoom from "./pages/example/components/DetailsRoom";
 import Infor from "./pages/user/components/Infor";
 import AddUser from "./pages/user/components/UserInfor";
-import Home from "./pages/user/components/Home";
+import Home from "./pages/manage-boarding-house/components/Home";
 import BoardingRoomUser from "./pages/manage-boarding-house/components/BoardingRoomUser";
 import Price from "./pages/example/components/Price";
-import FindARoomate from "./pages/example/components/FindARoomate";
+import FindRoomates from "./pages/manage-boarding-house/components/FindRoomates";
 
 export default function App() {
     return (
@@ -70,6 +70,12 @@ export default function App() {
                             <PostFindARoomate/>
                         </Layout>
                     </PrivateRoute>
+                } />
+
+                <Route path="/find-a-roomate" element={
+                    <Layout nav={true}>
+                        <FindRoomates/>
+                    </Layout>
                 } />
                 <Route path="/boarding-room/detail/:id" element={
                     <Layout nav={true}>
