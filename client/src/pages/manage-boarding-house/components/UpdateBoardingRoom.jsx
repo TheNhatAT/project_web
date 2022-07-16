@@ -90,8 +90,8 @@ const UpdateBoardingRoom = () => {
             name="city"
             className="input-form mt-4"
             onChange={(e) => handlecity(e)}
-          >
-            <option value="">--Chọn tỉnh/tp--</option>
+           
+          ><option value={boardingRoom.address.split(',')[0]}>{boardingRoom.address.split(',')[0]}</option>
             {city.map((getcity, code) => (
               <option key={code} value={getcity.name}>
                 {getcity.name}{" "}
@@ -109,8 +109,7 @@ const UpdateBoardingRoom = () => {
               name="district"
               className="input-form mt-4"
               onChange={(e) => handledistrict(e)}
-            >
-              <option value="">--Chọn quận/huyện--</option>
+            ><option value={boardingRoom.address.split(',')[1]}>{boardingRoom.address.split(',')[1]}</option>
               {district.map((dist, code) => (
                 <option key={code} value={dist.name}>
                   {dist.name}{" "}
@@ -128,8 +127,8 @@ const UpdateBoardingRoom = () => {
               name="city"
               className="input-form mt-4"
               onChange={(e) => handlesubdistrict(e)}
-            >
-              <option value="">--Chọn phường/xã--</option>
+              
+            ><option value={boardingRoom.address.split(',')[2]}>{boardingRoom.address.split(',')[2]}</option>
               {subdistrict.map((dist, code) => (
                 <option key={code} value={dist.name}>
                   {dist.name}{" "}
@@ -142,6 +141,7 @@ const UpdateBoardingRoom = () => {
           <span>Địa chỉ cụ thể </span>
           <br />
           <textarea
+            value={boardingRoom.address.split(',')[3]}
             className="shadow rounded w-3/4 py-2 px-3 text-gray-700 mt-3 focus:shadow-outline"
             placeholder="Điền địa chỉ phòng trọ"
           ></textarea>
