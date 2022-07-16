@@ -183,7 +183,7 @@ export default function RoomTag() {
                 </div>
             </div>
 
-            <div className="title-addr">Tìm kiếm nhà trọ theo địa chỉ</div>
+            <div className="title-addr">Tìm kiếm nhà trọ theo địa chỉ phổ biến</div>
             <div>
                 <ul className="list-home">
                     <img onClick={() => {setCityN("Hà Nội"); handleClickCity(cityN)}} src="https://sanvemaybay.vn/includes/uploads/2016/12/ve-may-bay-di-ha-noi-gia-re-tham-quan-ho-hoan-kiem-2.jpg" alt="" />

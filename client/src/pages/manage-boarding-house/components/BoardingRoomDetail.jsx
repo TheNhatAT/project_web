@@ -105,8 +105,8 @@ export default function BoardingRoomDetail() {
                             className="rounded-full w-48 mb-4 mt-10 mx-auto"
                             alt="Avatar"
                         />
-                        <h5 className="text-3xl font-medium leading-tight m-4">{user.name}</h5>
-                        <p className="font-medium text-2xl m-4">{user.phone_number}</p>
+                        <h5 className="text-xl font-medium leading-tight m-4">Tên chủ trọ: {user.name}</h5>
+                        <p className="font-medium text-xl m-4">Liên hệ: {user.phone_number}</p>
                     </div>
                 </div>
 
