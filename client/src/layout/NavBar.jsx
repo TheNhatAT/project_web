@@ -20,49 +20,49 @@ export default function NavBar() {
             <nav>
                 <div className="relative z-10 bg-green-300 shadow">
                     <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
-                        <div className="relative flex items-center justify-between h-16 p-2">
-                                {user.id == null && (<Link to="/" className="ml-4 basis-1/3 px-3 py-2 flex rounded-md text-sm leading-5 font-medium
+                        <div className="relative flex items-center justify-between h-11 p-2">
+                                {user.id == null && (<Link to="/" className="-ml-10 basis-1/3 px-3 py-2 flex rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
-                                    focus:text-white focus:bg-gray-700 "> Trang chủ </Link>)}
+                                    focus:text-white h-11 focus:bg-green-500 "> Trang chủ </Link>)}
                                 {(user.id != null && user.role == 1) && (<Link to="/uploaded-list"  className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
-                                    focus:text-white focus:bg-gray-700 "> Phòng trọ của bạn </Link>)}
+                                    focus:text-white h-11 focus:bg-green-500 "> Phòng trọ của bạn </Link>)}
                                 {(user.id != null && user.role == 2) && (<Link to="/details-room"  className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
-                                    focus:text-white focus:bg-gray-700 "> Phòng trọ đã thuê </Link>)}
+                                    focus:text-white h-11 focus:bg-green-500 "> Phòng trọ đã thuê </Link>)}
                                 {(user.id != null && user.role == 1) && (<Link to="/boarding-room/add"  href="#" className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white
-                                    focus:bg-gray-700 "> Đăng tin mới </Link>)}
-                                {(user.id != null && user.role == 2) && (<Link to="/find-a-roomate/add"  className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
+                                    focus:bg-green-500 h-11 "> Đăng tin mới </Link>)}
+                                {(user.id != null && user.role == 2) && (<Link to="/find-a-roomate/add"  className="ml-0 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
-                                    focus:text-white focus:bg-gray-700 "> Đăng tin tìm người ở ghép </Link>)}
+                                    focus:text-white focus:bg-green-500 h-11 "> Đăng tin tìm người ở ghép </Link>)}
                                 {user.id == null && (<Link to="/find-roomate"  className="ml-4 basis-1/3 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
-                                    focus:text-white focus:bg-gray-700 "> Tìm trọ ở ghép </Link>)}
+                                    focus:text-white focus:bg-green-500 h-11 "> Tìm trọ ở ghép </Link>)}
 
                                 {(user.id != null) && (<Link to={`/user/information/${localStorage.getItem('userId')}`}  className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
-                                    focus:text-white focus:bg-gray-700 "> Thông tin của bạn </Link>)}
-                            {user.id == null && (<Link to="/guide"  className="ml-4 basis-1/3 px-3 py-2 rounded-md text-sm leading-5 font-medium
+                                    focus:text-white focus:bg-green-500 h-11 "> Thông tin của bạn </Link>)}
+                            {user.id == null && (<Link to="/guide"  className="ml-4 -mr-10 basis-1/3 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
-                                    focus:text-white focus:bg-gray-700 "> Hướng dẫn </Link>)}
+                                    focus:text-white focus:bg-green-500 h-11"> Hướng dẫn </Link>)}
 
                                 {(user.id != null && user.role == 1) && (<Link to="/"  href="#" className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white
-                                    focus:bg-gray-700 "> Doanh thu </Link>)}
+                                    focus:bg-green-500 h-11 "> Doanh thu </Link>)}
                                 {(user.id != null && user.role == 2) && (<Link to="/"  className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
-                                    focus:text-white focus:bg-gray-700 "> Thống kê </Link>)}
+                                    focus:text-white focus:bg-green-500 h-11 "> Thống kê </Link>)}
                         </div>
                     </div>
                 </div>

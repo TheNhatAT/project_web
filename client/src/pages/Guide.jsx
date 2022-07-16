@@ -6,10 +6,9 @@ export default function Guide() {
     
     return (
         <>
-            <h1 className="font-bold px-10">Manual:</h1>
             <div className="px-20">
                 <div>
-                    <h2 className="font-bold">Hướng dẫn đăng tin cho thuê trọ (đối với người thuê trọ)</h2>
+                    <h2 className="font-bold mt-10">Hướng dẫn đăng tin cho thuê trọ (đối với người thuê trọ)</h2>
                     <p className="px-10">
                         Chào bạn, sau đây là hướng dẫn sử dụng cho thành viên website của chúng tôi: <br></br>
                         Nếu bạn chưa có tài khoản, hãy <Link className="text-green-600" to="/register">Đăng ký</Link> tại đây trước khi bắt đầu đăng tin mới. <br></br>

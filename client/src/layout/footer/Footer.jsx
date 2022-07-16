@@ -5,7 +5,7 @@ export default function Footer() {
     return (
         <>
             <div />
-            <footer className="relative border-t-2 border-slate-800 bg-blueGray-200 pt-8 pb-6 p-5">
+            <footer className="relative border-t-2 border-slate-800 mt-12 bg-blueGray-200 pt-8 pb-6 p-5">
                 <div className=" mx-auto px-4">
                     <div className="flex flex-wrap text-left lg:text-left">
                         <div className="w-full lg:w-6/12 px-4">

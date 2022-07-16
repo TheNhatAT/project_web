@@ -2,6 +2,7 @@ import 'tw-elements';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import "./styles.css";
 
 export default function BoardingRoomDetail() {
     const location = useLocation();
@@ -98,9 +99,9 @@ export default function BoardingRoomDetail() {
                             <span className="visually-hidden">Next</span>
                         </button>
                     </div>
-                    <div className="basis-1/3 rounded-md bg-gray-300 text-center m-4">
+                    <div className="basis-1/3 rounded-md bg-yellow-300 text-center m-4">
                         <img
-                            src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                            src="https://www.citypng.com/public/uploads/preview/hd-profile-user-round-green-icon-symbol-transparent-png-11639594320ayr6vyoidq.png"
                             className="rounded-full w-48 mb-4 mt-10 mx-auto"
                             alt="Avatar"
                         />
@@ -114,26 +115,42 @@ export default function BoardingRoomDetail() {
                         {boardingRoom.name}
                     </div>
 
-                    <div className="text-xl font-normal leading-tight my-2">
+                    <div className="">
+                        
+                        <div className="text-2xl font-bold">
+                            Thông tin chung
+                        </div>
                         <div >
-                            {boardingRoom.address}
+                            Địa chỉ:
+                         {boardingRoom.address}
+                        </div>
+                        <div>
+                           Giá Phòng: {boardingRoom.room_price} VND
                         </div>
 
                         <div>
-                            {`Giá phòng: ${boardingRoom.room_price} VND`}
+                        Diện tích: {boardingRoom.area} M2
                         </div>
-
-                        <div>
-                            {`Diện tích: ${boardingRoom.area} M2`}
-                        </div>
-                        <div>
-                            <p>{`Giá điện: ${boardingRoom.room_price} VND/số`}</p>
-                            <p>{`Giá nước: ${boardingRoom.room_price} VND/tháng`}</p>
-                            <p>{`Phí gửi xe: ${boardingRoom.room_price} VND/tháng/xe`}</p>
-                            <p>{`Phí dịch vụ khác: ${boardingRoom.room_price} VND/tháng`}</p>
-                        </div>
+                        <div>Chi phí hàng tháng</div>
+                        <table className="text-black">
+                            <tr>
+                                <th>Giá điện/tháng</th>
+                                <th>Giá nước/tháng</th>
+                                <th>Phí gửi xe</th>
+                                <th>Phí dịch vụ khác</th>
+                            </tr>
+          
+                            <tr>
+                                <td>{boardingRoom.room_price}</td>
+                                <td>{boardingRoom.room_price}</td>
+                                <td>{boardingRoom.room_price}</td>
+                                <td>{boardingRoom.room_price}</td>
+                            </tr>
+                     
+                        </table>
+                        
                         <div className="mt-4">
-                            <p className="text-2xl">Mô tả chung:</p>
+                            <p className="text-xl">Mô tả chung:</p>
                             <p className="whitespace-pre-line">{boardingRoom.description}</p>
                         </div>
                     </div>

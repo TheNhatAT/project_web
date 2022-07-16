@@ -94,7 +94,7 @@ export default function App() {
                 } />
                 <Route path="/find-roomate" element={
                     <Layout nav={true}>
-                        <FindARoomate />
+                        <FindRoomates />
                     </Layout>
                 } />
 
