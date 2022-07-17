@@ -26,9 +26,9 @@ const PostBoardingRoom = () => {
   }, []);
 
 
-  async function addBoardingRoom(boardingRoom) {
+  function addBoardingRoom(boardingRoom) {
     console.log("user: ", JSON.stringify(boardingRoom));
-    return await axios.post("http://localhost:8000/boarding-rooms/add", {
+    axios.post("http://localhost:8000/boarding-rooms/add", {
       name: boardingRoom.name,
       room_price: boardingRoom.room_price,
       area: boardingRoom.area,
@@ -36,6 +36,11 @@ const PostBoardingRoom = () => {
       category: boardingRoom.category,
       address: cityname + ", " + districtname + ", " + subdistrictname,
       user_id: localStorage.getItem("userId")
+    }).catch(error => {
+      if (error)
+        alert("Đăng tin cho thuê nhà trọ thất bại!")
+      else
+        alert("Đăng tin cho thuê nhà trọ thành công!")
     });
   }
   const handlecity = (event) => {
@@ -223,22 +228,6 @@ const PostBoardingRoom = () => {
               setBoardingRoom({ ...boardingRoom, description: e.target.value })
             }
           ></textarea>
-        </div>
-        <div className="text-black ml-5 mt-3">
-          <span>
-            Tên liên hệ{" "}
-              <div className="require">* Thông tin này là bắt buộc</div>
-          </span>
-          <br />
-          <input className="input-form -mt-1" />
-        </div>
-        <div className="sdt mb-5">
-          <span>
-            Số điện thoại{" "}
-              <div className="require">* Thông tin này là bắt buộc</div>
-          </span>
-          <br />
-          <input className="input-form-right -mt-2" />
         </div>
       </div>
 
