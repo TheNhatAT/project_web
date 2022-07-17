@@ -23,6 +23,29 @@ exports.createOne = async (pathname, query, body) => {
     return user;
 }
 
+exports.addUser = async (pathname, query, body) => {
+    const {name, email, password, address, role, phone_number, boarding_room_id} = body;
+
+    console.log('body: ', body)
+    let [check_users, fields]  = await conn.execute('SELECT * FROM `users` WHERE `email` = ?',
+        [email])
+    console.log('check_user: ', check_users);
+    if (check_users.length !== 0) {
+        throw new Error('Email have already registered!')
+    }
+
+    const hash_password = bcrypt.hashSync(password, 10);
+
+    let [user] = await conn.execute('INSERT INTO `users` (name, email, password, address, role, phone_number) VALUES (?, ?, ?, ?, ?, ?) ',
+        [name, email, hash_password, address, role, phone_number]);
+
+    [user] = await conn.execute('SELECT * FROM `users` WHERE `id` = ?',
+        [user.insertId]);
+        console.log("user id new", user[0].id)
+    let [relationship] = await conn.execute(`INSERT INTO users_boarding_rooms (relationship, user_id, boarding_room_id) VALUES (?, ?, ?)`, [2, user[0].id,boarding_room_id])
+    return user;
+}
+
 exports.removeUserFromBoardingRoom = async (user_id) => {
     console.log("id-user: ", user_id);
     let deletedUserRoom = await conn.execute(`DELETE FROM users_boarding_rooms WHERE user_id=?`, [user_id])

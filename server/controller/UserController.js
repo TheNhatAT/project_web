@@ -34,14 +34,14 @@ exports.addUser = async (res, pathname, query, body) => {
     try {
         if (!body.role)
             body.role = 2; // người cho thuê
-        const user = await UserService.createOne(pathname, query, body);
-
+        const user = await UserService.addUser(pathname, query, body);
+        
         res.writeHead(200, {
             'Content-Type':'application/json',
             'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: true,
-            message: 'Add user successfully',
+            message: 'Register successfully',
             content: user
         }));
     } catch (error) {
@@ -51,14 +51,14 @@ exports.addUser = async (res, pathname, query, body) => {
             'Access-Control-Allow-Origin': '*',
         }).end(JSON.stringify({
             success: false,
-            message: 'Add user failed',
+            message: 'Register failed',
             content: error.toString()
         }));
     }
 }
 
 exports.removeUserFromBoardingRoom = async (res, pathname, query, body) => {
-    const {user_id} = body;
+    const {user_id} = body.user_id;
     try {
         let deletedUser = UserService.removeUserFromBoardingRoom(user_id);
         res.writeHead(200, {

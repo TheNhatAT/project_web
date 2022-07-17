@@ -12,10 +12,11 @@ import { PrivateRoute } from "./react-routes/privateRoute";
 import UploadedList from "./pages/example/components/UploadedList";
 import DetailsRoom from "./pages/example/components/DetailsRoom";
 import Infor from "./pages/user/components/Infor";
-import AddUser from "./pages/user/components/UserInfor";
+import UpdateInfor from "./pages/manage-boarding-house/components/UpdateUserInfor";
 import Home from "./pages/manage-boarding-house/components/Home";
 import BoardingRoomUser from "./pages/manage-boarding-house/components/BoardingRoomUser";
 import Price from "./pages/example/components/Price";
+import AddUserToBoardingRoom from "./pages/manage-boarding-house/components/AddUserToRoom";
 import FindRoomates from "./pages/manage-boarding-house/components/FindRoomates";
 
 export default function App() {
@@ -39,17 +40,20 @@ export default function App() {
                         </Layout>
                     </PrivateRoute>
                 } />
-
+                <Route path="/user/update-information/:id" element={
+                    <PrivateRoute>
+                        <Layout nav={true}>
+                            <UpdateInfor />
+                        </Layout>
+                    </PrivateRoute>
+                } />
+                
                 <Route path="/guide" element={
                         <Layout nav={true}>
                             <Guide />
                         </Layout>
                 } />
-                 <Route path="/boarding-room/add/user" element={
-                        <Layout nav={true}>
-                            <AddUser />
-                        </Layout>
-                } />
+                 
                 <Route path="/boarding-room/add" element={
                     <PrivateRoute>
                         <Layout nav={true}>
@@ -64,6 +68,14 @@ export default function App() {
                         </Layout>
                     </PrivateRoute>   
                 } />
+                <Route path="/boarding-room/:id/add-user" element={
+                    <PrivateRoute>
+                        <Layout nav={true}>
+                            <AddUserToBoardingRoom/>
+                        </Layout>
+                    </PrivateRoute>   
+                } />
+                
                 <Route path="/find-a-roomate/add" element={
                     <PrivateRoute>
                         <Layout nav={true}>

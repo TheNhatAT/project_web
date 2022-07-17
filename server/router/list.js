@@ -19,6 +19,9 @@ class List {
     '/users/id' (res, pathname, query, body) {
         UserController.getUserById(res, pathname, query, body);
     }
+    '/users/add-to-room'(res, pathname, query, body) {
+        UserController.addUser(res,pathname, query, body)
+    }
 
     '/users/add' (res, pathname, query, body) {
         UserController.updateUserById(res, pathname, query, body);

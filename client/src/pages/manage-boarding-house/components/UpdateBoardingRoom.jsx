@@ -20,6 +20,7 @@ const UpdateBoardingRoom = () => {
   const [districtname, setDistrictname] = useState("");
   const [subdistrictname, setSubdistrictname] = useState("");
   const [missingInforNoti, setMissingInforNoti] = useState(false);
+  const [error, setError] = useState(undefined);
   const location = useLocation();
 
   useEffect(() => {
@@ -73,6 +74,20 @@ const UpdateBoardingRoom = () => {
     const getsubdistrictname = event.target.value;
     setSubdistrictname(getsubdistrictname);
   };
+
+  const handleDeleteUser = async (e, user_id) => {
+    e.preventDefault();
+    try {
+     await axios.delete(`http://localhost:8000/boarding-rooms/remove-user`, {
+        user_id: user_id
+      })
+      setError(undefined);
+    } catch (error) {
+      console.log("error: ", error);
+      setError(error);
+    }
+    
+  }
   
   return (
     <>
@@ -240,7 +255,7 @@ const UpdateBoardingRoom = () => {
       </div>
       <div className="border-4 mt-6 text-white font-bold border-blue-600 w-3/4 rounded ml-20">
         <div className="bg-blue-600 w-full h-8">Người thuê</div>
-        <Link to={'/boarding-room/user'}><button className="update-btn mt-3 mb-3 ml-5" >Thêm người</button></Link>
+        <Link to={`/boarding-room/${id}/add-user`}><button className="update-btn mt-3 mb-3 ml-5" >Thêm người</button></Link>
         <table className="text-black font-normal">
           <tr>
             <th>Họ tên</th>
@@ -256,8 +271,8 @@ const UpdateBoardingRoom = () => {
                     <td>{item.email}</td>
                     <td>{item.phone_number}</td>
                     <td>
-                      <button className="update-btn">Cập nhật</button>
-                      <button className="delete-btn">Xóa</button>
+                      <Link to={`/user/update-information/${item.id}`}><button className="update-btn">Cập nhật</button></Link>
+                      <button className="delete-btn" onClick={handleDeleteUser(item.id)}>Xóa</button>
                     </td>
                   </tr>
               )
@@ -266,7 +281,7 @@ const UpdateBoardingRoom = () => {
         </table>
       </div>
 
-      <button className="button">Đăng tin</button>
+      <button className="button">Cập nhật</button>
       
     </>
   );
