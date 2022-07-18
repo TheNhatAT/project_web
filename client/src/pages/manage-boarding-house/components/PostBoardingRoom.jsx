@@ -222,12 +222,12 @@ const PostBoardingRoom = () => {
           <span>Nội dung</span>
           <br />
           <textarea
-          className="mt-4"
-            name="description"
-            onChange={(e) =>
-              setBoardingRoom({ ...boardingRoom, description: e.target.value })
-            }
-          ></textarea>
+              className="mt-4"
+              name="description"
+              onChange={(e) =>
+                  setBoardingRoom({...boardingRoom, description: e.target.value})
+              }
+            />
         </div>
       </div>
 

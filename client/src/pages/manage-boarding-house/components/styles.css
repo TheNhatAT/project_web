@@ -4,8 +4,7 @@
   background: linear-gradient(180deg, #5d67ed 0%, #060ff9 100%);
   color: white;
   font-weight: 400;
-  height: 35px;
-  width: 100px;
+  padding: 2px;
   border-radius: 6px;
   margin-bottom: 20px;
 }

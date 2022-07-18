@@ -75,14 +75,6 @@ export default function App() {
                         </Layout>
                     </PrivateRoute>   
                 } />
-                
-                <Route path="/find-a-roomate/add" element={
-                    <PrivateRoute>
-                        <Layout nav={true}>
-                            <PostFindARoomate/>
-                        </Layout>
-                    </PrivateRoute>
-                } />
 
                 <Route path="/find-a-roomate" element={
                     <Layout nav={true}>

@@ -37,10 +37,6 @@ export default function NavBar() {
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none focus:text-white
                                     focus:bg-gray-700 "> Đăng tin mới </Link>)}
-                            {(user.id != null && user.role == 2) && (<Link to="/find-a-roomate/add"  className="ml-4 basis-1/4 px-3 py-2 rounded-md text-sm leading-5 font-medium
-                                    text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
-                                    duration-150 ease-in-out cursor-pointer focus:outline-none
-                                    focus:text-white focus:bg-gray-700 "> Đăng tin tìm người ở ghép </Link>)}
                             {user.id == null && (<Link to="/find-a-roomate"  className="ml-4 basis-1/3 px-3 py-2 rounded-md text-sm leading-5 font-medium
                                     text-gray-800 font-semibold hover:bg-green-500 hover:text-white transition
                                     duration-150 ease-in-out cursor-pointer focus:outline-none
