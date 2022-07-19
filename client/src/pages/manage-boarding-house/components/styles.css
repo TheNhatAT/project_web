@@ -7,6 +7,7 @@
   padding: 2px;
   border-radius: 6px;
   margin-bottom: 20px;
+  width: 120px;
 }
 
 .upload-btn {
@@ -16,7 +17,7 @@
   color: white;
   font-weight: 400;
   height: 35px;
-  width: 100px;
+  width: 120px;
   border-radius: 6px;
   margin-bottom: 20px;
 }
@@ -29,6 +30,7 @@
   width: 100px;
   border-radius: 6px;
 }
+
 .delete-btn {
   background: linear-gradient(180deg, #f9555f 0%, #e30a0d 100%);
   color: white;
@@ -44,37 +46,40 @@
   margin-left: 50%;
   color: black;
 }
+
 .gia-thue {
   margin-top: -73px;
   margin-left: 50%;
   color: black;
 }
 
-
 .sdt {
   margin-top: -70px;
   margin-left: 50%;
   color: black;
 }
+
 textarea {
   width: 75%;
   border-color: #f1f1f1;
   background-color: #f1f1f1;
   height: 50px;
 }
+
 .district {
   margin-top: -64px;
   margin-left: 50%;
+  width: 100%;
   color: black;
 }
+
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-td,
-th {
+td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -121,12 +126,12 @@ tr:nth-child(even) {
   position: relative;
   background-color: rgba(245, 5, 5, 0.9);
 }
+
 .require {
   font-size: 10px;
   color: #e30a0d;
-  margin-left: 130px;
+  margin-left: 155px;
   margin-top: -20px;
-  
 }
 
 .requireFinal {

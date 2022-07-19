@@ -141,10 +141,10 @@ export default function BoardingRoomDetail() {
                             </tr>
           
                             <tr>
-                                <td>{boardingRoom.room_price}</td>
-                                <td>{boardingRoom.room_price}</td>
-                                <td>{boardingRoom.room_price}</td>
-                                <td>{boardingRoom.room_price}</td>
+                                <td>{boardingRoom.electricity_price}</td>
+                                <td>{boardingRoom.water_price}</td>
+                                <td>{boardingRoom.parking_price}</td>
+                                <td>{boardingRoom.other_price}</td>
                             </tr>
                      
                         </table>

@@ -10,6 +10,10 @@ const PostBoardingRoom = () => {
     description: "",
     category: "",
     address: "",
+    water_price: "",
+    electricity_price:"",
+    parking_price: "",
+    other_price: ""
   });
   const [city, setCity] = useState([]);
   const [district, setDistrict] = useState([]);
@@ -214,6 +218,62 @@ const PostBoardingRoom = () => {
             name="room_price"
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, room_price: e.target.value })
+            }
+            className="input-form-right -mt-2"
+          />
+        </div>
+        <div className="text-black ml-5">
+          <span>
+            Giá nước{" "}
+              <div className="require">* Thông tin này là bắt buộc</div>
+          </span>
+          <br />
+          <input
+            name="water_price"
+            onChange={(e) =>
+              setBoardingRoom({ ...boardingRoom, water_price: e.target.value })
+            }
+            className="input-form -mt-2"
+          />
+        </div>
+        <div className="gia-thue">
+          <span>
+            Giá điện{" "}
+              <div className="require">* Thông tin này là bắt buộc</div>
+          </span>
+          <br />
+          <input
+            name="electricity_price"
+            onChange={(e) =>
+              setBoardingRoom({ ...boardingRoom, electricity_price: e.target.value })
+            }
+            className="input-form-right -mt-2"
+          />
+        </div>
+        <div className="text-black ml-5">
+          <span>
+            Phí gửi xe{" "}
+              <div className="require">* Thông tin này là bắt buộc</div>
+          </span>
+          <br />
+          <input
+            name="parking_price"
+            onChange={(e) =>
+              setBoardingRoom({ ...boardingRoom, parking_price: e.target.value })
+            }
+            className="input-form -mt-2"
+          />
+        </div>
+        <div className="gia-thue">
+          <span>
+            Phí dịch vụ {" "}
+              <div className="require">* Thông tin này là bắt buộc</div>
+          </span>
+          <br />
+          <input
+            name="other_price"
+            onChange={(e) =>
+              setBoardingRoom({ ...boardingRoom, other_price: e.target.value })
             }
             className="input-form-right -mt-2"
           />

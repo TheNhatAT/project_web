@@ -75,9 +75,10 @@ const UpdateBoardingRoom = () => {
     setSubdistrictname(getsubdistrictname);
   };
 
-  const handleDeleteUser = async (e, user_id) => {
-    e.preventDefault();
+  const handleDeleteUser = async ( user_id) => {
+    //e.preventDefault();
     try {
+      console.log("id nguoi xoa", user_id)
      await axios.delete(`http://localhost:8000/boarding-rooms/remove-user`, {
         user_id: user_id
       })
@@ -228,9 +229,10 @@ const UpdateBoardingRoom = () => {
             onChange={(e) =>
               setBoardingRoom({ ...boardingRoom, room_price: e.target.value })
             }
-            className="input-form-right -mt-2"
+            className="input-form"
           />
         </div>
+        
         <div className="text-black ml-5 mt-5">
           <span>Nội dung</span>
           <br />
