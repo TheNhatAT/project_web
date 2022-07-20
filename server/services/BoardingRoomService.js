@@ -71,7 +71,7 @@ exports.addBoardingRoom = async (pathname, query, body) => {
 
 exports.updateBoardingRoomById = async (id, body) => {
   console.log("id: ", id);
-  const { name, room_price, area, description, category, address, created_at } = body;
+  const { name, room_price, electricity_price, water_price, parking_price, other_price, area, description, category, address, created_at } = body;
   let [boarding_rooms] = await conn.execute(
     `UPDATE boarding_rooms 
       (name, room_price, electricity_price, water_price, parking_price, other_price, area, description, category, address, created_at, updated_at, photo_id, revenue_id)
@@ -80,10 +80,10 @@ exports.updateBoardingRoomById = async (id, body) => {
     [
       name,
       room_price,
-      null,
-      null,
-      null,
-      null,
+      electricity_price,
+      water_price,
+      parking_price,
+      other_price,
       area,
       description,
       category,
