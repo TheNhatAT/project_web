@@ -318,3 +318,31 @@ exports.getBoardingRoomsByOwnerId = async (res, pathname, query, body) => {
         }));
     }
 }
+
+
+exports.getBoardingRoomsByRentId = async (res, pathname, query, body) => {
+    console.log("run rent api")
+    const rent_id = query.get('rent_id');
+    console.log('rent_id', rent_id)
+    try {
+        const boardingRooms = await UserService.getBoardingRoomsByRentId(rent_id);
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: true,
+            message: 'Get successfully',
+            content: boardingRooms
+        }));
+    } catch (error) {
+        console.log(error)
+        res.writeHead(400, {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+        }).end(JSON.stringify({
+            success: false,
+            message: 'Not successful',
+            content: error.toString()
+        }));
+    }
+}

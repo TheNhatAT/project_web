@@ -5,15 +5,16 @@ import { useEffect, useState } from "react";
 
 
 export default function DetailsRoom() {
-    const [data1, setData1] = useState([]);
-    // const [image, setImage] = useState([]);
-
     const [boardingRoom, setBoardingRoom] = useState({});
 
     function addBoardingRoom(boardingRoom) {
         axios.post("http://localhost:8000/boarding-rooms/add", {
             name: boardingRoom.name + ' tìm người ở ghép',
             room_price: boardingRoom.room_price,
+            electricity_price: boardingRoom.electricity_price,
+            water_price: boardingRoom.water_price,
+            other_price: boardingRoom.other_price,
+            parking_price: boardingRoom.parking_price,
             area: boardingRoom.area,
             description: boardingRoom.description,
             category: boardingRoom.category,
@@ -39,11 +40,10 @@ export default function DetailsRoom() {
 
     useEffect(() => {
         async function fetchData() {
-            return await axios.get(`http://localhost:8000/boarding-rooms/id/1`);
+            return await axios.get(`http://localhost:8000/users/rent/boarding-rooms?rent_id=${localStorage.getItem("userId")}`);
         }
         fetchData().then((res) => {
-            setData1(res.data.content.boarding_room);
-            setBoardingRoom(res.data.content.boarding_room);
+            setBoardingRoom(res.data.content);
         });
     }, []);
     return (
@@ -58,14 +58,14 @@ export default function DetailsRoom() {
                         <img className="img-roomtag" src="https://wedo.vn/wp-content/uploads/2018/12/chi-phi-nha-tro-moi-xay-can-tho-2-370x260.jpg" alt="" />
                     </div>
                     <div>
-                        <h1 className="title p-5">Tên nhà trọ : {data1.name}</h1>
-                        <h1 className="description p-5">Mô tả nhà trọ : {data1.description}</h1>
-                        <h1 className="address p-5"> Địa chỉ nhà trọ : {data1.address}</h1>
-                        <h1 className="room-price p-5"> Giá phòng : {data1.room_price}</h1>
-                        <h1 className="elec-price p-5"> Giá điện : {data1.electricity_price}</h1>
-                        <h1 className="water-price p-5"> Giá nước : {data1.water_price}</h1>
-                        <h1 className="parking-price p-5"> Phí gửi xe : {data1.parking_price}</h1>
-                        <h1 className="other-price p-5"> Phụ phí : {data1.other_price}</h1>
+                        <h1 className="title p-5">Tên nhà trọ : {boardingRoom.name}</h1>
+                        <h1 className="description p-5">Mô tả nhà trọ : {boardingRoom.description}</h1>
+                        <h1 className="description p-5"> Địa chỉ nhà trọ : {boardingRoom.address}</h1>
+                        <h1 className="room-price p-5"> Giá phòng : {boardingRoom.room_price}</h1>
+                        <h1 className="elec-price p-5"> Giá điện : {boardingRoom.electricity_price}</h1>
+                        <h1 className="water-price p-5"> Giá nước : {boardingRoom.water_price}</h1>
+                        <h1 className="parking-price p-5"> Phí gửi xe : {boardingRoom.parking_price}</h1>
+                        <h1 className="other-price p-5"> Phụ phí : {boardingRoom.other_price}</h1>
                     </div>
                 </div>
             </div>

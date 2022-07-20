@@ -1,21 +1,19 @@
 import * as React from "react";
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import Layout from "./layout/Layout";
 import Login from "./pages/auth/components/Login";
 import Register from "./pages/auth/components/Register";
 import PostBoardingRoom from "./pages/manage-boarding-house/components/PostBoardingRoom";
 import UpdateBoardingRoom from "./pages/manage-boarding-house/components/UpdateBoardingRoom";
-import PostFindARoomate from "./pages/manage-boarding-house/components/PostFindRoomate";
 import Guide from "./pages/Guide";
 import BoardingRoomDetail from "./pages/manage-boarding-house/components/BoardingRoomDetail";
-import { PrivateRoute } from "./react-routes/privateRoute";
-import UploadedList from "./pages/example/components/UploadedList";
-import DetailsRoom from "./pages/example/components/DetailsRoom";
+import {PrivateRoute} from "./react-routes/privateRoute";
+import UploadedList from "./pages/manage-boarding-house/components/UploadedList";
+import DetailsRoom from "./pages/manage-boarding-house/components/DetailsRoom";
 import Infor from "./pages/user/components/Infor";
 import UpdateInfor from "./pages/manage-boarding-house/components/UpdateUserInfor";
 import Home from "./pages/manage-boarding-house/components/Home";
 import BoardingRoomUser from "./pages/manage-boarding-house/components/BoardingRoomUser";
-import Price from "./pages/example/components/Price";
 import AddUserToBoardingRoom from "./pages/manage-boarding-house/components/AddUserToRoom";
 import FindRoomates from "./pages/manage-boarding-house/components/FindRoomates";
 

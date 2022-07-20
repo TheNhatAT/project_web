@@ -5,9 +5,9 @@
   color: white;
   font-weight: 400;
   padding: 2px;
+  height: 35px;
   border-radius: 6px;
   margin-bottom: 20px;
-  width: 120px;
 }
 
 .upload-btn {
