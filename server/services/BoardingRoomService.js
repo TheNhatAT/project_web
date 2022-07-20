@@ -33,7 +33,7 @@ exports.getBoardingRoomById = async (id) => {
 };
 
 exports.addBoardingRoom = async (pathname, query, body) => {
-  const { name, room_price, area, description, category, address, user_id } = body;
+  const { name, room_price,electricity_price, water_price, parking_price, other_price, area, description, category, address, user_id } = body;
 
   const created_at = new Date();
   console.log("body: ", body)
@@ -45,10 +45,10 @@ exports.addBoardingRoom = async (pathname, query, body) => {
       [
         name,
         room_price,
-        null,
-        null,
-        null,
-        null,
+        electricity_price,
+        water_price,
+        parking_price,
+        other_price,
         area,
         description,
         category,
