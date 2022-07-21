@@ -58,7 +58,9 @@ exports.addUser = async (res, pathname, query, body) => {
 }
 
 exports.removeUserFromBoardingRoom = async (res, pathname, query, body) => {
-    const {user_id} = body.user_id;
+    console.log("query in del: ", query)
+    const user_id = query.get('user_id');
+    console.log('user_id', user_id)
     try {
         let deletedUser = UserService.removeUserFromBoardingRoom(user_id);
         res.writeHead(200, {
