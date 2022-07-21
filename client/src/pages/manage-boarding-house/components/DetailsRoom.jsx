@@ -53,9 +53,9 @@ export default function DetailsRoom() {
                     <h2 className="tag block-example border border-primary p-5">Danh sách trọ đã thuê</h2>
                 </div>
 
-                <div className="roomtag block-example border border-primary">
+                <div className="roomtag block-example border border-primary flex flex-col">
                     <div className="">
-                        <img className="img-roomtag" src="https://wedo.vn/wp-content/uploads/2018/12/chi-phi-nha-tro-moi-xay-can-tho-2-370x260.jpg" alt="" />
+                        <img className="carousel-item relative float-left w-2/3 active" src="https://wedo.vn/wp-content/uploads/2018/12/chi-phi-nha-tro-moi-xay-can-tho-2-370x260.jpg" alt="" />
                     </div>
                     <div>
                         <h1 className="title p-5">Tên nhà trọ : {boardingRoom.name}</h1>
