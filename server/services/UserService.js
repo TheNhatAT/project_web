@@ -96,7 +96,7 @@ exports.updateOne = async (id, data) => {
 }
 exports.getAllBoardingRoom = async (pathname, query, body) =>{
     
-    let rows = await conn.execute(`SELECT * from boarding_rooms ORDER BY created_at DESC LIMIT 10`)
+    let rows = await conn.execute(`SELECT * from boarding_rooms`)
     console.log(rows[0])
     if(!rows){
          throw Error('Can not get all boarding room')
