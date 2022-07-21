@@ -49,6 +49,7 @@ exports.addUser = async (pathname, query, body) => {
 exports.removeUserFromBoardingRoom = async (user_id) => {
     console.log("id-user: ", user_id);
     let deletedUserRoom = await conn.execute(`DELETE FROM users_boarding_rooms WHERE user_id = ? AND users_boarding_rooms.relationship = 2`, [user_id])
+    let deletedUser = await conn.execute(`DELETE FROM users WHERE user_id=?`, [user_id])
     return deletedUserRoom;
 }
 
